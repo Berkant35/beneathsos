@@ -1,0 +1,246 @@
+Enkaz BLE RSSI Monte Carlo | seed=20260927 | deneme/senaryo=500 | P0=-59.0 n_est=2.5 | alpha~U(5.0,20.0) dB/m | n~U(2.0,3.5) | duyarlilik=-100.0 dBm
+
+====================================================================================================
+1) 4 KURTARICI TELEFON, KARE KOSELER, alpha~U(5,20) dB/m — hatalar medyan/p90 (m)
+   A = (x,y,z) kestirici; B = (x,y,z,c) ortak ofsetli; Merkez = hep karenin ortasini soyleyen naif tahmin
+   det4/det1 = 4 linkin hepsi / en az 1'i -100 dBm ustunde algilanir (KESTIRIM ESIGI YOK SAYAR: iyimser)
+   A@20m = A'nin derinlik sinirina (20 m) yapistigi oran; B@yuzey = B'nin z~0'a yapistigi oran; GA95 = B derinlik %95 profil guven araligi genisligi
+====================================================================================================
+ L  d sig senaryo           | det4 det1 | A yatay     A derin     A@20m | B yatay     B derin     B biasMed B@yuzey | Merkez yatay | GA95gen kapsar
+ 6  1  3 GPS kare   a5-20  |  83% 100% |  6.45/ 9.13 10.11/19.00   29% |  5.00/ 8.13  0.95/ 8.36   -0.95    68%  |  2.38/ 3.35  |  19.90  100%
+ 6  1  3 AR  kare   a5-20  |  86% 100% |  6.10/ 8.31 10.06/19.00   29% |  2.47/ 5.39  0.95/ 2.88   -0.73    47%  |  2.41/ 3.28  |  19.90  100%
+ 6  1  6 GPS kare   a5-20  |  78% 100% |  6.84/ 9.34  9.70/19.00   31% |  5.03/ 8.35  0.95/ 5.98   -0.95    72%  |  2.47/ 3.33  |  19.90  100%
+ 6  1  6 AR  kare   a5-20  |  75% 100% |  6.45/ 9.36 13.11/19.00   35% |  2.77/ 5.78  0.95/ 1.57   -0.92    57%  |  2.41/ 3.28  |  19.90  100%
+ 6  1  9 GPS kare   a5-20  |  72% 100% |  7.11/ 9.64  9.14/19.00   27% |  5.48/ 8.40  0.95/ 6.58   -0.95    78%  |  2.39/ 3.43  |  19.90  100%
+ 6  1  9 AR  kare   a5-20  |  67% 100% |  6.45/ 9.18  9.45/19.00   31% |  3.05/ 5.94  0.95/ 0.96   -0.92    58%  |  2.46/ 3.43  |  19.90  100%
+ 6  3  3 GPS kare   a5-20  |  13%  46% |  8.44/10.51 17.00/17.00   96% |  5.50/ 8.76  2.95/ 5.67   -2.95    73%  |  2.45/ 3.37  |  19.90   98%
+ 6  3  3 AR  kare   a5-20  |  13%  51% |  7.68/10.12 17.00/17.00   95% |  3.42/ 6.31  2.89/ 2.95   -2.84    51%  |  2.39/ 3.29  |  19.90   98%
+ 6  3  6 GPS kare   a5-20  |  10%  55% |  8.43/10.62 17.00/17.00   95% |  5.67/ 9.07  2.95/ 7.95   -2.95    77%  |  2.38/ 3.34  |  19.90   99%
+ 6  3  6 AR  kare   a5-20  |   9%  51% |  7.77/10.10 17.00/17.00   96% |  3.50/ 6.48  2.93/ 2.95   -2.91    57%  |  2.44/ 3.32  |  19.90   99%
+ 6  3  9 GPS kare   a5-20  |   9%  59% |  8.49/10.73 17.00/17.00   96% |  5.53/ 8.93  2.95/ 2.95   -2.95    82%  |  2.39/ 3.35  |  19.90   99%
+ 6  3  9 AR  kare   a5-20  |   7%  62% |  8.09/10.30 17.00/17.00   95% |  3.95/ 6.55  2.95/ 2.95   -2.95    63%  |  2.35/ 3.34  |  19.90   98%
+ 6  6  3 GPS kare   a5-20  |   0%   5% |  8.83/10.97 14.00/14.00  100% |  5.93/ 9.15  5.95/ 5.95   -5.95    86%  |  2.35/ 3.35  |  19.90   99%
+ 6  6  3 AR  kare   a5-20  |   0%   6% |  8.41/10.58 14.00/14.00  100% |  4.36/ 6.78  5.90/ 5.95   -5.90    57%  |  2.39/ 3.26  |  19.90   96%
+ 6  6  6 GPS kare   a5-20  |   0%   7% |  8.84/10.86 14.00/14.00  100% |  6.02/ 8.74  5.95/ 5.95   -5.95    86%  |  2.43/ 3.30  |  19.90   98%
+ 6  6  6 AR  kare   a5-20  |   0%   5% |  8.50/10.57 14.00/14.00  100% |  4.52/ 6.59  5.95/ 5.95   -5.95    68%  |  2.43/ 3.32  |  19.90   97%
+ 6  6  9 GPS kare   a5-20  |   0%  11% |  8.73/10.68 14.00/14.00  100% |  5.93/ 9.22  5.95/ 5.95   -5.95    87%  |  2.32/ 3.38  |  19.90   98%
+ 6  6  9 AR  kare   a5-20  |   0%   7% |  8.40/10.63 14.00/14.00  100% |  4.39/ 6.69  5.95/ 5.95   -5.95    63%  |  2.39/ 3.43  |  19.90   97%
+12  1  3 GPS kare   a5-20  |  51%  98% |  8.96/13.24 19.00/19.00   61% |  5.88/10.52  0.95/ 8.55   -0.95    72%  |  4.84/ 6.68  |  19.90  100%
+12  1  3 AR  kare   a5-20  |  49%  99% |  8.53/12.93 19.00/19.00   63% |  4.16/ 8.20  0.95/ 6.18   -0.85    52%  |  4.99/ 6.70  |  19.90  100%
+12  1  6 GPS kare   a5-20  |  51%  98% |  9.38/14.64 19.00/19.00   55% |  6.51/12.02  0.95/ 8.63   -0.95    76%  |  4.86/ 6.64  |  19.90  100%
+12  1  6 AR  kare   a5-20  |  48%  99% |  8.84/13.57 19.00/19.00   59% |  5.21/ 9.11  0.95/ 3.72   -0.81    51%  |  4.60/ 6.71  |  19.90  100%
+12  1  9 GPS kare   a5-20  |  37%  98% | 10.03/15.15 19.00/19.00   58% |  6.70/11.97  0.95/ 4.65   -0.95    82%  |  4.76/ 6.74  |  19.90  100%
+12  1  9 AR  kare   a5-20  |  36%  99% |  9.36/14.72 19.00/19.00   61% |  5.62/10.88  0.95/ 2.16   -0.93    61%  |  4.88/ 6.78  |  19.90  100%
+12  3  3 GPS kare   a5-20  |   4%  38% | 11.92/16.66 17.00/17.00   99% |  7.14/11.98  2.95/ 3.27   -2.95    80%  |  4.82/ 6.92  |  19.90   99%
+12  3  3 AR  kare   a5-20  |   3%  35% | 10.32/15.25 17.00/17.00   99% |  5.80/10.46  2.95/ 2.95   -2.87    54%  |  4.88/ 6.76  |  19.90   99%
+12  3  6 GPS kare   a5-20  |   3%  43% | 11.91/17.06 17.00/17.00   98% |  7.51/13.22  2.95/ 2.95   -2.95    81%  |  4.83/ 6.58  |  19.90   99%
+12  3  6 AR  kare   a5-20  |   2%  38% | 10.90/15.63 17.00/17.00   99% |  6.23/11.49  2.95/ 2.95   -2.90    56%  |  4.62/ 6.69  |  19.90   99%
+12  3  9 GPS kare   a5-20  |   2%  47% | 12.42/16.69 17.00/17.00   98% |  7.62/13.72  2.95/ 2.95   -2.95    87%  |  5.05/ 6.81  |  19.90  100%
+12  3  9 AR  kare   a5-20  |   3%  45% | 11.29/15.70 17.00/17.00   98% |  6.68/11.53  2.94/ 2.95   -2.91    60%  |  4.72/ 6.70  |  19.90   99%
+12  6  3 GPS kare   a5-20  |   0%   3% | 13.13/16.71 14.00/14.00  100% |  8.23/13.89  5.95/ 5.95   -5.95    86%  |  4.74/ 6.72  |  19.90   98%
+12  6  3 AR  kare   a5-20  |   0%   3% | 12.08/16.57 14.00/14.00  100% |  7.58/12.52  5.90/ 5.95   -5.88    56%  |  4.86/ 6.60  |  19.90   98%
+12  6  6 GPS kare   a5-20  |   0%   3% | 13.20/17.48 14.00/14.00  100% |  8.78/14.54  5.95/ 5.95   -5.95    91%  |  4.93/ 6.70  |  19.90   99%
+12  6  6 AR  kare   a5-20  |   0%   5% | 12.20/16.65 14.00/14.00  100% |  7.85/12.91  5.95/ 5.95   -5.95    65%  |  4.80/ 6.71  |  19.90   99%
+12  6  9 GPS kare   a5-20  |   0%   6% | 13.12/17.18 14.00/14.00  100% |  8.80/13.93  5.95/ 5.95   -5.95    91%  |  4.74/ 6.56  |  19.90   98%
+12  6  9 AR  kare   a5-20  |   0%   6% | 12.80/17.07 14.00/14.00  100% |  8.22/12.79  5.95/ 5.95   -5.95    69%  |  5.03/ 6.85  |  19.90   98%
+
+====================================================================================================
+1b) 4 CAPA DUYARLILIK: duzensiz dortgen (koseler +/-1.5 m) ve DUSUK zayiflama alpha~U(1,5) (bosluklu enkaz), sigma=6, AR
+   A = (x,y,z) kestirici; B = (x,y,z,c) ortak ofsetli; Merkez = hep karenin ortasini soyleyen naif tahmin
+   det4/det1 = 4 linkin hepsi / en az 1'i -100 dBm ustunde algilanir (KESTIRIM ESIGI YOK SAYAR: iyimser)
+   A@20m = A'nin derinlik sinirina (20 m) yapistigi oran; B@yuzey = B'nin z~0'a yapistigi oran; GA95 = B derinlik %95 profil guven araligi genisligi
+====================================================================================================
+ L  d sig senaryo           | det4 det1 | A yatay     A derin     A@20m | B yatay     B derin     B biasMed B@yuzey | Merkez yatay | GA95gen kapsar
+ 6  1  6 AR  duz1.5 a5-20  |  75% 100% |  6.45/ 9.00 11.34/19.00   33% |  3.05/ 6.18  0.95/ 2.45   -0.91    57%  |  2.35/ 3.33  |  19.90  100%
+ 6  1  6 AR  kare   a1-5   |  98% 100% |  4.19/ 7.32  0.95/ 7.78    2% |  2.81/ 5.49  0.95/ 1.98   -0.94    57%  |  2.44/ 3.41  |  19.90  100%
+ 6  3  6 AR  duz1.5 a5-20  |   8%  50% |  8.11/10.55 17.00/17.00   96% |  3.76/ 7.13  2.95/ 2.95   -2.92    58%  |  2.53/ 3.36  |  19.90   99%
+ 6  3  6 AR  kare   a1-5   |  84% 100% |  6.59/ 9.18  7.45/17.00   25% |  3.19/ 6.35  2.81/ 2.95   -2.65    46%  |  2.37/ 3.30  |  19.90   99%
+ 6  6  6 AR  duz1.5 a5-20  |   0%   9% |  8.59/10.53 14.00/14.00  100% |  4.45/ 6.95  5.93/ 5.95   -5.92    61%  |  2.26/ 3.26  |  19.90   97%
+ 6  6  6 AR  kare   a1-5   |  38%  93% |  7.94/10.40 14.00/14.00   80% |  3.91/ 6.77  5.85/ 5.95   -5.85    52%  |  2.44/ 3.27  |  19.90   98%
+12  1  6 AR  duz1.5 a5-20  |  45%  99% |  8.92/13.64 19.00/19.00   59% |  4.83/ 9.60  0.95/ 4.01   -0.90    56%  |  4.86/ 6.87  |  19.90  100%
+12  1  6 AR  kare   a1-5   |  86% 100% |  6.80/11.59  2.35/19.00   12% |  5.10/ 9.78  0.95/ 4.22   -0.81    51%  |  4.57/ 6.60  |  19.90  100%
+12  3  6 AR  duz1.5 a5-20  |   3%  35% | 11.12/15.93 17.00/17.00   98% |  6.35/11.63  2.95/ 2.95   -2.95    59%  |  4.70/ 6.69  |  19.90   99%
+12  3  6 AR  kare   a1-5   |  66% 100% |  8.67/14.19 12.83/17.00   42% |  5.33/ 9.74  2.95/ 3.24   -2.82    52%  |  4.79/ 6.69  |  19.90   99%
+12  6  6 AR  duz1.5 a5-20  |   0%   4% | 12.01/16.40 14.00/14.00  100% |  7.22/12.60  5.95/ 5.95   -5.95    65%  |  4.74/ 6.73  |  19.90   99%
+12  6  6 AR  kare   a1-5   |  23%  82% | 11.10/15.87 14.00/14.00   88% |  6.16/11.22  5.73/ 5.95   -5.69    45%  |  4.80/ 6.69  |  19.90   98%
+
+====================================================================================================
+2) BAROMETRE ILE DERINLIK (kurban telefonu basinci advertisement'ta) + yatay konum RSSI'dan (4 capa)
+   baro kalibre: N(0,0.8 m) | kalibresiz: N(0,4 m) (~0.5 hPa cihazlar arasi mutlak ofset)
+   alpha: B|z'nin ofsetinden alpha_hat=-c/d_baro ile malzeme cikarimi; 3 sinif (esit genislik), sans ~%33
+   'det4 icinde' = yalniz 4 linkin de gercekten algilandigi denemeler (n = o deneme sayisi)
+====================================================================================================
+   'cogunluk' = algilanan denemelerde en sik gercek sinifin orani (hep o sinifi soyleyen naif tahminin dogrulugu)
+ L  d sig senaryo           | A|z yatay   B|z yatay   derin(kal)  | B|z yatay(kalsiz) derin(kalsiz) | alpha hata med sinif | det4 icinde: n  sinif cogunluk B|z yatay
+ 6  1  6 GPS kare   a5-20  |  7.16/ 9.90  5.07/ 8.20  0.51/ 1.02 |  5.12/ 8.39        0.95/ 5.20  |   8.6 dB/m   43% |  389   41%    37%    5.10/ 8.22
+ 6  1  6 AR  kare   a5-20  |  6.77/ 9.43  2.75/ 5.60  0.52/ 0.95 |  3.36/ 6.47        0.95/ 5.05  |   7.5 dB/m   42% |  375   40%    38%    2.81/ 5.65
+ 6  3  6 GPS kare   a5-20  |  8.52/10.71  5.83/ 8.99  0.55/ 1.34 |  6.05/ 9.14        2.77/ 4.81  |   3.0 dB/m   60% |   49   88%    94%    5.19/ 8.90
+ 6  3  6 AR  kare   a5-20  |  7.69/10.13  4.08/ 6.98  0.52/ 1.39 |  4.57/ 7.66        2.59/ 4.71  |   2.9 dB/m   62% |   45   87%    98%    3.95/ 6.95
+ 6  6  6 GPS kare   a5-20  |  8.88/10.91  6.91/ 9.42  0.61/ 1.37 |  6.77/ 9.37        3.00/ 5.95  |   1.6 dB/m   77% |    0    -      -          -     
+ 6  6  6 AR  kare   a5-20  |  8.55/10.51  6.55/ 8.94  0.56/ 1.37 |  6.35/ 8.95        2.56/ 5.95  |   1.6 dB/m   74% |    0    -      -          -     
+12  1  6 GPS kare   a5-20  |  9.77/15.35  6.23/12.02  0.56/ 0.95 |  6.50/12.12        0.95/ 5.04  |   7.8 dB/m   47% |  256   45%    49%    5.91/11.82
+12  1  6 AR  kare   a5-20  |  9.29/14.02  4.86/ 8.53  0.57/ 1.07 |  5.19/ 9.24        0.95/ 5.06  |   8.4 dB/m   45% |  242   43%    49%    4.74/ 8.14
+12  3  6 GPS kare   a5-20  | 12.00/16.92  7.65/12.68  0.51/ 1.25 |  8.03/13.20        2.70/ 5.47  |   3.1 dB/m   60% |   17   94%    94%    8.33/12.46
+12  3  6 AR  kare   a5-20  | 10.95/15.67  6.44/11.32  0.55/ 1.28 |  6.71/11.49        2.46/ 5.19  |   2.7 dB/m   62% |   12   92%   100%    5.60/ 9.18
+12  6  6 GPS kare   a5-20  | 13.05/17.53  9.55/15.05  0.53/ 1.29 |  9.49/15.06        2.69/ 5.95  |   1.5 dB/m   73% |    1  100%   100%    4.33/ 4.33
+12  6  6 AR  kare   a5-20  | 12.33/16.65  8.96/14.30  0.53/ 1.31 |  8.93/14.22        2.63/ 5.95  |   1.6 dB/m   72% |    0    -      -          -     
+ 6  1  6 AR  kare   a1-5   |  4.48/ 8.01  2.75/ 5.20  0.56/ 1.11 |  3.41/ 5.86        0.95/ 4.71  |   4.3 dB/m   40% |  492   39%    34%    2.75/ 5.21
+ 6  3  6 AR  kare   a1-5   |  7.08/ 9.53  3.78/ 6.51  0.55/ 1.33 |  4.19/ 7.06        2.68/ 4.95  |   1.5 dB/m   52% |  421   49%    37%    3.79/ 6.50
+ 6  6  6 AR  kare   a1-5   |  8.07/10.42  5.92/ 8.72  0.56/ 1.28 |  5.80/ 8.76        2.96/ 5.95  |   0.8 dB/m   64% |  189   69%    70%    5.80/ 8.79
+12  1  6 AR  kare   a1-5   |  7.03/12.43  4.67/ 8.20  0.53/ 1.00 |  5.09/ 8.80        0.95/ 5.27  |   4.6 dB/m   34% |  429   35%    38%    4.82/ 8.26
+12  3  6 AR  kare   a1-5   |  9.01/14.46  5.17/ 9.41  0.52/ 1.29 |  5.49/10.04        2.88/ 4.89  |   1.6 dB/m   46% |  332   47%    47%    5.10/ 9.29
+12  6  6 AR  kare   a1-5   | 11.20/16.01  6.93/12.32  0.52/ 1.36 |  7.16/12.53        2.48/ 5.95  |   0.9 dB/m   57% |  114   72%    74%    6.35/10.93
+
+====================================================================================================
+3) TEK KURTARICI YURUYEREK TARAMA (1 m izgara, AR 0.2 m), alpha~U(5,20) — hatalar medyan/p90 (m)
+   L=6: 7x7=49 nokta; L=12: kaba 5x5 (3 m) + ince 5x5 (1 m) uyarlamali = ~49 nokta
+   IDEAL: esik alti ornekler de kullanilir. GERCEKCI: yalniz >=-100 dBm paketler; >=6 algilanan nokta yoksa kestirim YOK
+   Sezgisel = en guclu RSSI noktasi (derinlik vermez); B|baro = B, z barometreden (0.8 m)
+====================================================================================================
+ L  d sig alfa  | det%nokta det1 | IDEAL: Sezgisel  A yatay     A derin     | B yatay     B derin     B@yuzey | B|baro yatay | Merkez     | GERCEKCI: basari Sezgisel    B yatay     B derin     B|baro yatay | GA95gen kapsar
+ 6  1  3 5-20 |     98%   100% |  0.74/ 1.49   2.95/ 4.45  8.02/19.00 |  0.50/ 1.19  0.51/ 0.95   15%  |  0.58/ 1.49  |  2.45/ 3.37 |   100%   0.74/ 1.49  0.53/ 1.29  0.51/ 1.09  0.63/ 1.69  |   1.15   77%
+ 6  1  6 5-20 |     97%   100% |  0.95/ 2.31   3.15/ 4.68  8.40/19.00 |  0.77/ 1.70  0.69/ 0.95   32%  |  0.85/ 1.91  |  2.37/ 3.31 |   100%   0.95/ 2.31  0.79/ 1.86  0.66/ 1.42  0.88/ 2.00  |   1.35   85%
+ 6  1  9 5-20 |     93%   100% |  1.19/ 3.46   3.17/ 5.22  8.25/19.00 |  1.15/ 2.90  0.83/ 0.95   44%  |  1.24/ 3.03  |  2.44/ 3.43 |   100%   1.19/ 3.46  1.24/ 3.00  0.87/ 2.21  1.34/ 3.14  |   1.65   91%
+ 6  3  3 5-20 |     35%    79% |  2.03/ 4.60   4.40/ 6.64 17.00/17.00 |  1.93/ 4.14  1.94/ 2.95   19%  |  2.10/ 4.30  |  2.38/ 3.40 |    55%   2.04/ 4.32  2.43/ 5.76  2.32/12.10  2.02/ 5.14  |   3.40   63%
+ 6  3  6 5-20 |     35%    81% |  2.33/ 4.64   4.65/ 7.03 17.00/17.00 |  2.22/ 4.61  2.23/ 2.95   27%  |  2.55/ 4.75  |  2.45/ 3.33 |    60%   2.34/ 4.39  2.68/ 5.35  2.15/12.18  2.29/ 5.18  |   4.00   65%
+ 6  3  9 5-20 |     32%    86% |  2.53/ 4.84   4.88/ 7.05 17.00/17.00 |  2.36/ 5.09  2.75/ 2.95   42%  |  2.72/ 5.65  |  2.37/ 3.43 |    62%   2.44/ 4.86  3.11/ 6.25  2.61/ 9.31  2.81/ 6.32  |   3.10   58%
+ 6  6  3 5-20 |      2%    18% |  3.11/ 5.38   5.76/ 7.70 14.00/14.00 |  3.16/ 5.84  5.79/ 5.95   49%  |  4.57/ 6.79  |  2.38/ 3.30 |     6%   2.84/ 5.00  3.90/ 6.02  5.78/14.00  2.70/ 6.31  |   3.70   37%
+ 6  6  6 5-20 |      3%    21% |  3.20/ 5.46   5.96/ 8.01 14.00/14.00 |  3.39/ 5.81  5.82/ 5.95   52%  |  4.81/ 7.08  |  2.37/ 3.39 |     7%   3.04/ 5.12  4.67/ 6.82  3.59/14.00  3.29/ 6.53  |   3.70   37%
+ 6  6  9 5-20 |      3%    24% |  3.06/ 5.43   5.56/ 7.71 14.00/14.00 |  3.06/ 5.74  5.86/ 5.95   53%  |  4.47/ 6.85  |  2.37/ 3.22 |     9%   2.79/ 5.48  3.94/ 6.44  2.97/ 7.19  4.64/ 6.42  |   3.40   38%
+12  1  3 5-20 |     93%   100% |  0.71/ 1.61   3.95/ 7.24  8.40/19.00 |  0.46/ 1.09  0.57/ 0.95   20%  |  0.48/ 1.20  |  4.63/ 6.48 |   100%   0.71/ 1.61  0.50/ 1.42  0.57/ 1.66  0.57/ 1.64  |   1.00   68%
+12  1  6 5-20 |     91%   100% |  1.03/ 3.70   4.36/ 7.32  9.86/19.00 |  0.85/ 2.18  0.74/ 0.95   33%  |  0.86/ 2.17  |  4.86/ 6.66 |   100%   1.03/ 3.70  0.96/ 2.38  0.76/ 2.83  0.99/ 2.77  |   1.35   80%
+12  1  9 5-20 |     89%   100% |  1.64/ 5.85   4.45/ 8.43  9.35/19.00 |  1.31/ 4.14  0.88/ 1.21   44%  |  1.33/ 4.16  |  4.67/ 6.45 |   100%   1.64/ 5.63  1.47/ 4.47  0.92/ 5.09  1.58/ 5.52  |   1.65   90%
+12  3  3 5-20 |     27%    75% |  2.64/ 6.86  12.17/15.85 17.00/17.00 |  2.25/ 6.05  1.91/ 2.95   21%  |  2.18/ 6.03  |  4.86/ 6.76 |    48%   2.57/ 5.86  2.86/ 8.22  3.67/15.98  3.14/12.97  |   2.80   56%
+12  3  6 5-20 |     28%    80% |  3.40/ 8.01  11.20/15.41 17.00/17.00 |  2.68/ 6.24  2.31/ 2.95   26%  |  2.61/ 6.14  |  4.85/ 6.51 |    54%   3.26/ 7.63  3.63/ 8.55  3.82/14.88  4.57/12.37  |   3.47   63%
+12  3  9 5-20 |     31%    88% |  3.49/ 7.78  11.03/15.43 17.00/17.00 |  3.06/ 7.27  2.73/ 2.95   40%  |  3.11/ 7.01  |  4.74/ 6.80 |    65%   3.55/ 7.91  4.36/ 9.74  2.95/13.25  4.96/12.14  |   3.40   59%
+12  6  3 5-20 |      2%    19% |  5.09/ 9.35  11.80/15.52 14.00/14.00 |  4.68/ 9.55  5.78/ 5.95   47%  |  5.28/10.56  |  4.84/ 6.58 |     5%   4.18/ 8.81  6.23/ 9.11  4.33/14.00  5.46/ 8.39  |   4.00   42%
+12  6  6 5-20 |      2%    21% |  5.49/10.16  11.43/15.35 14.00/14.00 |  5.15/ 9.85  5.83/ 5.95   49%  |  5.73/10.91  |  4.79/ 6.75 |     5%   5.50/ 9.67  6.82/11.32  5.95/14.00  5.88/11.07  |   4.15   43%
+12  6  9 5-20 |      3%    31% |  5.29/ 9.89  11.59/15.15 14.00/14.00 |  5.22/ 9.79  5.90/ 5.95   56%  |  5.95/11.21  |  4.78/ 6.74 |    10%   4.13/ 8.16  4.69/11.83  4.81/14.00  4.37/12.02  |   3.40   39%
+
+====================================================================================================
+3b) YURUYEREK TARAMA, DUSUK zayiflama alpha~U(1,5) (bosluklu enkaz), sigma=6
+   L=6: 7x7=49 nokta; L=12: kaba 5x5 (3 m) + ince 5x5 (1 m) uyarlamali = ~49 nokta
+   IDEAL: esik alti ornekler de kullanilir. GERCEKCI: yalniz >=-100 dBm paketler; >=6 algilanan nokta yoksa kestirim YOK
+   Sezgisel = en guclu RSSI noktasi (derinlik vermez); B|baro = B, z barometreden (0.8 m)
+====================================================================================================
+ L  d sig alfa  | det%nokta det1 | IDEAL: Sezgisel  A yatay     A derin     | B yatay     B derin     B@yuzey | B|baro yatay | Merkez     | GERCEKCI: basari Sezgisel    B yatay     B derin     B|baro yatay | GA95gen kapsar
+ 6  1  6 1-5  |    100%   100% |  0.87/ 2.15   1.60/ 3.49  0.95/ 6.34 |  0.71/ 1.66  0.64/ 0.95   28%  |  0.78/ 1.80  |  2.32/ 3.40 |   100%   0.87/ 2.15  0.71/ 1.64  0.63/ 0.95  0.77/ 1.80  |   1.35   85%
+ 6  3  6 1-5  |     98%   100% |  2.05/ 4.50   3.44/ 5.78  7.24/17.00 |  1.85/ 4.25  1.61/ 2.95    8%  |  2.00/ 4.02  |  2.49/ 3.33 |   100%   2.05/ 4.50  1.94/ 4.25  1.47/ 3.60  1.98/ 4.03  |   4.00   65%
+ 6  6  6 1-5  |     70%    99% |  2.78/ 5.14   5.24/ 7.39 14.00/14.00 |  2.90/ 6.00  3.80/ 5.69    7%  |  3.90/ 6.43  |  2.31/ 3.30 |    92%   2.80/ 5.16  3.20/ 6.01  3.13/ 9.33  2.97/ 5.52  |   6.47   58%
+12  1  6 1-5  |     99%   100% |  0.89/ 3.30   1.51/ 3.95  0.95/ 5.35 |  0.73/ 1.97  0.70/ 0.95   30%  |  0.76/ 2.06  |  4.73/ 6.68 |   100%   0.89/ 3.30  0.73/ 1.96  0.68/ 1.21  0.78/ 2.07  |   1.20   78%
+12  3  6 1-5  |     94%   100% |  2.40/ 5.89   4.45/ 7.83  7.83/17.00 |  1.71/ 4.04  1.37/ 2.85    6%  |  1.76/ 3.89  |  4.81/ 6.49 |   100%   2.40/ 5.96  1.94/ 4.48  1.31/ 4.64  2.07/ 5.01  |   3.10   66%
+12  6  6 1-5  |     65%    99% |  3.92/ 8.47   9.76/14.48 14.00/14.00 |  3.44/ 6.66  3.32/ 5.59    3%  |  3.58/ 6.68  |  4.65/ 6.73 |    93%   3.96/ 8.34  4.20/ 8.14  4.64/14.00  3.80/ 7.87  |   6.70   63%
+
+====================================================================================================
+5) CRAMER-RAO ALT SINIRI (en iyi yansiz kestiricinin ulasabilecegi std; sigma=6, alpha=12.5 dB/m)
+   A: (x,y,z) bilinen P0,n,zayiflama | B: +ortak ofset c | C: +c +n (yol kaybi ussu de bilinmiyor)
+====================================================================================================
+  4capa_L12            merkez      d=  1m sig_eff=  7.7dB | A: yatay    6.11 der   25.93 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12            merkez      d=  3m sig_eff= 10.5dB | A: yatay    9.20 der   13.01 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12            merkez      d=  6m sig_eff= 16.7dB | A: yatay   19.55 der   13.83 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12            merkez-disi d=  1m sig_eff=  7.7dB | A: yatay    6.59 der   21.66 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12            merkez-disi d=  3m sig_eff= 10.5dB | A: yatay    9.85 der   11.09 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12            merkez-disi d=  6m sig_eff= 16.7dB | A: yatay   20.71 der   12.55 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez      d=  1m sig_eff=  7.7dB | A: yatay    3.18 der    6.75 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez      d=  3m sig_eff= 10.5dB | A: yatay    6.13 der    4.34 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez      d=  6m sig_eff= 16.7dB | A: yatay   19.55 der    6.91 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez-disi d=  1m sig_eff=  7.7dB | A: yatay    3.42 der    5.68 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez-disi d=  3m sig_eff= 10.5dB | A: yatay    6.49 der    3.94 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L6             merkez-disi d=  6m sig_eff= 16.7dB | A: yatay   20.33 der    7.09 | B: yatay   tekil der   tekil | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez      d=  1m sig_eff=  7.7dB | A: yatay    5.38 der   18.72 | B: yatay    6.48 der  106.15 | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez      d=  3m sig_eff= 10.5dB | A: yatay    8.36 der    9.78 | B: yatay   10.05 der   63.67 | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez      d=  6m sig_eff= 16.7dB | A: yatay   19.09 der   11.31 | B: yatay   22.86 der  105.78 | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez-disi d=  1m sig_eff=  7.7dB | A: yatay    5.75 der   16.30 | B: yatay   17.56 der  126.99 | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez-disi d=  3m sig_eff= 10.5dB | A: yatay    8.91 der    8.72 | B: yatay   26.28 der   73.98 | C: yatay   tekil der   tekil
+  4capa_L12_duzensiz   merkez-disi d=  6m sig_eff= 16.7dB | A: yatay   20.24 der   10.75 | B: yatay   55.78 der  115.83 | C: yatay   tekil der   tekil
+  yuruyus_L6_49nokta   merkez      d=  1m sig_eff=  6.6dB | A: yatay    0.51 der    0.35 | B: yatay    0.51 der    0.51 | C: yatay    0.51 der    1.24
+  yuruyus_L6_49nokta   merkez      d=  3m sig_eff=  9.7dB | A: yatay    1.65 der    0.63 | B: yatay    1.65 der    2.18 | C: yatay    1.65 der   14.64
+  yuruyus_L6_49nokta   merkez      d=  6m sig_eff= 16.2dB | A: yatay    6.99 der    1.53 | B: yatay    6.99 der   14.06 | C: yatay    6.99 der  240.93
+  yuruyus_L6_49nokta   merkez-disi d=  1m sig_eff=  6.6dB | A: yatay    0.53 der    0.36 | B: yatay    0.57 der    0.52 | C: yatay    0.57 der    1.15
+  yuruyus_L6_49nokta   merkez-disi d=  3m sig_eff=  9.7dB | A: yatay    1.77 der    0.72 | B: yatay    2.14 der    2.16 | C: yatay    2.14 der    9.39
+  yuruyus_L6_49nokta   merkez-disi d=  6m sig_eff= 16.2dB | A: yatay    7.31 der    1.92 | B: yatay    9.67 der   14.00 | C: yatay    9.68 der  114.61
+  Not: A satiri zayiflamanin BILINDIGI hayali durumdur; gercekte zayiflama bilinmedigi icin A yanlidir (bkz. tablo 1).
+  Not: kare (ve her dikdortgen) koseleri ayni cember uzerindedir -> |a_i|^2 capa koordinatlarinin afin fonksiyonu olur ->
+       4 capali B'nin Fisher matrisi HER hedef konumunda tekildir: (x,y,z,c) icin tek parametreli bir cozum egrisi vardir.
+
+====================================================================================================
+6) DERINLIK <-> MALZEME ODUNLESIMI (yalniz RSSI'dan katman/malzeme cikarilabilir mi?)
+====================================================================================================
+6a) En iyi durum (telefon tam ustte, n=2.5) beklenen RSSI [dBm]; '<' = -100 dBm altinda (algilanamaz)
+      d(m)   a= 5dB/m  a=10dB/m  a=15dB/m  a=20dB/m
+      0.5       -54.0      -56.5      -59.0      -61.5 
+      1.0       -64.0      -69.0      -74.0      -79.0 
+      2.0       -76.5      -86.5      -96.5     -106.5<
+      3.0       -85.9     -100.9<    -115.9<    -130.9<
+      4.0       -94.1     -114.1<    -134.1<    -154.1<
+      6.0      -108.5<    -138.5<    -168.5<    -198.5<
+
+6b) Ayni RSSI'yi ureten (derinlik, zayiflama) ciftleri: alpha = (P0 - 10 n log10 d - RSSI)/d  [dB/m]
+   Gozlenen RSSI = -80 dBm
+     d=0.5 m -> alpha  n=2.0:   54.0  n=2.5:   57.1  n=3.5:   63.1
+     d=1.0 m -> alpha  n=2.0:   21.0  n=2.5:   21.0  n=3.5:   21.0
+     d=1.5 m -> alpha  n=2.0:   11.7  n=2.5:   11.1  n=3.5:    9.9
+     d=2.0 m -> alpha  n=2.0:    7.5  n=2.5:    6.7  n=3.5:    5.2
+     d=3.0 m -> alpha  n=2.0:    3.8  n=2.5:    3.0  n=3.5:    1.4
+     d=4.0 m -> alpha  n=2.0:    2.2  n=2.5:    1.5  n=3.5:   -0.0
+     d=6.0 m -> alpha  n=2.0:    0.9  n=2.5:    0.3  n=3.5:   -1.0
+   Gozlenen RSSI = -90 dBm
+     d=0.5 m -> alpha  n=2.0:   74.0  n=2.5:   77.1  n=3.5:   83.1
+     d=1.0 m -> alpha  n=2.0:   31.0  n=2.5:   31.0  n=3.5:   31.0
+     d=1.5 m -> alpha  n=2.0:   18.3  n=2.5:   17.7  n=3.5:   16.6
+     d=2.0 m -> alpha  n=2.0:   12.5  n=2.5:   11.7  n=3.5:   10.2
+     d=3.0 m -> alpha  n=2.0:    7.2  n=2.5:    6.4  n=3.5:    4.8
+     d=4.0 m -> alpha  n=2.0:    4.7  n=2.5:    4.0  n=3.5:    2.5
+     d=6.0 m -> alpha  n=2.0:    2.6  n=2.5:    1.9  n=3.5:    0.6
+   Gozlenen RSSI = -98 dBm
+     d=0.5 m -> alpha  n=2.0:   90.0  n=2.5:   93.1  n=3.5:   99.1
+     d=1.0 m -> alpha  n=2.0:   39.0  n=2.5:   39.0  n=3.5:   39.0
+     d=1.5 m -> alpha  n=2.0:   23.7  n=2.5:   23.1  n=3.5:   21.9
+     d=2.0 m -> alpha  n=2.0:   16.5  n=2.5:   15.7  n=3.5:   14.2
+     d=3.0 m -> alpha  n=2.0:    9.8  n=2.5:    9.0  n=3.5:    7.4
+     d=4.0 m -> alpha  n=2.0:    6.7  n=2.5:    6.0  n=3.5:    4.5
+     d=6.0 m -> alpha  n=2.0:    3.9  n=2.5:    3.3  n=3.5:    2.0
+
+6c) Katman kombinasyonlari: nominal 2.4 GHz kayiplari (varsayim): betonarme doseme 20 dB, tugla/briket duvar 8 dB, ahsap/mobilya/alcipan 3 dB, bosluk 0 dB
+   Olculen fazla kayip 20+/-7 dB -> 18 farkli katman kombinasyonu uyumlu. Ornek: 0doseme+0duvar+5ahsap=15dB; 0doseme+0duvar+8ahsap=24dB; 0doseme+1duvar+4ahsap=20dB; 0doseme+2duvar+0ahsap=16dB; 0doseme+2duvar+3ahsap=25dB; 1doseme+0duvar+0ahsap=20dB
+   Olculen fazla kayip 40+/-7 dB -> 34 farkli katman kombinasyonu uyumlu. Ornek: 0doseme+2duvar+6ahsap=34dB; 0doseme+3duvar+5ahsap=39dB; 0doseme+4duvar+3ahsap=41dB; 0doseme+5duvar+2ahsap=46dB; 1doseme+1duvar+2ahsap=34dB; 1doseme+2duvar+0ahsap=36dB
+   Olculen fazla kayip 60+/-7 dB -> 51 farkli katman kombinasyonu uyumlu. Ornek: 0doseme+4duvar+7ahsap=53dB; 0doseme+6duvar+4ahsap=60dB; 0doseme+8duvar+1ahsap=67dB; 1doseme+3duvar+7ahsap=65dB; 1doseme+5duvar+2ahsap=66dB; 2doseme+1duvar+5ahsap=63dB
+
+====================================================================================================
+7) TEK RSSI OKUMASINDAN (tarama tepe noktasi) DERINLIK ve MALZEME SINIFI: Bayes-optimal sonsal dagilim
+   Onsel: d~U(0.5,6) m, n~U(2,3.5), ofset v~N(0,3)+o~N(0,4), golgeleme N(0,6), hizli/20; yatay kacik h<=0.71 m
+====================================================================================================
+
+   Onsel alpha~U(5,20): algilanabilir okuma orani = 40.1%
+     RSSI araligi    | derinlik p10/p50/p90 (m) | alpha p10/p50/p90 (dB/m) | toplam kayip alpha*d p10/p90 (dB)
+     [-100, -95) dBm |  1.7 /  2.7 /  4.4       |   5.9 /  10.4 /  17.6       |  19.1 /  39.7
+     [ -95, -90) dBm |  1.4 /  2.3 /  3.9       |   5.9 /  10.4 /  17.5       |  16.2 /  35.6
+     [ -90, -85) dBm |  1.2 /  2.0 /  3.4       |   5.9 /  10.5 /  17.6       |  13.6 /  31.5
+     [ -85, -80) dBm |  1.0 /  1.7 /  2.9       |   5.9 /  10.5 /  17.7       |  11.1 /  27.5
+     [ -80, -75) dBm |  0.8 /  1.4 /  2.4       |   5.9 /  10.5 /  17.7       |   9.0 /  23.8
+     [ -75, -70) dBm |  0.7 /  1.2 /  2.0       |   5.9 /  10.6 /  17.7       |   7.3 /  20.4
+     [ -70, -65) dBm |  0.6 /  1.0 /  1.7       |   5.9 /  10.5 /  17.5       |   5.9 /  17.2
+     [ -65, -60) dBm |  0.6 /  0.8 /  1.4       |   5.9 /  10.2 /  17.3       |   5.0 /  14.8
+     [ -60, -55) dBm |  0.5 /  0.7 /  1.2       |   5.7 /   9.8 /  17.1       |   4.3 /  12.8
+     [ -55, -50) dBm |  0.5 /  0.7 /  1.0       |   5.7 /   9.5 /  16.5       |   3.9 /  11.2
+     MAP dogrulugu (3 malzeme sinifi, alpha esit genislikte): 47.1%  (sans/cogunluk: 47.1%)
+     MAP dogrulugu (3 derinlik sinifi 0.5-2/2-4/4-6 m):         72.9%  (sans/cogunluk: 63.9%)
+     MAP dogrulugu (3 malzeme sinifi) derinlik barometreden +/-0.8 m BILINIRSE: 50.6%
+
+   Onsel alpha~U(2,40) (bosluklu..som beton): algilanabilir okuma orani = 30.6%
+     RSSI araligi    | derinlik p10/p50/p90 (m) | alpha p10/p50/p90 (dB/m) | toplam kayip alpha*d p10/p90 (dB)
+     [-100, -95) dBm |  1.1 /  2.4 /  4.9       |   4.0 /  12.3 /  32.0       |  16.0 /  43.4
+     [ -95, -90) dBm |  1.0 /  2.1 /  4.6       |   3.6 /  11.9 /  31.8       |  13.3 /  39.1
+     [ -90, -85) dBm |  0.9 /  1.9 /  4.2       |   3.3 /  11.6 /  31.7       |  11.0 /  34.5
+     [ -85, -80) dBm |  0.8 /  1.6 /  3.6       |   3.2 /  11.3 /  31.3       |   9.1 /  30.5
+     [ -80, -75) dBm |  0.7 /  1.4 /  3.1       |   3.1 /  11.1 /  30.5       |   7.3 /  26.6
+     [ -75, -70) dBm |  0.6 /  1.1 /  2.5       |   3.1 /  10.8 /  29.3       |   5.6 /  23.2
+     [ -70, -65) dBm |  0.6 /  1.0 /  2.0       |   3.1 /  10.1 /  27.6       |   4.4 /  20.3
+     [ -65, -60) dBm |  0.6 /  0.8 /  1.7       |   3.1 /   9.1 /  25.1       |   3.4 /  17.7
+     [ -60, -55) dBm |  0.5 /  0.8 /  1.4       |   2.9 /   8.1 /  22.0       |   2.7 /  15.1
+     [ -55, -50) dBm |  0.5 /  0.7 /  1.2       |   2.8 /   7.1 /  20.0       |   2.3 /  12.9
+     MAP dogrulugu (3 malzeme sinifi, alpha esit genislikte): 61.6%  (sans/cogunluk: 61.6%)
+     MAP dogrulugu (3 derinlik sinifi 0.5-2/2-4/4-6 m):         65.5%  (sans/cogunluk: 65.5%)
+     MAP dogrulugu (3 malzeme sinifi) derinlik barometreden +/-0.8 m BILINIRSE: 65.5%
+
+Sonuclar JSON: /private/tmp/claude-501/-Users-berkantcalikusu-IdeaProjects-beneathsos/7c762488-a19d-43d5-a65e-ba89a7faae70/scratchpad/sim/results.json | sure 150 s

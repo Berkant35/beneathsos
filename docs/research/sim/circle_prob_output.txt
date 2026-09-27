@@ -1,0 +1,85 @@
+Bina 12.0x10.0 m, enkaz yüksekliği U(3,5) m, tek telefon, 250 deneme/senaryo, eşik -100.0 dBm, sigma 6.0 dB
+/Users/berkantcalikusu/IdeaProjects/beneathsos/docs/research/sim/circle_prob_sim.py:162: RuntimeWarning: All-NaN slice encountered
+  f = lambda a: f"{np.nanmedian(a):5.2f}/{np.nanpercentile(a, 90):5.2f}"
+/private/tmp/claude-501/-Users-berkantcalikusu-IdeaProjects-beneathsos/7c762488-a19d-43d5-a65e-ba89a7faae70/scratchpad/sim/venv/lib/python3.11/site-packages/numpy/lib/_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+
+### BOŞLUKLU pankek — 4 köşe (kullanıcının kurgusu)  (alfa (2, 6) dB/m, 4 nokta)
+  algılanan nokta sayısı: medyan 1/4; >=3 nokta algılanan deneme %6; hiç yok %26
+  naif çember (serbest uzay) hata med/p90 m :  8.20/10.81   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  2.53/ 4.49
+  olasılık haritası MAP hata med/p90 m     :  2.35/ 4.20
+  %50 bölge alanı medyan:  11.1 m² (binanın %9) | %90 bölge:  35.0 m² (%29) | %90 bölge gerçeği kapsıyor: %89
+  doğru çeyrek (4'te 1) seçimi: %65  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %80  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.95 m
+
+### BOŞLUKLU pankek — 8 çevre noktası  (alfa (2, 6) dB/m, 8 nokta)
+  algılanan nokta sayısı: medyan 3/8; >=3 nokta algılanan deneme %54; hiç yok %3
+  naif çember (serbest uzay) hata med/p90 m :  9.60/12.53   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.52/ 2.76
+  olasılık haritası MAP hata med/p90 m     :  1.39/ 3.01
+  %50 bölge alanı medyan:   5.2 m² (binanın %4) | %90 bölge:  17.3 m² (%14) | %90 bölge gerçeği kapsıyor: %90
+  doğru çeyrek (4'te 1) seçimi: %75  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %98  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.98 m
+
+### BOŞLUKLU pankek — 12 çevre noktası  (alfa (2, 6) dB/m, 12 nokta)
+  algılanan nokta sayısı: medyan 4/12; >=3 nokta algılanan deneme %81; hiç yok %4
+  naif çember (serbest uzay) hata med/p90 m :  9.87/12.43   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.57/ 2.70
+  olasılık haritası MAP hata med/p90 m     :  1.35/ 2.58
+  %50 bölge alanı medyan:   3.7 m² (binanın %3) | %90 bölge:  11.9 m² (%10) | %90 bölge gerçeği kapsıyor: %86
+  doğru çeyrek (4'te 1) seçimi: %80  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %99  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.97 m
+
+### BOŞLUKLU pankek — 4 köşe + 5 enkaz üstü nokta  (alfa (2, 6) dB/m, 9 nokta)
+  algılanan nokta sayısı: medyan 4/9; >=3 nokta algılanan deneme %79; hiç yok %0
+  naif çember (serbest uzay) hata med/p90 m :  8.97/11.71   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.93/ 4.14
+  olasılık haritası MAP hata med/p90 m     :  1.20/ 2.78
+  %50 bölge alanı medyan:   4.0 m² (binanın %3) | %90 bölge:  12.9 m² (%11) | %90 bölge gerçeği kapsıyor: %90
+  doğru çeyrek (4'te 1) seçimi: %84  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %98  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.92 m
+
+### YOĞUN enkaz — 4 köşe (kullanıcının kurgusu)  (alfa (5, 15) dB/m, 4 nokta)
+  algılanan nokta sayısı: medyan 0/4; >=3 nokta algılanan deneme %0; hiç yok %76
+  naif çember (serbest uzay) hata med/p90 m :   nan/  nan   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :   nan/  nan
+  olasılık haritası MAP hata med/p90 m     :  3.01/ 4.96
+  %50 bölge alanı medyan:  39.3 m² (binanın %33) | %90 bölge:  80.6 m² (%67) | %90 bölge gerçeği kapsıyor: %95
+  doğru çeyrek (4'te 1) seçimi: %38  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %57  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.94 m
+
+### YOĞUN enkaz — 8 çevre noktası  (alfa (5, 15) dB/m, 8 nokta)
+  algılanan nokta sayısı: medyan 1/8; >=3 nokta algılanan deneme %8; hiç yok %44
+  naif çember (serbest uzay) hata med/p90 m : 11.52/13.88   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.28/ 2.49
+  olasılık haritası MAP hata med/p90 m     :  2.26/ 4.29
+  %50 bölge alanı medyan:  10.0 m² (binanın %8) | %90 bölge:  30.5 m² (%25) | %90 bölge gerçeği kapsıyor: %90
+  doğru çeyrek (4'te 1) seçimi: %48  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %76  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.95 m
+
+### YOĞUN enkaz — 12 çevre noktası  (alfa (5, 15) dB/m, 12 nokta)
+  algılanan nokta sayısı: medyan 1/12; >=3 nokta algılanan deneme %26; hiç yok %25
+  naif çember (serbest uzay) hata med/p90 m : 11.04/12.63   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.13/ 2.82
+  olasılık haritası MAP hata med/p90 m     :  1.53/ 3.75
+  %50 bölge alanı medyan:   5.6 m² (binanın %5) | %90 bölge:  21.3 m² (%18) | %90 bölge gerçeği kapsıyor: %86
+  doğru çeyrek (4'te 1) seçimi: %71  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %88  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.95 m
+
+### YOĞUN enkaz — 4 köşe + 5 enkaz üstü nokta  (alfa (5, 15) dB/m, 9 nokta)
+  algılanan nokta sayısı: medyan 1/9; >=3 nokta algılanan deneme %14; hiç yok %37
+  naif çember (serbest uzay) hata med/p90 m :  9.68/12.29   (>=3 algılamada)
+  kalibre çember hata med/p90 m            :  1.57/ 3.27
+  olasılık haritası MAP hata med/p90 m     :  2.36/ 7.12
+  %50 bölge alanı medyan:   9.4 m² (binanın %8) | %90 bölge:  27.6 m² (%23) | %90 bölge gerçeği kapsıyor: %88
+  doğru çeyrek (4'te 1) seçimi: %64  (şans %25)
+  en olası 30 m² (binanın %25'i) kurbanı içeriyor: %72  (şans %25)
+  referans: hep bina merkezini söylemek hata medyanı ~3.94 m
