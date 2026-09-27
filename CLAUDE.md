@@ -6,7 +6,7 @@ footprint, measures the BLE RSSI of a target device at several user-placed point
 
 Read before any work: `docs/architecture.md` (how the system is built) and
 `docs/fizibilite-2026-09-27.md` (why it is built this way — physics limits, simulation results).
-Plan and progress live in `tasks/todo.md`; mistakes and their prevention rules in `tasks/lessons.md`.
+Plan and progress live in `tasks/todo.md` (hub); mistakes and their prevention rules in `tasks/lessons.md`.
 
 ---
 
@@ -23,50 +23,53 @@ Plan and progress live in `tasks/todo.md`; mistakes and their prevention rules i
 5. **Legal disclaimer** is shown on first launch and on every export; the app supports, never
    replaces, professional search & rescue (AFAD / INSARAG procedures).
 
-## 2. Repository layout
+## 2. Repositories & local layout
+
+Every package is its **own GitHub repository** (owner `Berkant35`). Locally they all live under one
+folder so they can be developed together:
 
 ```
-beneathsos/
-├─ apps/beneathsos/          Flutter app — composition only, depends on all packages
-├─ packages/
-│  ├─ rubble_core/           pure Dart — domain models, value types, events, projections
-│  ├─ locator_engine/        pure Dart — probability map, next-best-point, engine profiles
-│  ├─ ble_scanner/           Flutter plugin — Pigeon + Kotlin + Swift, raw scan samples
-│  └─ rubble_canvas/         Flutter — site drawing, pinch/zoom/pan, heatmap rendering
-├─ tools/sim/                Python reference simulation → golden fixtures for locator_engine
-├─ docs/                     architecture, research, ADR-style decisions
-└─ tasks/                    todo.md, lessons.md
+IdeaProjects/beneathsos/            Berkant35/beneathsos      hub: CLAUDE.md, docs, tools, tasks
+├─ apps/beneathsos_app/             Berkant35/beneathsos_app  Flutter app — composition only
+└─ packages/
+   ├─ rubble_core/                  Berkant35/rubble_core     pure Dart — value types, events, projections
+   ├─ locator_engine/               Berkant35/locator_engine  pure Dart — probability map, next-best-point
+   ├─ ble_scanner/                  Berkant35/ble_scanner     Flutter plugin — Pigeon + Kotlin + Swift
+   └─ rubble_canvas/                Berkant35/rubble_canvas   Flutter — drawing, zoom/pan, heatmap
 ```
 
-### Dependency rules (enforced in CI by `tools/check_deps.dart`)
+`apps/` and `packages/` are git-ignored by the hub; each sub-folder is an independent repo.
+
+### Dependency wiring
+
+- `pubspec.yaml` declares sibling packages as **git dependencies** pinned to a tag
+  (`git: {url: https://github.com/Berkant35/ble_scanner.git, ref: v0.1.0}`) — a fresh clone of any
+  single repo resolves.
+- Locally, a git-ignored **`pubspec_overrides.yaml`** points them to the sibling folders
+  (`path: ../../packages/ble_scanner`). `tools/link_local.sh` (hub) creates these files.
+- Releasing a package = tag it (`vX.Y.Z`, Conventional Commits → CHANGELOG), then bump the `ref`
+  in dependants.
+
+### Dependency rules (enforced by `tools/check_deps.dart` in the hub)
 
 | Package | May depend on | Must NOT depend on |
 |---|---|---|
-| `rubble_core` | Dart SDK, `meta`, `collection` | Flutter, any other workspace package |
+| `rubble_core` | Dart SDK, `meta`, `collection` | Flutter, any other BeneathSOS package |
 | `locator_engine` | `rubble_core` | Flutter, `ble_scanner`, `rubble_canvas` |
 | `ble_scanner` | Flutter, `plugin_platform_interface` | `rubble_core` (stays reusable by others) |
 | `rubble_canvas` | Flutter, `rubble_core` | `ble_scanner`, `locator_engine`, Riverpod |
-| `apps/beneathsos` | everything above | — |
-
-Packages are independent: own `pubspec.yaml`, `CHANGELOG.md`, `README.md`, version and tests, so each
-can be published to pub.dev later without restructuring.
+| `beneathsos_app` | everything above | — |
 
 ## 3. Toolchain & commands
 
-- Flutter is pinned with **FVM** (`.fvmrc`). Always run through `fvm flutter` / `fvm dart`.
-- Monorepo = **Dart pub workspaces + melos** (config in root `pubspec.yaml`).
+- Flutter is pinned with **FVM** (`.fvmrc` in every repo, same version). Always `fvm flutter` / `fvm dart`.
+- Per repo: `fvm dart format --set-exit-if-changed .`, `fvm flutter analyze --fatal-infos`,
+  `fvm flutter test`. Code generation: `fvm dart run build_runner build` (never with
+  `--delete-conflicting-outputs`).
+- Across all repos (from the hub): `tools/dev.sh analyze|format|test|check` runs the command in
+  every repo and fails on the first error. `check` = dependency rules + l10n completeness.
 
-```bash
-fvm dart pub get                 # resolves the whole workspace
-melos run analyze                # dart analyze --fatal-infos in every package
-melos run format:check           # dart format --set-exit-if-changed .
-melos run test                   # all unit/widget tests
-melos run gen                    # build_runner build (drift, riverpod, freezed) — never with --delete-conflicting-outputs
-melos run check:deps             # dependency rule check
-melos run check:l10n             # every ARB key exists in en + tr
-```
-
-A task is **not done** until `analyze`, `format:check`, `test`, `check:deps` and `check:l10n` pass.
+A task is **not done** until format, analyze, test and `tools/dev.sh check` pass in every touched repo.
 
 ## 4. Architecture rules (app)
 
@@ -190,7 +193,7 @@ there + `riverpod_lint` plugin. Packages add `public_member_api_docs`. CI runs
 
 ## 8. Git, PRs, security
 
-- Conventional Commits (`feat(engine): ...`, `fix(ble): ...`) — melos derives versions from them.
+- Conventional Commits (`feat(engine): ...`, `fix(ble): ...`); versions and CHANGELOGs derive from them.
 - `main` is protected: PR only, CI green, 1 code-owner review, no force push, **no auto-merge**.
   Never push directly to `main` or `release/*`.
 - Never commit secrets, keystores, `.env`, signing files. Never add network calls or telemetry.

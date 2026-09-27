@@ -17,10 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with: { persist-credentials: false }
       - uses: kuhnroyal/flutter-fvm-config-action/setup@v3
-      - run: dart pub global activate melos
-      - run: dart pub get
-      - run: melos run format:check
-      - run: melos run analyze
-      - run: melos run check:deps
-      - run: melos run check:l10n
-      - run: melos run test
+      - run: flutter pub get
+      - run: dart format --set-exit-if-changed .
+      - run: flutter analyze --fatal-infos
+      - run: flutter test

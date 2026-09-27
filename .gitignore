@@ -18,3 +18,7 @@ key.properties
 **/google-services.json
 docs/research/sim/venv/
 __pycache__/
+
+# Sub-repositories (each is its own git repo)
+apps/
+packages/

@@ -7,15 +7,19 @@ Decisions: `docs/mimari-sorular.md` (answers) → `docs/architecture.md`. Rules:
 - [x] Architecture questions answered (30/30)
 - [x] CLAUDE.md, architecture.md, lint config, governance files, licence
 - [ ] Maintainer review of CLAUDE.md + architecture.md
-- [ ] Upgrade local Flutter via FVM (3.35.3 → 3.47.5 stable, Dart 3.13)
-- [ ] Workspace skeleton: root pubspec (workspace + melos scripts), 4 packages + app, `tools/check_deps.dart`, `tools/check_l10n.dart`
-- [ ] GitHub repo (public), ruleset applied, auto-merge off, fork workflow approval on, actions SHA-pinned
+- [x] Decisions: separate repos under one local folder, git deps + `pubspec_overrides.yaml`, English docs, owner Berkant35
+- [x] Upgrade local Flutter via FVM (3.35.3 → 3.47.5 stable, Dart 3.13)
+- [x] Hub tools: `tools/link_local.sh`, `tools/dev.sh`, `tools/sync_governance.sh`
+- [ ] Hub tools: `tools/check_deps.dart`, `tools/check_l10n.dart`
+- [ ] GitHub repos (public, Berkant35): ruleset applied, auto-merge off, fork workflow approval on, actions SHA-pinned
 
 ## M1 — Field test tool (answers the iOS question before building UI)
-- [ ] `ble_scanner` Pigeon API + Android + iOS implementation (scan only)
-- [ ] Minimal debug screen: device list, pick target, live RSSI chart, key-rotation log, CSV export
+- [x] `ble_scanner` Pigeon API + Android (Kotlin, throttle-safe single scan) + iOS (Swift) — Dart tests green, analyze clean
+- [x] App skeleton per architecture (Riverpod 3, typed go_router, gen-l10n en+tr, AppScaffold, services)
+- [x] Field test feature: device list + filters, target marking, live RSSI chart, identity timer (10/13 min), identity log, relink suggestions, CSV recording + markers + share — 13 tests green
+- [ ] Native builds verified (Android APK, iOS device install)
 - [ ] Test: airplane-mode iPhone (Find My), Android beacon; Android vs iOS rescuer visibility
-- [ ] Record results in `docs/research/field-test-01.md`
+- [ ] Run protocol `docs/research/field-test-01.md` and record results
 
 ## M2 — Core + engine
 - [ ] `rubble_core`: value types, geometry, events, projection, UUIDv7, HLC

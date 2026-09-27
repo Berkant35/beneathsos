@@ -1,10 +1,10 @@
 ## What & why
 
 ## How it was verified
-- [ ] `melos run analyze` (fatal infos) ✅
-- [ ] `melos run format:check` ✅
-- [ ] `melos run test` ✅
-- [ ] `melos run check:deps` / `check:l10n` ✅
+- [ ] `fvm flutter analyze --fatal-infos` ✅
+- [ ] `fvm dart format --set-exit-if-changed .` ✅
+- [ ] `fvm flutter test` ✅
+- [ ] `tools/dev.sh check` (hub: dependency rules + l10n) ✅
 - [ ] Screenshots / recordings for UI changes
 
 ## Rules checklist (CLAUDE.md)

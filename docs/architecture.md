@@ -16,7 +16,8 @@ Target user: civilian volunteer. Professional mode later.
 
 ## 2. Workspace
 
-Dart pub workspaces + melos, one public GitHub repo, independently versioned packages.
+One public GitHub repo per package (owner `Berkant35`), all cloned under one local folder; git
+dependencies in `pubspec.yaml` + git-ignored `pubspec_overrides.yaml` with local paths (see CLAUDE.md §2).
 
 ```
 rubble_core ◄── locator_engine
@@ -33,12 +34,12 @@ rubble_canvas         │         ble_scanner (standalone)
 | `locator_engine` | pure Dart | Probability map on a grid, censored likelihood, marginalisation over n / α / offset / height, HPD regions, next-best-point (expected information gain), engine profiles (JSON) |
 | `ble_scanner` | Flutter plugin (Pigeon) | Raw BLE scan samples with monotonic timestamps; later: advertising for victim mode. No domain knowledge |
 | `rubble_canvas` | Flutter | Metric canvas: polygon drawing, snapping, edge-length input, pinch/zoom/pan, measurement-point markers, heatmap + HPD contour painter |
-| `apps/beneathsos` | Flutter app | Composition: features, Riverpod, go_router, Drift, l10n, services |
+| `beneathsos_app` | Flutter app | Composition: features, Riverpod, go_router, Drift, l10n, services |
 
 ## 3. App structure
 
 ```
-apps/beneathsos/lib/
+apps/beneathsos_app/lib/
 ├─ main.dart / app.dart                 bootstrap, ProviderScope, lifecycle observer
 ├─ core/
 │  ├─ router/                           typed go_router routes, redirects (first-run → onboarding)
@@ -191,8 +192,8 @@ class ScanSample {
 }
 ```
 
-Android: one long-running scan (never exceed 5 starts / 30 s), `BLUETOOTH_SCAN` with
-`neverForLocation`. iOS: foreground scan with `allowDuplicates`; Apple-company packets may be hidden
+Android: one long-running scan (never exceed 5 starts / 30 s), `BLUETOOTH_SCAN` + location **without**
+`neverForLocation` (that flag makes Android filter some beacon advertisements, e.g. Find My). iOS: foreground scan with `allowDuplicates`; Apple-company packets may be hidden
 by the OS — capability reported, not assumed. Advertising API added for victim mode in a later step.
 
 ## 10. Edge cases (decided behaviour)
@@ -221,7 +222,7 @@ Branch rules: see `.github/rulesets/main.json` and `SECURITY.md`.
 
 | # | Decision | Alternatives rejected |
 |---|---|---|
-| D1 | Pub workspaces + melos monorepo, independent package versions, public GitHub | Multi-repo (cross-package changes need N PRs) |
+| D1 | Separate public repo per package, one local folder, git deps + local `pubspec_overrides.yaml` | Monorepo with pub workspaces (maintainer wants independent repos) |
 | D2 | Riverpod 3 + generator | Bloc (fine, but second mental model vs Qulo) |
 | D3 | go_router typed routes, `/join` reserved for v2 | auto_route |
 | D4 | Drift, event-sourced sessions + raw sample table | Isar (unmaintained), Hive, Sembast, ObjectBox |
