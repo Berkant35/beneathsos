@@ -91,8 +91,25 @@ A task is **not done** until format, analyze, test and `tools/dev.sh check` pass
   lat/long in v1.
 - **State machines are sealed classes** + exhaustive `switch`. No boolean flag soup
   (`isLoading && !hasError && ...`).
-- **Permission re-check on resume:** permission-dependent notifiers expose `onAppResumed()`, called
-  from the app lifecycle observer, and only re-check when in an error state.
+
+### Layer responsibilities (SOLID / clean architecture)
+
+| Layer | Contains | Must not contain |
+|---|---|---|
+| `presentation/providers` (Notifiers) | Call a use case, map its result to UI state, wire streams/lifecycle | Business rules, `if` chains of preconditions, platform quirks |
+| `domain/` | Use cases (`StartScan`), pure rule classes (`DeviceTracker`), result types, **ports** (abstract interfaces: `ScannerPort`, `PermissionPort`) | Flutter, Riverpod, plugins, `dart:io` |
+| `data/` + `core/services` | Port implementations, platform quirks (e.g. iOS reporting `unknown` before CoreBluetooth is ready) | UI state, business decisions |
+
+- **Thin notifiers.** A notifier method is: call → map → assign `state`. Size limits: notifier
+  ≤ ~100 lines, any method ≤ ~30 lines; exceed → extract a use case or domain class.
+- **Open for extension.** New preconditions/rules are new classes added to a list (e.g. a
+  `ScanPrecondition`), not new `if`s inside an existing method.
+- **Depend on ports.** Domain code depends on abstract ports; providers bind the concrete
+  implementation. Tests replace ports, not plugins.
+- **Lifecycle is owned by the consumer.** `app.dart` never calls into features. A notifier that must
+  react to app lifecycle (e.g. re-check permissions after returning from Settings) listens to
+  `appLifecycleProvider` (`core/services`, wraps `AppLifecycleListener`) inside its own `build()`,
+  and only acts when it is in a blocked state.
 
 ## 5. Code rules (strict — reviewed on every PR)
 

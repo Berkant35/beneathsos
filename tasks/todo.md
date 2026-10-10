@@ -13,30 +13,22 @@ Decisions: `docs/mimari-sorular.md` (answers) → `docs/architecture.md`. Rules:
 - [ ] Hub tools: `tools/check_deps.dart`, `tools/check_l10n.dart`
 - [ ] GitHub repos (public, Berkant35): ruleset applied, auto-merge off, fork workflow approval on, actions SHA-pinned
 
-## M1 — Field test tool (answers the iOS question before building UI)
-- [x] `ble_scanner` Pigeon API + Android (Kotlin, throttle-safe single scan) + iOS (Swift) — Dart tests green, analyze clean
-- [x] App skeleton per architecture (Riverpod 3, typed go_router, gen-l10n en+tr, AppScaffold, services)
-- [x] Field test feature: device list + filters, target marking, live RSSI chart, identity timer (10/13 min), identity log, relink suggestions, CSV recording + markers + share — 13 tests green
-- [ ] Native builds verified (Android APK, iOS device install)
-- [ ] Test: airplane-mode iPhone (Find My), Android beacon; Android vs iOS rescuer visibility
-- [ ] Run protocol `docs/research/field-test-01.md` and record results
+## Roadmap
+Public roadmap: `docs/roadmap.md` (phases 0–12). This file tracks the **current step** in detail.
 
-## M2 — Core + engine
-- [ ] `rubble_core`: value types, geometry, events, projection, UUIDv7, HLC
-- [ ] `locator_engine`: grid likelihood (censored), marginalisation, HPD, next-best-point, profiles
-- [ ] `tools/sim/export_fixtures.py` + golden tests
-
-## M3 — Rescuer flow
-- [ ] Drift schema + event store + sample batching
-- [ ] Onboarding (disclaimer, units, scale), sites, rubble drawing (`rubble_canvas`: pinch/zoom/pan, edge lengths, structure annotations)
-- [ ] Ambient scan blacklist (30 s)
-- [ ] Target picker + relink + rotation timer with animated warnings
-- [ ] Measurement state machine (15 s, stillness check)
-- [ ] Probability map hub: heatmap, 50/90 contours, target tabs sorted by promise, next point
-- [ ] Export + research mode
-
-## M4 — Victim mode (simple)
-- [ ] Home two buttons, advertising (Android FGS + manufacturer data, iOS foreground), SOS sound, guidance
+## Current: Phase 0.1 — remove field-test UI, keep domain logic
+- [ ] Agree the exact delete / keep / move list with the maintainer
+- [ ] Apply, verify (analyze, tests), walk through the diff
 
 ## Review
-_(filled after each milestone)_
+_(filled after each step)_
+
+## Backlog
+- [x] NDK 28.2.13676358 installed manually (sdkmanager download kept dying on a flaky connection;
+      resumable `curl -C -` + unzip). Back on `flutter.ndkVersion`. Note: `path_provider_android`
+      → `jni` compiles C code, so the NDK version *does* matter for dependencies.
+- [ ] `permission_handler` pinned to ^12.0.3 (Android impl 13.0.1, compileSdk 35). 13.x → android 14.x
+      needs compileSdk 37; AGP 9.1.0 looks for platform `android-37` but the SDK installs `android-37.0`.
+      Unpin when Flutter's template ships an AGP that resolves `android-37.0` (verify, then bump).
+- [ ] Consider dropping `permission_handler`: let `ble_scanner` request its own Android runtime
+      permissions (it already declares them) — one less third-party dependency.

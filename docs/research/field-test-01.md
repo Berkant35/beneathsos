@@ -13,4 +13,11 @@ Goal: answer with real data before building the rescuer UI.
 Record per run: phone models, OS versions, weather/location, CSV file name. Results go below.
 
 ## Results
-_(pending)_
+
+### 2026-09-27 — Android scanner (Samsung SM A055F)
+- **Q1 (Android half): yes.** An iPhone in airplane mode (Bluetooth on, no app installed) appears as
+  `Apple · Find My` (company 0x004C, payload type 0x12) at about −35 dBm next to the scanner.
+  Nearby Info (`Apple · Nearby`) and other Apple advertisements are also visible.
+- Observed: the Find My row was last heard 11 s before the screenshot (expected every ~2 s) —
+  cause not yet known (moved away, reconnected, or identity rotation).
+- Q1 (iOS scanner half), Q2–Q5: not run yet.
