@@ -25,3 +25,6 @@ packages/
 
 # Brainstorming companion mockups (local only)
 .superpowers/
+
+# Brand tool virtualenv
+tools/brand/.venv/
