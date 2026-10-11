@@ -27,6 +27,12 @@ Public roadmap: `docs/roadmap.md` (phases 0–12). This file tracks the **curren
 - [x] 0.2b targets: pure `DeviceTracker` + `TrackerPolicy` (forget after 30 s, log cap 500); `DeviceTable` (130) →
       `TrackedDevices` (46); 52 tests (app `refactor(targets)` commit)
 
+## Current: Phase 0.3–0.4 — documentation and public GitHub
+- [x] 0.3 ADRs 0001–0016, architecture rewritten to "as built", README, Code of Conduct, CHANGELOG
+- [x] 0.4 Soft branch protection (rulesets on main + release/*), private vulnerability reporting,
+      app v0.1.0 tag + GitHub release, 13 milestones + 24 issues in the hub
+- [ ] 0.4 GitHub Projects board (needs `gh auth refresh -s project` by the maintainer)
+
 ## Review
 **0.1 (2026-10-10):** field-test UI removed (28 files, ~1,100 lines). Kept and moved with git history:
 targets domain (classify, tracking, presence, relink, stats) → `features/targets/domain/`,

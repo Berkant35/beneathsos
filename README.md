@@ -48,7 +48,8 @@ question: **where should we look first?**
 | 🔄 Now | Documentation and open-source setup (roadmap phase 0) |
 | ⏳ Next | Design system, rubble drawing, measurement, probability engine and map, victim mode |
 
-Full plan: [roadmap](docs/roadmap.md). How it is built: [architecture](docs/architecture.md).
+Full plan: [roadmap](docs/roadmap.md) · progress: [milestones](https://github.com/Berkant35/beneathsos/milestones) ·
+[open issues](https://github.com/Berkant35/beneathsos/issues). How it is built: [architecture](docs/architecture.md).
 Why it is built this way: [decision records](docs/adr/README.md).
 
 ## Repositories
@@ -78,6 +79,8 @@ Each repository also works on its own; it then resolves sibling packages from Gi
 ## Contributing
 
 Contributions are welcome — code, translations, field measurements, review of the physics.
+Good places to start: [`good first issue`](https://github.com/Berkant35/beneathsos/labels/good%20first%20issue)
+and [`help wanted`](https://github.com/Berkant35/beneathsos/labels/help%20wanted).
 Start with [CONTRIBUTING.md](CONTRIBUTING.md) and the project rules in [CLAUDE.md](CLAUDE.md)
 (they apply to humans and AI assistants alike). Please follow the
 [Code of Conduct](CODE_OF_CONDUCT.md). Security issues: see [SECURITY.md](SECURITY.md).

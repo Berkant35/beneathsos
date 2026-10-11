@@ -5,6 +5,11 @@ trapped under earthquake rubble most likely is — shown as a probability map, n
 certainty. This roadmap is public so contributors, partners and supporters can see what is done,
 what is next and why.
 
+**Tracking:** every step is a GitHub issue, every phase a
+[milestone](https://github.com/Berkant35/beneathsos/milestones). Looking for a place to help? See
+[`good first issue`](https://github.com/Berkant35/beneathsos/labels/good%20first%20issue) and
+[`help wanted`](https://github.com/Berkant35/beneathsos/labels/help%20wanted).
+
 **How we work:** every phase is split into small steps. Each step is explained, agreed, implemented,
 reviewed and verified before the next one starts. Every step ends with green CI and updated docs.
 
