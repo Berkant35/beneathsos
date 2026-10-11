@@ -29,6 +29,12 @@ Placeholder `HomeScreen` behind `HomeRoute('/')`; ARB trimmed to 3 keys (en + tr
 Dropped `path_provider` + `share_plus` → `jni` / NDK native build gone from the dependency tree.
 Verified: format ✓, analyze --fatal-infos ✓, 15/15 tests ✓, iOS simulator shows the placeholder.
 
+## Done: TestFlight pipeline (2026-10-11)
+- [x] Bundle ID `org.beneathsos.app` registered; App Store Connect app 6821632633 (SKU beneathsos-ios)
+- [x] `tools/testflight.sh` (API-key signing, no Xcode login) — 0.1.0 (4) uploaded, VALID
+- [x] Internal TestFlight group "Core team" (all builds), maintainer invited
+- [ ] GitHub Actions: TestFlight on tag (store ASC key as repository secret)
+
 ## Backlog
 - [x] NDK 28.2.13676358 installed manually (sdkmanager download kept dying on a flaky connection;
       resumable `curl -C -` + unzip). Back on `flutter.ndkVersion`. Note: `path_provider_android`
