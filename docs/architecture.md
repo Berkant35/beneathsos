@@ -271,7 +271,8 @@ class ScanSample {
   FVM Flutter from `.fvmrc`; `dart format --set-exit-if-changed`, `flutter analyze --fatal-infos`,
   `flutter test`. Read-only token permissions. ✅
 - **Dependabot** for pub and GitHub Actions. ✅
-- **Branch protection** ✅ (`.github/rulesets/`): no force push or deletion for anyone; contributors
+- **Branch protection** ✅ (`.github/rulesets/`, `main` and `release/*`): no force push, deletion or
+  merge commits for anyone; contributors
   via pull requests with green CI; the single maintainer may push directly (admin bypass);
   auto-merge disabled; private vulnerability reporting enabled.
 - **Hub checks** `tools/check_deps.dart` (dependency rules) and `tools/check_l10n.dart`
