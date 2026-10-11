@@ -33,13 +33,13 @@ The app follows the phone's light/dark setting everywhere, including victim mode
 | Role | Light | Dark | Use |
 |---|---|---|---|
 | Primary (calm body) | `#1B2A4E` | `#9DB2E0` | Titles, secondary buttons, navigation |
-| Accent (action / attention) | `#FF7900` | `#FF8C2E` | The primary button, identity-rotation warning |
+| Accent (action / attention) | `#FF7900` | `#FF8C2E` | The primary button, identity-rotation warning — in light theme as a fill behind dark content only |
 | On accent | `#1A0D00` | `#1A0D00` | Text and icons on accent — **white on orange is forbidden** |
 | Error (blocked) | `#B3261E` | `#FFB4AB` | Bluetooth off, permission missing |
 | Background / text | `#F5F6F9` / `#121A2B` | `#0C111D` / `#E8ECF5` | |
 | Secondary surface (dark) | — | `#22324F` | Secondary buttons in dark theme |
 
-Measured WCAG contrast (AA needs 4.5 for normal text). These values are pinned by
+Measured WCAG contrast (AA needs 4.5 for normal text, 3 for meaningful icons). These values are pinned by
 `tools/brand/tests/test_contrast.py`:
 
 | Pair | Ratio |
@@ -52,7 +52,9 @@ Measured WCAG contrast (AA needs 4.5 for normal text). These values are pinned b
 | `#9DB2E0` on `#0C111D` | 8.9 |
 | `#E8ECF5` on `#0C111D` | 15.9 |
 | `#E8ECF5` on `#22324F` | 10.8 |
+| `#FF8C2E` on `#0C111D` (orange text and icons, dark theme) | 8.1 |
 | White on `#FF7900` (forbidden) | 2.6 |
+| `#FF7900` on `#F5F6F9` (forbidden for text and icons) | 2.4 |
 
 The probability-map heat scale is separate from these roles: perceptually uniform and colour-blind
 safe, chosen in roadmap phase 9.

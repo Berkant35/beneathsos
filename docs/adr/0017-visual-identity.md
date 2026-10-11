@@ -50,6 +50,8 @@ white 6.5; dark-theme primary 8.9; body text 16.1 (light) / 15.9 (dark).
   ANSI safety orange), our own logo and typeface, and the non-affiliation statement in onboarding,
   About and store listings (`docs/brand/README.md`).
 - White text on orange is forbidden (2.6); orange always carries dark text.
+- Orange text or icons on the light background are forbidden too (2.4, below the 3:1 non-text
+  minimum of WCAG 1.4.11): in light theme orange is a fill only. In dark theme they are fine (8.1).
 - The Red Cross / Red Crescent emblems are protected by law and are never used; first-aid character
   comes from colour and form instead.
 - Outer arcs are drawn with opacity, so on navy they appear brownish; acceptable as approved, can be

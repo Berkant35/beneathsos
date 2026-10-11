@@ -16,6 +16,7 @@ class ContrastTableTest(unittest.TestCase):
         (p.PRIMARY_DARK, p.BACKGROUND_DARK, 8.9),
         (p.TEXT_DARK, p.BACKGROUND_DARK, 15.9),
         (p.TEXT_DARK, p.SURFACE2_DARK, 10.8),
+        (p.ACCENT_DARK, p.BACKGROUND_DARK, 8.1),
     ]
 
     def test_spec_table(self):
@@ -25,6 +26,11 @@ class ContrastTableTest(unittest.TestCase):
 
     def test_white_on_orange_stays_forbidden(self):
         self.assertLess(contrast_ratio("#FFFFFF", p.ACCENT_LIGHT), 4.5)
+
+    def test_orange_on_light_background_stays_forbidden_for_icons_and_text(self):
+        # WCAG 1.4.11 needs 3:1 for meaningful icons; in light theme orange is a fill only.
+        self.assertLess(contrast_ratio(p.ACCENT_LIGHT, p.BACKGROUND_LIGHT), 3)
+        self.assertLess(contrast_ratio(p.ACCENT_LIGHT, "#FFFFFF"), 3)
 
     def test_order_does_not_matter(self):
         self.assertEqual(contrast_ratio("#000000", "#FFFFFF"), contrast_ratio("#FFFFFF", "#000000"))
