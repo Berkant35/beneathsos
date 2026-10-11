@@ -22,3 +22,9 @@ and the docs part of the commit was silently empty.
 `fvm flutter build apk | tail -4` reported exit 0 while Gradle had failed (network handshake).
 **Rule:** redirect build output to a log file and print `exit=$?` from the build command itself;
 never judge success by the exit code of a pipeline's last stage.
+
+## Say what the maintainer will see on the phone (2026-10-11)
+After phase 1.1 the maintainer opened the app and saw no change ("Bir şey yapılmamış"): only the
+icon and launch screen had changed; screens get the theme in 1.2.
+**Rule:** every step report ends with "On the phone you will see: …" (and what you will *not* see
+yet). Prefer ordering work so each step produces a visible change in the app.

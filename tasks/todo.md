@@ -69,6 +69,10 @@ TestFlight. Open: the app body still uses Material's default seed colour — bra
 with `beneathsos_ui` tokens (1.2).
 
 ## Backlog
+- [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
+      monochrome resources (only the source assets are tested today)
+- [ ] `tools/brand/brandkit/render.py`: remove the temp file when `rsvg-convert` fails (try/finally)
+- [ ] Future plans: use `$ASC_KEY_ID` / `$ASC_ISSUER_ID` placeholders, not the real identifiers
 - [x] NDK 28.2.13676358 installed manually (sdkmanager download kept dying on a flaky connection;
       resumable `curl -C -` + unzip). Back on `flutter.ndkVersion`. Note: `path_provider_android`
       → `jni` compiles C code, so the NDK version *does* matter for dependencies.

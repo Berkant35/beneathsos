@@ -56,6 +56,8 @@ white 6.5; dark-theme primary 8.9; body text 16.1 (light) / 15.9 (dark).
   comes from colour and form instead.
 - Outer arcs are drawn with opacity, so on navy they appear brownish; acceptable as approved, can be
   revisited with solid lighter tones.
+- The iOS dark app icon has a transparent background, not the `#0C111D` of the spec: iOS draws its
+  own dark background behind dark-appearance icons, so the symbol matches the system look.
 - The font adds about 115 KB to the app (phase 1.2).
 - Every brand asset is reproducible: `tools/brand/build.py`, covered by tests for the contrast table,
   logo geometry, 16 px legibility and the iOS tinted / Android monochrome icon layers.

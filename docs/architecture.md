@@ -284,4 +284,4 @@ class ScanSample {
 
 ## 13. Decisions
 
-All decisions with context, alternatives and consequences: [`docs/adr/`](adr/README.md) (0001–0016).
+All decisions with context, alternatives and consequences: [`docs/adr/`](adr/README.md) (0001–0017).
