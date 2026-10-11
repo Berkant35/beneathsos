@@ -21,10 +21,11 @@ Public roadmap: `docs/roadmap.md` (phases 0–12). This file tracks the **curren
 - [x] Apply, verify (analyze, tests), walk through the diff
 - [x] Maintainer review → commit
 
-## Current: Phase 0.2 — thin notifiers
+## Done: Phase 0.2 — thin notifiers
 - [x] 0.2a scanning: ports + StartScan/StopScan + preconditions + availability policy; services implement
       ports; ScanController 156 → 85 lines; 39 tests (app `refactor(scanning)` commit)
-- [ ] 0.2b targets: `DeviceTable` → pure `DeviceTracker`
+- [x] 0.2b targets: pure `DeviceTracker` + `TrackerPolicy` (forget after 30 s, log cap 500); `DeviceTable` (130) →
+      `TrackedDevices` (46); 52 tests (app `refactor(targets)` commit)
 
 ## Review
 **0.1 (2026-10-10):** field-test UI removed (28 files, ~1,100 lines). Kept and moved with git history:
