@@ -11,7 +11,9 @@ from brandkit.symbol import icon_svg, symbol_svg
 from brandkit.wordmark import lockup_svg, wordmark_svg
 
 ICON_SCALE = 0.62        # symbol share of the iOS icon canvas
-ADAPTIVE_SCALE = 0.50    # Android adaptive foreground: keeps the symbol inside the 66/108 safe zone
+# Android adaptive foreground (no inset): launchers show the central 72 of 108 dp, so 0.62 x 72/108
+# gives the symbol the same visual share as on iOS and keeps it inside the 66 dp safe circle.
+ADAPTIVE_SCALE = 0.41
 SPLASH_SCALE = 0.40
 SPLASH12_SCALE = 0.42    # Android 12 splash: icon must sit inside the central 2/3 circle
 
