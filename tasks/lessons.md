@@ -17,3 +17,8 @@ backticks; the shell executed them (`main`, `release/*`), the replacement string
 and the docs part of the commit was silently empty.
 **Rule:** Always use `<<'EOF'` for scripts that contain Markdown or code. Make replacement helpers
 `assert old in text` so a non-match fails loudly instead of committing a no-op.
+
+## Piping a build through `tail` hides its failure (2026-10-11)
+`fvm flutter build apk | tail -4` reported exit 0 while Gradle had failed (network handshake).
+**Rule:** redirect build output to a log file and print `exit=$?` from the build command itself;
+never judge success by the exit code of a pipeline's last stage.

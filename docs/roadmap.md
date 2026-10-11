@@ -39,13 +39,13 @@ Turn the field-test prototype into a clean base.
 | 0.3 | Documentation baseline: per-repo README, decision records (`docs/adr/`), code of conduct, changelogs, API docs |
 | 0.4 | Public GitHub: repositories, branch protection, project board with one issue per roadmap step, CI badges, first tagged releases |
 
-## Phase 1 — Design system ⏳
+## Phase 1 — Design system 🔄
 Professional, calm and legible under stress, dust and sunlight; accessible (contrast, large touch
 targets, screen readers).
 
 | Step | What |
 |---|---|
-| 1.1 | Design principles and brand: name treatment, logo, colour palette (outdoor high contrast, light/dark), typography, iconography, tone of voice (TR + EN) |
+| 1.1 ✅ | Design principles and brand: name treatment, logo, colour palette (outdoor high contrast, light/dark), typography, iconography, tone of voice (TR + EN) — [`docs/design/`](design/principles.md), [`docs/brand/`](brand/README.md), [ADR 0017](adr/0017-visual-identity.md) |
 | 1.2 | Design tokens and the `beneathsos_ui` package: colours, spacing, typography, motion, core components (scaffold, buttons, cards, countdown ring, status banners) |
 | 1.3 | Component catalogue (Widgetbook) published so anyone can browse the UI kit |
 | 1.4 | Flow mockups for the rescuer and victim journeys, reviewed before any screen is built |

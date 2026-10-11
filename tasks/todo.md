@@ -47,6 +47,27 @@ Verified: format ✓, analyze --fatal-infos ✓, 15/15 tests ✓, iOS simulator 
 - [x] Internal TestFlight group "Core team" (all builds), maintainer invited
 - [ ] GitHub Actions: TestFlight on tag (store ASC key as repository secret)
 
+## Done: Phase 1.1 — design principles and brand (2026-10-11)
+Spec `docs/superpowers/specs/2026-10-11-brand-and-design-principles-design.md`, plan
+`docs/superpowers/plans/2026-10-11-brand-and-design-principles.md` (8 tasks, executed inline).
+- [x] Hub: `tools/brand/` (palette, contrast, symbol, wordmark, assets, `build.py`) — 16 tests incl.
+      contrast table, 16 px legibility, iOS tinted / Android monochrome layers
+- [x] Hub: `docs/brand/` (generated SVG/PNG masters, Atkinson font + OFL, README), ADR 0017,
+      `docs/design/` (principles, voice and tone + TR/EN glossary, accessibility + PR checklist)
+- [x] App + plugin: PR template links the accessibility checklist
+- [x] App: icon (iOS light/dark/tinted, Android adaptive + themed) and launch screen
+      (`flutter_launcher_icons`, `flutter_native_splash`); 52/52 tests, analyze clean
+- [x] Verified: iOS simulator launch screen light `#F5F6F9` / dark `#0C111D` (pixel-sampled),
+      home-screen icon; Android debug APK; TestFlight 0.1.0 (13)
+
+### Review
+**1.1 (2026-10-11):** Rulings — `flutter_launcher_icons` rewrote a boolean Xcode setting
+(`ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS`) to `AppIcon`; reverted to `YES`,
+iOS build clean. iOS 26 home-screen icon style is a user setting, so the dark/tinted icons were
+verified in the compiled asset catalog (47 dark + 45 tintable renditions), and on the phone via
+TestFlight. Open: the app body still uses Material's default seed colour — brand theme arrives
+with `beneathsos_ui` tokens (1.2).
+
 ## Backlog
 - [x] NDK 28.2.13676358 installed manually (sdkmanager download kept dying on a flaky connection;
       resumable `curl -C -` + unzip). Back on `flutter.ndkVersion`. Note: `path_provider_android`
