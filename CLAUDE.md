@@ -211,8 +211,9 @@ there + `riverpod_lint` plugin. Packages add `public_member_api_docs`. CI runs
 ## 8. Git, PRs, security
 
 - Conventional Commits (`feat(engine): ...`, `fix(ble): ...`); versions and CHANGELOGs derive from them.
-- `main` is protected: PR only, CI green, 1 code-owner review, no force push, **no auto-merge**.
-  Never push directly to `main` or `release/*`.
+- `main` rulesets (`.github/rulesets/`): no force push or deletion for anyone; contributors change
+  `main` only through PRs with green CI; **no auto-merge**. While the project has one maintainer,
+  the maintainer (admin) may push directly — never force-push or rewrite `main` history.
 - Never commit secrets, keystores, `.env`, signing files. Never add network calls or telemetry.
 - GitHub Actions: `pull_request` trigger only (never `pull_request_target`), `permissions:
   contents: read` by default, actions pinned to commit SHA.
