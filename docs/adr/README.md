@@ -25,3 +25,4 @@ next number, open a PR.
 | [0014](0014-lifecycle-owned-by-consumers.md) | App lifecycle is owned by its consumers | Accepted |
 | [0015](0015-android-no-never-for-location.md) | Android: no `neverForLocation`; request location to see Find My beacons | Accepted |
 | [0016](0016-testflight-api-key-signing.md) | iOS signing and TestFlight with an App Store Connect API key | Accepted |
+| [0017](0017-visual-identity.md) | Visual identity: palette, typeface, logo, voice, accessibility targets | Accepted |
