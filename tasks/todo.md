@@ -17,11 +17,17 @@ Decisions: `docs/mimari-sorular.md` (answers) → `docs/architecture.md`. Rules:
 Public roadmap: `docs/roadmap.md` (phases 0–12). This file tracks the **current step** in detail.
 
 ## Current: Phase 0.1 — remove field-test UI, keep domain logic
-- [ ] Agree the exact delete / keep / move list with the maintainer
-- [ ] Apply, verify (analyze, tests), walk through the diff
+- [x] Agree the exact delete / keep / move list with the maintainer
+- [x] Apply, verify (analyze, tests), walk through the diff
+- [ ] Maintainer review → commit
 
 ## Review
-_(filled after each step)_
+**0.1 (2026-10-10):** field-test UI removed (28 files, ~1,100 lines). Kept and moved with git history:
+targets domain (classify, tracking, presence, relink, stats) → `features/targets/domain/`,
+`DeviceTable` → `features/targets/presentation/providers/`, `ScanController` → `core/scanning/`.
+Placeholder `HomeScreen` behind `HomeRoute('/')`; ARB trimmed to 3 keys (en + tr).
+Dropped `path_provider` + `share_plus` → `jni` / NDK native build gone from the dependency tree.
+Verified: format ✓, analyze --fatal-infos ✓, 15/15 tests ✓, iOS simulator shows the placeholder.
 
 ## Backlog
 - [x] NDK 28.2.13676358 installed manually (sdkmanager download kept dying on a flaky connection;
