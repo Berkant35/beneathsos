@@ -22,3 +22,6 @@ __pycache__/
 # Sub-repositories (each is its own git repo)
 apps/
 packages/
+
+# Brainstorming companion mockups (local only)
+.superpowers/
