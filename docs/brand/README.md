@@ -11,13 +11,13 @@ Every file in `svg/` and `png/` is **generated** — never edit them by hand.
 |---|---|
 | `svg/symbol.svg` | Symbol on light backgrounds |
 | `svg/symbol-dark.svg` | Symbol on dark backgrounds |
-| `svg/symbol-mono.svg` | One-colour symbol (print, stamps, embossing) |
+| `svg/symbol-mono.svg` | One-colour symbol, all arcs solid (print, stamps, embossing) |
 | `svg/wordmark.svg`, `svg/wordmark-dark.svg` | "BeneathSOS" wordmark, outlined (no font needed) |
 | `svg/lockup.svg`, `svg/lockup-dark.svg` | Symbol + wordmark side by side — the default logo |
 | `svg/app-icon.svg` | App icon master (1024 px canvas) |
 | `svg/splash.svg` | Launch-screen artwork (symbol only, no text) |
 | `png/app-icon-1024.png` | App icon master as PNG |
-| `png/symbol-16.png` … `png/symbol-512.png` | Symbol at 16, 24, 32, 48 and 512 px |
+| `png/symbol-16.png` … `png/symbol-512.png` | Symbol at 16, 24, 32, 48 and 512 px (16 px is pixel-aligned) |
 | `fonts/AtkinsonHyperlegibleNext[wght].ttf`, `fonts/OFL.txt` | Typeface and its licence |
 
 ## Regenerate
@@ -77,7 +77,8 @@ Geometry on a 48 × 48 grid, round caps, one stroke width (3.6):
 ## Clear space and minimum size
 
 - Keep empty space around the symbol of at least **¼ of its height** on every side.
-- Minimum size **16 px**. Below that, the arcs merge.
+- Minimum size **16 px**. Below that, the arcs merge. At 16 px use `png/symbol-16.png`: its line and
+  dot sit half a pixel lower so the line fills one pixel row instead of blurring across two.
 
 ## Colours
 

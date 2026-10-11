@@ -50,7 +50,7 @@ def build_all(out_dir: Path, app_dir: Path | None = None) -> list[Path]:
     made += [
         _write(svg / "symbol.svg", symbol_svg(p.PRIMARY_LIGHT, p.ACCENT_LIGHT)),
         _write(svg / "symbol-dark.svg", symbol_svg(p.PRIMARY_DARK, p.ACCENT_DARK)),
-        _write(svg / "symbol-mono.svg", symbol_svg(p.TEXT_LIGHT, p.TEXT_LIGHT)),
+        _write(svg / "symbol-mono.svg", symbol_svg(p.TEXT_LIGHT, p.TEXT_LIGHT, mono=True)),
         _write(svg / "wordmark.svg", wordmark_svg(p.PRIMARY_LIGHT, p.ACCENT_LIGHT)),
         _write(svg / "wordmark-dark.svg", wordmark_svg(p.PRIMARY_DARK, p.ACCENT_DARK)),
         _write(svg / "lockup.svg", lockup_svg(p.PRIMARY_LIGHT, p.ACCENT_LIGHT, p.PRIMARY_LIGHT)),
@@ -59,7 +59,9 @@ def build_all(out_dir: Path, app_dir: Path | None = None) -> list[Path]:
         _write(svg / "splash.svg", icon_svg(1024, SPLASH_SCALE, p.PRIMARY_LIGHT, p.ACCENT_LIGHT)),
     ]
     made.append(render_png((svg / "app-icon.svg").read_text(), png / "app-icon-1024.png", 1024, 1024))
-    for size in (16, 24, 32, 48, 512):
+    made.append(render_png(symbol_svg(p.PRIMARY_LIGHT, p.ACCENT_LIGHT, 16, hinted=True),
+                           png / "symbol-16.png", 16, 16))
+    for size in (24, 32, 48, 512):
         made.append(render_png((svg / "symbol.svg").read_text(), png / f"symbol-{size}.png", size, size))
 
     if app_dir is not None:

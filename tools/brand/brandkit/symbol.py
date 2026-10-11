@@ -11,24 +11,30 @@ ARCS = (
 )
 
 
-def symbol_elements(line: str, accent: str) -> str:
+HINT_SHIFT = 1.5  # 16 px only: moves line and dot half a pixel down so the line fills one pixel row
+
+
+def symbol_elements(line: str, accent: str, hinted: bool = False, mono: bool = False) -> str:
+    """`hinted`: pixel-aligned variant for 16 px. `mono`: one ink, no opacity (print, stamps)."""
     cx, cy, r = DOT
+    shift = HINT_SHIFT if hinted else 0
     parts = [
-        f'<path d="{LINE}" stroke="{line}" stroke-width="{STROKE}" stroke-linecap="round" fill="none"/>',
-        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{accent}"/>',
+        f'<path d="{LINE}" stroke="{line}" stroke-width="{STROKE}" stroke-linecap="round" fill="none"'
+        + (f' transform="translate(0 {shift})"/>' if shift else "/>"),
+        f'<circle cx="{cx}" cy="{cy + shift:g}" r="{r}" fill="{accent}"/>',
     ]
     for d, opacity in ARCS:
         parts.append(
             f'<path d="{d}" stroke="{accent}" stroke-width="{STROKE}" stroke-linecap="round" '
-            f'fill="none" opacity="{opacity}"/>'
+            f'fill="none" opacity="{"1" if mono else opacity}"/>'
         )
     return "".join(parts)
 
 
-def symbol_svg(line: str, accent: str, size: int = 48) -> str:
+def symbol_svg(line: str, accent: str, size: int = 48, hinted: bool = False, mono: bool = False) -> str:
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 48 48">'
-        f"{symbol_elements(line, accent)}</svg>"
+        f"{symbol_elements(line, accent, hinted, mono)}</svg>"
     )
 
 

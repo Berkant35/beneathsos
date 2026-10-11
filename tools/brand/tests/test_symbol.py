@@ -5,6 +5,7 @@ from pathlib import Path
 from PIL import Image
 
 from brandkit import palette as p
+from brandkit.contrast import contrast_ratio
 from brandkit.render import render_png
 from brandkit.symbol import icon_svg, symbol_svg
 
@@ -37,6 +38,17 @@ class SymbolTest(unittest.TestCase):
             img = Image.open(png).convert("RGBA")
             self.assertEqual(img.size, (16, 16))
             self.assertTrue(any(_is_orange(img.getpixel((x, y))) for x in range(16) for y in range(16)))
+
+    def test_rubble_line_is_crisp_at_16px(self):
+        # The line must land on one pixel row, not blur across two (contrast >= 4.5 on white).
+        with tempfile.TemporaryDirectory() as tmp:
+            png = render_png(symbol_svg(p.PRIMARY_LIGHT, p.ACCENT_LIGHT, size=16, hinted=True),
+                             Path(tmp) / "s16.png", 16, 16)
+            img = Image.open(png).convert("RGBA")
+            white = Image.new("RGBA", img.size, "#FFFFFF")
+            white.alpha_composite(img)
+            darkest = min((white.getpixel((x, y))[:3] for x in (3, 4) for y in range(16)), key=sum)
+            self.assertGreaterEqual(contrast_ratio("#%02X%02X%02X" % darkest, "#FFFFFF"), 4.5)
 
     def test_icon_has_opaque_background_when_given(self):
         with tempfile.TemporaryDirectory() as tmp:

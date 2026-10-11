@@ -74,6 +74,14 @@ class AssetBuildTest(unittest.TestCase):
                 if alpha[x, y] > 0:
                     self.assertLessEqual((x - centre) ** 2 + (y - centre) ** 2, radius ** 2, (x, y))
 
+    def test_mono_symbol_has_one_ink_and_no_opacity(self):
+        svg = (self.out / "svg" / "symbol-mono.svg").read_text()
+        self.assertNotIn('opacity="0.', svg)
+
+    def test_16px_master_uses_the_pixel_aligned_variant(self):
+        img = Image.open(self.out / "png" / "symbol-16.png").convert("RGBA")
+        self.assertEqual(img.getpixel((3, 10))[3], 255)
+
     def test_splash_has_no_text_layer(self):
         svg = (self.out / "svg" / "splash.svg").read_text()
         self.assertNotIn("Beneath", svg)
