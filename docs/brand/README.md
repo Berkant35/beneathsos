@@ -31,6 +31,8 @@ tools/brand/.venv/bin/pip install -r tools/brand/requirements.txt
 tools/brand/.venv/bin/python tools/brand/build.py
 # plus the app's icon and launch-screen sources
 tools/brand/.venv/bin/python tools/brand/build.py --app-dir apps/beneathsos_app/assets/branding
+# plus the static fonts bundled by the beneathsos_ui package
+tools/brand/.venv/bin/python tools/brand/build.py --fonts-dir packages/beneathsos_ui/fonts
 
 # tests (contrast table, geometry, 16 px legibility, icon layers)
 cd tools/brand && .venv/bin/python -m unittest discover -s tests
