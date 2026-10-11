@@ -224,4 +224,7 @@ there + `riverpod_lint` plugin. Packages add `public_member_api_docs`. CI runs
 - Non-trivial task (3+ steps) → plan in `tasks/todo.md` first; mark progress; add a review section.
 - After any correction from the maintainer → add the pattern to `tasks/lessons.md`.
 - Verify before claiming done: run the commands in §3 and show the result.
+- **TestFlight after every app change.** When a commit in `beneathsos_app` touches `lib/`, `ios/`,
+  `android/` or `pubspec.*`, push it and run `tools/testflight.sh` (see the app README); report the
+  build number and processing state. Docs-only commits are not uploaded.
 - Language: code, comments, docs, commits in **English**; conversation with the maintainer in Turkish.
