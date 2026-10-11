@@ -9,6 +9,6 @@ for dir in "$HUB"/packages/* "$HUB"/apps/*; do
   cp "$HUB/.github/ISSUE_TEMPLATE/bug_report.md" "$dir/.github/ISSUE_TEMPLATE/"
   cp "$HUB/.github/rulesets/main.json" "$dir/.github/rulesets/"
   cp "$HUB/tools/templates/ci.yml" "$dir/.github/workflows/ci.yml"
-  cp "$HUB/SECURITY.md" "$HUB/CONTRIBUTING.md" "$HUB/LICENSE" "$HUB/.fvmrc" "$dir/"
+  cp "$HUB/SECURITY.md" "$HUB/CONTRIBUTING.md" "$HUB/CODE_OF_CONDUCT.md" "$HUB/LICENSE" "$HUB/.fvmrc" "$dir/"
   echo "synced $(basename "$dir")"
 done
