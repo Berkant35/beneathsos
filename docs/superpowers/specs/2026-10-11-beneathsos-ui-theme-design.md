@@ -157,14 +157,15 @@ title). At 200 % system text size the page scrolls and nothing is clipped.
 
 ### Being prepared
 
-- "Start a search" → `NewSearchRoute` (`/search/new`, feature `features/search/`): title "New
+- "Start a search" → `NewSiteRoute` (`/sites/new`, feature `features/sites/`): title "New
   search"; text "This step is being prepared. Here you will draw the outline of the rubble site."
-- "I am trapped" → `TrappedRoute` (`/trapped`, feature `features/trapped/`): text "This mode is not
+- "I am trapped" → `VictimRoute` (`/victim`, feature `features/victim/`): text "This mode is not
   ready yet. In an emergency, call 112." — a trapped person who taps it must get the one useful
   instruction, never an empty screen (the app supports, never replaces, professional rescue).
 
-Typed `go_router` routes in `core/router/`; the real phase-4 flows replace these screens on the same
-routes.
+Typed `go_router` routes in `core/router/`, children of `HomeRoute`, opened with `go` (a double tap
+opens one screen; Back returns home). Paths follow `docs/architecture.md` §6 (`/sites/new`, `/victim`);
+the real flows replace these screens on the same routes.
 
 ### Strings (ARB, English and Turkish in the same change)
 
@@ -176,10 +177,10 @@ routes.
 | `homeTrapped` | I am trapped | Enkaz altındayım |
 | `homeIndependence` | BeneathSOS is an independent open-source project and is not affiliated with AFAD or any government agency. | BeneathSOS bağımsız bir açık kaynak projedir; AFAD veya herhangi bir kamu kurumuyla bağlantısı yoktur. |
 | `poweredBy` | Powered by Socrepho | Powered by Socrepho |
-| `newSearchTitle` | New search | Yeni arama |
-| `newSearchPreparing` | This step is being prepared. Here you will draw the outline of the rubble site. | Bu adım hazırlanıyor. Burada enkaz alanının sınırlarını çizeceksiniz. |
-| `trappedTitle` | I am trapped | Enkaz altındayım |
-| `trappedPreparing` | This mode is not ready yet. In an emergency, call 112. | Bu mod henüz hazır değil. Acil durumda 112'yi arayın. |
+| `newSiteTitle` | New search | Yeni arama |
+| `newSitePreparing` | This step is being prepared. Here you will draw the outline of the rubble site. | Bu adım hazırlanıyor. Burada enkaz alanının sınırlarını çizeceksiniz. |
+| `victimTitle` | I am trapped | Enkaz altındayım |
+| `victimPreparing` | This mode is not ready yet. In an emergency, call 112. | Bu mod henüz hazır değil. Acil durumda 112'yi arayın. |
 | `logoLabel` | BeneathSOS | BeneathSOS |
 
 The old keys `homeUnderConstructionTitle` and `homeUnderConstructionBody` are removed. "Socrepho"
@@ -202,7 +203,7 @@ is a name and is not translated.
 **App**
 
 - Home: both buttons and both fine-print lines present (English and Turkish); "Start a search" goes
-  to `/search/new`, "I am trapped" to `/trapped`; at text scale 2.0 there is no overflow.
+  to `/sites/new`, "I am trapped" to `/victim`; at text scale 2.0 there is no overflow.
 - The existing 52 tests still pass.
 
 **Done when** format, `analyze --fatal-infos` and tests pass in both repositories; iOS simulator
