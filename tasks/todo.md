@@ -16,10 +16,15 @@ Decisions: `docs/mimari-sorular.md` (answers) → `docs/architecture.md`. Rules:
 ## Roadmap
 Public roadmap: `docs/roadmap.md` (phases 0–12). This file tracks the **current step** in detail.
 
-## Current: Phase 0.1 — remove field-test UI, keep domain logic
+## Done: Phase 0.1 — remove field-test UI, keep domain logic
 - [x] Agree the exact delete / keep / move list with the maintainer
 - [x] Apply, verify (analyze, tests), walk through the diff
-- [ ] Maintainer review → commit
+- [x] Maintainer review → commit
+
+## Current: Phase 0.2 — thin notifiers
+- [x] 0.2a scanning: ports + StartScan/StopScan + preconditions + availability policy; services implement
+      ports; ScanController 156 → 85 lines; 39 tests (app `refactor(scanning)` commit)
+- [ ] 0.2b targets: `DeviceTable` → pure `DeviceTracker`
 
 ## Review
 **0.1 (2026-10-10):** field-test UI removed (28 files, ~1,100 lines). Kept and moved with git history:
