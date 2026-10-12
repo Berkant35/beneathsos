@@ -229,6 +229,12 @@ label per frame, `RubbleCanvasStyle` without `==`); golden tolerance 0.5 % could
 goldens use fixed colours, not the app theme; no tests for the save-failure snackbar, comma input in
 the widget, or an existing-scale path.
 
+## Current: Phase 6 — target selection (2026-10-13)
+Spec `docs/superpowers/specs/2026-10-13-target-selection-design.md`.
+- [x] Surface scan (30 s, −80 dBm median / 3 readings), candidates ranked with reasons, exclude / track;
+      overview steps open both; 208 tests; pushed; TestFlight
+- [ ] Final review (opus) and fixes
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

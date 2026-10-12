@@ -76,10 +76,10 @@ steps of the flow. Practice with sample data keeps the preview journey.
 Metric canvas, polygon drawing with edge lengths, pinch-zoom and pan; one real side corrects the scale.
 Placing measurement points moves to phase 7 (measurement).
 
-## Phase 6 — Target selection ⏳
-30-second ambient scan (blacklist surface devices), candidate ranking (Find My, stationary, weak),
-"hold your phone next to it" proximity pick, identity-rotation countdown with animated warnings and
-relink.
+## Phase 6 — Target selection ✅
+30-second surface scan (phones heard strongly set aside), candidate ranking (Find My, still, weak) with
+plain-language reasons, "hold a rescuer's phone next to yours" exclusion. The identity-rotation countdown
+and relink move to phase 7, where a target is followed for minutes.
 
 ## Phase 7 — Measurement ⏳
 15-second point measurement with countdown and stillness check; "no signal" is recorded as data.

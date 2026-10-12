@@ -34,3 +34,20 @@ yet). Prefer ordering work so each step produces a visible change in the app.
 code is `tail`'s. Same root cause as the APK lesson.
 **Rule:** gate commits on the command's own exit code: `cmd > log 2>&1; echo exit=$?` or
 `set -o pipefail`; never put a piped check in front of `&& git commit`.
+
+## Riverpod 3 pauses what nobody listens to — including inside providers (2026-10-13)
+The surface scan counted no phones: its notifier only `ref.read` the device tracker, so Riverpod 3
+paused the tracker and its sample subscription. A derived `Provider` between the tracker and a screen
+also left the screen stale.
+**Rule:** a provider that needs another one to keep running must `ref.listen`/`ref.watch` it, never
+only `ref.read`. Prefer computing derived lists in the screen's mixin from `ref.watch` results over
+an intermediate provider. Test with a real sample stream, not by reading providers directly.
+
+## Tests that hang: settle loops and awaited stream closes (2026-10-13)
+`pumpAndSettle` on a screen with a periodic countdown ran the whole countdown; `addTearDown(stream.close)`
+on a broadcast controller whose subscriber Riverpod paused never completed, so a failing test hung
+instead of reporting.
+**Rule:** wrap test runs in `perl -e 'alarm shift; exec @ARGV' <s> …`; open countdown screens with a
+few `pump`s, not `pumpAndSettle`; close test stream controllers unawaited; stamp fake BLE samples with
+the wall clock (the tracker forgets by it).
+

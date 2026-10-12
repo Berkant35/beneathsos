@@ -22,7 +22,7 @@ Legend: ✅ built · ⏳ planned
 | Persistence (Drift, event-sourced) | ✅ phase 3: schema, session store, practice search, "last search" card | `beneathsos_app/lib/core/{database,sessions}` |
 | Entry flow, onboarding, sites | ✅ phase 4: one-time disclaimer, searches list, new search, overview | `features/{onboarding,sites}` |
 | Rubble drawing (`rubble_canvas`) | ✅ phase 5: outline editor, scale step | `rubble_canvas` v0.1.0, `features/site_drawing` |
-| Target selection UI, ambient blacklist | ⏳ phase 6 | — |
+| Target selection UI, ambient blacklist | ✅ phase 6: 30 s surface scan, ranked candidates with reasons, exclude / track | `features/targets` |
 | Measurement | ⏳ phase 7 | — |
 | `locator_engine` (probability map) | ⏳ phase 8 | — |
 | Probability map screen | ⏳ phase 9 | — |
@@ -174,8 +174,8 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/sites`, `/sites/new`, `/sites/:sessionId` | Searches list, new search, overview (async redirect to `/onboarding?from=` until the disclaimer is accepted) | ✅ |
 | `/preview`, `/preview/site/scan/target/measure/map` | Roadmap 1.4 preview journey (sample data) | ✅ temporary |
 | `/sites/:sessionId/draw`, `/sites/:sessionId/scale` | Rubble outline (Back asks when unsaved); optional real size of one side (`ScaleSet`) | ✅ |
-| `/sites/:siteId/ambient` | Ambient scan | ⏳ |
-| `/sites/:siteId/targets` | Target picker / relink | ⏳ |
+| `/sites/:sessionId/ambient` | Surface scan (30 s, phones ≥ −80 dBm median set aside) | ✅ |
+| `/sites/:sessionId/targets` | Target picker (relink follows with measurement) | ✅ |
 | `/sites/:siteId/map?target=:targetId` | Probability map (full-bleed) | ⏳ |
 | `/sites/:siteId/points/:pointId/measure` | Measurement | ⏳ |
 | `/sites/:siteId/export`, `/settings`, `/research` | Export, settings, research | ⏳ |
@@ -288,7 +288,7 @@ class ScanSample {
 | 1 | Identity goes silent / rotates (~15 min on phones) | "Gone" logged once after 15 s silence; identity leaves the device list after 30 s but stays in the log (`TrackerPolicy`). Relink suggestion: an identity appearing within 30 s of the target going silent, RSSI within 8 dB. UI: countdown with warnings at 10 / 13 min, user confirms relink | ✅ rules · ⏳ UI |
 | 2 | No signal at a point | Recorded as a non-detection after the full 15 s; it still updates the map | ⏳ |
 | 3 | Rescuer moves during measurement | Stillness check; moving samples flagged, prompt to hold still, extend timer | ⏳ |
-| 4 | Surface devices (team, bystanders) | 30 s ambient scan → blacklist; very strong (> −50 dBm) or high-variance devices flagged; re-run when identities rotate | ⏳ |
+| 4 | Surface devices (team, bystanders) | 30 s surface scan 10 m from the rubble → phones with median ≥ −80 dBm (3+ readings) set aside; candidates ranked (Find My, still, weak first; very strong ≥ −55 dBm last, "probably right next to you"); Exclude adds one by hand; re-run when identities rotate | ✅ |
 | 5 | Several targets | One tab per target; one measurement round records all targets | ⏳ |
 | 6 | App killed mid-session | Session restored from events; an interrupted measurement is discarded with a reason | ⏳ |
 | 7 | Bluetooth or permission turned off | Scanner shows the blocked state; retries when Bluetooth returns or the user comes back from Settings | ✅ logic · ⏳ UI |
