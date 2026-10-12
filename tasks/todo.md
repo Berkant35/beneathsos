@@ -68,6 +68,28 @@ verified in the compiled asset catalog (47 dark + 45 tintable renditions), and o
 TestFlight. Open: the app body still uses Material's default seed colour — brand theme arrives
 with `beneathsos_ui` tokens (1.2).
 
+## Done: Phase 1.2a — beneathsos_ui tokens, theme and branded home (2026-10-12)
+Spec `docs/superpowers/specs/2026-10-11-beneathsos-ui-theme-design.md`, plan
+`docs/superpowers/plans/2026-10-11-beneathsos-ui-theme.md` (12 tasks, inline, final review by a fresh reviewer).
+- [x] Hub: static Atkinson weights from `tools/brand` (25 tests), ADR 0018, architecture, roadmap 1.2a/b/c
+- [x] Package `beneathsos_ui` v0.1.0 (public, rulesets, release): colours + contrast table, typography,
+      spacing/sizes/motion, `BeneathTokens`, `BeneathTheme` light/dark, `BeneathLogo`, `PrimaryButton`,
+      `SecondaryButton`; 44 tests incl. 6 goldens (Linux skips, macOS workflow runs them, 0.5 % tolerance)
+- [x] App: theme from the package, branded home, `/sites/new` and `/victim` "being prepared" screens
+      (victim says call 112), en + tr; 75 tests; TestFlight 0.1.0 (19) VALID
+- [x] Final review fixes: 112 text clipped at 200 % landscape (now scrolls), Back target 48 → 56,
+      dark-theme wiring test, architecture tree
+
+On the phone: new home screen (logo, navy/orange, Atkinson, "Start a search", "I am trapped",
+independence note, "Powered by Socrepho") in light and dark; both buttons open "being prepared" screens.
+Not yet: real search flow, banners, cards, countdown ring (1.2b–c).
+
+### Review
+**1.2a (2026-10-12):** deferred minors from the final review — lock-up proportions vs brand source,
+`outlineVariant`, `primaryTextTheme` Roboto, `BeneathTokens` ==/hashCode, 24 px button icons, golden
+helper should throw when MaterialIcons is missing, spec §7 golden wording, `rubble_canvas` CLAUDE.md row
+may list `beneathsos_ui`.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)
