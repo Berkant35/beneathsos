@@ -129,6 +129,14 @@ On the phone: no visible change except screen-reader headings; the ring first ap
 Deferred minors: scaffold padding test half is empty; `readinessFor` is `@visibleForTesting` (injecting
 preconditions would fit "depend on ports" better).
 
+## Current: Phase 1.3 — component catalogue (Widgetbook)
+Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
+`docs/superpowers/plans/2026-10-12-widgetbook-catalogue.md`.
+- [x] `beneathsos_ui/widgetbook/`: 9 components, 21 use cases, light/dark, text scale 1–2, viewports,
+      reduce-motion knob; test opens every use case in both themes (43 tests); `catalogue.yml` builds the
+      web catalogue in CI (green)
+- [ ] Publish to GitHub Pages — **waits for the maintainer's yes** (repository setting + public site)
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

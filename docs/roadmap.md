@@ -49,7 +49,7 @@ targets, screen readers).
 | 1.2a ✅ | Design tokens, light/dark theme, Atkinson font, logo, primary and secondary buttons in `beneathsos_ui`; branded home screen with "Start a search" and "I am trapped" |
 | 1.2b ✅ | Status banners and cards; live Bluetooth/permission readiness banner on the home screen |
 | 1.2c ✅ | Countdown ring; `AppScaffold` moves into `beneathsos_ui` (`BeneathScaffold`) |
-| 1.3 | Component catalogue (Widgetbook) published so anyone can browse the UI kit |
+| 1.3 🔄 | Component catalogue (Widgetbook) published so anyone can browse the UI kit — built and tested in CI (`beneathsos_ui/widgetbook`); publishing to GitHub Pages waits for the maintainer |
 | 1.4 | Flow mockups for the rescuer and victim journeys, reviewed before any screen is built |
 
 ## Phase 2 — `rubble_core` package ⏳
