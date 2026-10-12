@@ -144,6 +144,15 @@ Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
       from tokens; palette swatches (spec) vs theme roles; reduce motion as an addon; nested `.fvmrc`;
       Dependabot entry for `widgetbook/`
 
+## Current: Phase 2a — `rubble_core` units and geometry
+Spec `docs/superpowers/specs/2026-10-12-rubble-core-units-geometry-design.md`.
+- [x] `packages/rubble_core` (pure Dart): `Meters`, `SquareMeters`, `Dbm`, `Decibels`, `Hpa` extension types
+      (mixing units does not compile — verified); `SitePoint`, `RubblePolygon` (validation, perimeter, area,
+      bounds, centroid, contains); 19 tests; analyze/format clean
+- [x] Shared CI template: actions pinned to commit SHAs; dart tools for pure Dart packages (green in app,
+      ble_scanner, beneathsos_ui)
+- [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

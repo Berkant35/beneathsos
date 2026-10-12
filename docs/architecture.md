@@ -18,7 +18,7 @@ Legend: ✅ built · ⏳ planned
 | App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home; roadmap 1.4 preview journey (sample data) | ✅ | `beneathsos_app/lib/core`, `features/{home,preview,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
-| `rubble_core` (units, geometry, events) | ⏳ phase 2 | — |
+| `rubble_core` (units, geometry, events) | 🔄 2a units + geometry (local, repository pending) | `packages/rubble_core` |
 | Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
 | Rubble drawing (`rubble_canvas`) | ⏳ phase 5 | — |
