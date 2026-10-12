@@ -90,6 +90,27 @@ Not yet: real search flow, banners, cards, countdown ring (1.2b–c).
 helper should throw when MaterialIcons is missing, spec §7 golden wording, `rubble_canvas` CLAUDE.md row
 may list `beneathsos_ui`.
 
+## Done: Phase 1.2b — status banner, card and device readiness (2026-10-12)
+Spec `docs/superpowers/specs/2026-10-12-status-banner-and-card-design.md`, plan
+`docs/superpowers/plans/2026-10-12-status-banner-and-card.md` (8 tasks, inline, final review by a fresh reviewer).
+- [x] `beneathsos_ui` v0.2.1: `StatusBanner` (ready / attention / blocked, tappable, live region),
+      `BeneathCard`, outlineVariant, stable themes, 24 px icons, brand lock-up; 70 tests incl. goldens
+- [x] App: `CheckReadiness` (scan preconditions without scanning), `ReadinessController` (asks once per
+      session, re-checks on Bluetooth changes and on resume when blocked, latest check wins, failures
+      shown and re-tried), readiness banner on home, cards on being-prepared screens, en + tr; 107 tests
+- [x] Final review fixes: no endless "Checking…" on a platform error, no false "ready" while the iOS
+      permission prompt is open, one permission dialog at a time, screen readers hear only the new message
+- [x] TestFlight 0.1.0 (25) VALID; Android debug APK; fresh clone resolves `v0.2.1`
+
+On the phone: a banner above the buttons — "Bluetooth is on and ready."; it turns red when Bluetooth is
+switched off and back when on; the being-prepared screens show a card; on a fresh install the Bluetooth
+permission is asked at first launch. Not yet: countdown ring (1.2c), real search flow (phase 4).
+
+### Review
+**1.2b (2026-10-12):** deferred minors — impossible precondition results map to Ready; 0.5 % golden
+tolerance can miss tiny glyphs; home 200 % tests use the short message only; card title header
+semantics; `bannerFor` is a ~40-line mapping table.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

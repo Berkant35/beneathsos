@@ -73,7 +73,13 @@ with a leading icon; with `onTap` it is a button for screen readers.
 ### Domain (`lib/core/readiness/domain/`)
 
 `sealed class DeviceReadiness` — `ReadinessChecking`, `ReadinessReady`, `ReadinessNeedsPermission`,
-`ReadinessPermissionInSettings`, `ReadinessBluetoothOff`, `ReadinessUnsupported`.
+`ReadinessPermissionInSettings`, `ReadinessBluetoothOff`, `ReadinessUnsupported`, `ReadinessFailed`.
+
+*Amended after the final review (2026-10-12):* a still-unknown adapter (iOS while its permission prompt
+is open) maps to `ReadinessChecking`, never `Ready`; a platform error maps to `ReadinessFailed`
+(blocked banner "Could not check Bluetooth. Tap to try again." / "Bluetooth durumu okunamadı. Tekrar
+denemek için dokunun.", tap and resume re-check); a second permission tap while the dialog is open is
+ignored; during the banner cross-fade only the new message is exposed to screen readers.
 
 `CheckReadiness` runs the **existing** scan preconditions in order — `PermissionPrecondition` (checks;
 asks once when missing), then `BluetoothPrecondition` — without starting a scan, and maps the first
