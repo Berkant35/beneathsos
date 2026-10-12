@@ -18,7 +18,7 @@ Legend: ✅ built · ⏳ planned
 | App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home; roadmap 1.4 preview journey (sample data) | ✅ | `beneathsos_app/lib/core`, `features/{home,preview,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
-| `rubble_core` (units, geometry, events) | 🔄 2a units + geometry (local, repository pending) | `packages/rubble_core` |
+| `rubble_core` (units, geometry, events) | 🔄 2a–2d units, geometry, ids, clock, events, projection (local, repository pending) | `packages/rubble_core` |
 | Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
 | Rubble drawing (`rubble_canvas`) | ⏳ phase 5 | — |
@@ -214,7 +214,13 @@ tests keep a listener (`container.listen`).
 Event types (v1): `SiteCreated`, `RubblePolygonSet`, `ScaleSet`, `StructureAnnotated`,
 `AmbientScanCompleted`, `BlacklistEdited`, `TargetSelected`, `TargetRelinked`,
 `MeasurementPointPlaced`, `MeasurementCompleted`, `MeasurementDiscarded`, `GroundTruthRecorded`,
-`SessionClosed`.
+`SessionClosed`. They are defined in `rubble_core` (sealed `SessionEvent`) with strict JSON inside an
+`EventEnvelope` (`{"schema": 1, "id", "session", "seq", "hlc", "type", "payload"}`); a `MeasurementCompleted`
+stores `NoSignal` readings as data (rule 3).
+
+Screen state is `SessionProjection.replay(events)` → `SessionState`: events are applied in hybrid-clock order
+(then `seq`), an event id already applied is ignored, a measurement for an unknown point is kept, a
+discarded point keeps its readings but leaves `measuredPoints`.
 
 ## 9. Engine (`locator_engine`) ⏳ phase 8
 

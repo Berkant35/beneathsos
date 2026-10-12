@@ -144,8 +144,8 @@ Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
       from tokens; palette swatches (spec) vs theme roles; reduce motion as an addon; nested `.fvmrc`;
       Dependabot entry for `widgetbook/`
 
-## Current: Phase 2a — `rubble_core` units and geometry
-Spec `docs/superpowers/specs/2026-10-12-rubble-core-units-geometry-design.md`.
+## Current: Phase 2 — `rubble_core` (2a–2d)
+Specs `docs/superpowers/specs/2026-10-12-rubble-core-{units-geometry,ids-clock,events,projection}-design.md`.
 - [x] `packages/rubble_core` (pure Dart): `Meters`, `SquareMeters`, `Dbm`, `Decibels`, `Hpa` extension types
       (mixing units does not compile — verified); `SitePoint`, `RubblePolygon` (validation, perimeter, area,
       bounds, centroid, contains); 19 tests; analyze/format clean
@@ -153,6 +153,11 @@ Spec `docs/superpowers/specs/2026-10-12-rubble-core-units-geometry-design.md`.
       ble_scanner, beneathsos_ui)
 - [x] 2b: monotonic `Uuid7Generator` (injected clock/random), typed ids (`SessionId`, `EventId`, `DeviceId`,
       `PointId`, `TargetId` — mixing does not compile), `HybridClock` / `HybridTimestamp` (sortable text); 31 tests
+- [x] 2c: sealed `SessionEvent` (13 types) + `EventEnvelope` (schema 1) with strict JSON (`FormatException`
+      naming the field); `NoSignal` round-trips as data
+- [x] 2d: `SessionProjection.replay` / `apply` → immutable `SessionState`; idempotent, hybrid-clock order
+      (two-device test), unknown-point measurements kept; 62 tests; mutations on ordering and duplicate
+      guard are caught
 - [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
 
 ## Backlog

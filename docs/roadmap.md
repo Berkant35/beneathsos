@@ -59,8 +59,8 @@ Pure Dart: unit types (`Meters`, `Dbm`), rubble geometry (polygon, points), even
 |---|---|
 | 2a 🔄 | Typed units and rubble geometry in local metres — built and tested locally; public repository waits for the maintainer |
 | 2b 🔄 | UUIDv7 identifiers, hybrid logical clock — built and tested locally |
-| 2c | Event types (v1) and their JSON |
-| 2d | Session projection from events |
+| 2c 🔄 | Event types (v1) and their strict JSON (`EventEnvelope`, schema 1) — built and tested locally |
+| 2d 🔄 | Session projection from events (idempotent, hybrid-clock order) — built and tested locally |
 
 ## Phase 3 — Persistence ⏳
 Drift database: sessions, append-only event log, raw RSSI samples. A session survives the app being
