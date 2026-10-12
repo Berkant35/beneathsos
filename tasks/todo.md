@@ -111,6 +111,24 @@ permission is asked at first launch. Not yet: countdown ring (1.2c), real search
 tolerance can miss tiny glyphs; home 200 % tests use the short message only; card title header
 semantics; `bannerFor` is a ~40-line mapping table.
 
+## Done: Phase 1.2c — countdown ring and BeneathScaffold (2026-10-12)
+Spec `docs/superpowers/specs/2026-10-12-countdown-ring-and-scaffold-design.md` (decided by the executor
+under "continue until I say stop"), plan `docs/superpowers/plans/2026-10-12-countdown-ring-and-scaffold.md`.
+- [x] `beneathsos_ui` v0.3.1: `CountdownRing` (primary arc, fixed-size tabular number, number only with
+      reduce motion), `BeneathScaffold` (moved from the app), card titles are headings (plain cards only);
+      87 tests incl. goldens
+- [x] App: all screens on `BeneathScaffold`, home headline is a heading, impossible readiness results →
+      "could not check"; 109 tests; TestFlight 0.1.0 (28)
+
+On the phone: no visible change except screen-reader headings; the ring first appears in phase 7
+(measurement) and in the 1.3 catalogue.
+
+### Review
+**1.2c (2026-10-12):** open question for the maintainer — with "reduce motion" the ring hides its arc
+(spec reading of `accessibility.md`), although the ring never animates; keep it or show the stepped arc?
+Deferred minors: scaffold padding test half is empty; `readinessFor` is `@visibleForTesting` (injecting
+preconditions would fit "depend on ports" better).
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

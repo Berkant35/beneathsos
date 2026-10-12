@@ -15,9 +15,9 @@ Legend: ✅ built · ⏳ planned
 | Scanning use cases, ports, controller | ✅ | `beneathsos_app/lib/core/scanning` |
 | Device readiness (Bluetooth + permission, live banner on home) | ✅ | `beneathsos_app/lib/core/readiness` |
 | Device tracking, presence log, relink suggestions | ✅ (domain + provider, no UI yet) | `beneathsos_app/lib/features/targets` |
-| App shell: router, l10n (en, tr), `AppScaffold`, branded home with "being prepared" search and victim screens | ✅ | `beneathsos_app/lib/core`, `features/{home,sites,victim}` |
+| App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home with "being prepared" search and victim screens | ✅ | `beneathsos_app/lib/core`, `features/{home,sites,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
-| Design system (`beneathsos_ui`) | ✅ 1.2a–b: tokens, theme, logo, buttons, status banner, card | `beneathsos_ui` v0.2.1 |
+| Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
 | `rubble_core` (units, geometry, events) | ⏳ phase 2 | — |
 | Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
@@ -64,7 +64,7 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 | [`beneathsos`](https://github.com/Berkant35/beneathsos) | hub | Rules, docs, ADRs, research, tools | ✅ |
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | Flutter app | Composition: features, Riverpod, go_router, l10n, services | ✅ in progress |
 | [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps; later advertising | ✅ v0.1.0 |
-| [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.2.1 |
+| [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.3.1 |
 | `rubble_core` | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ⏳ |
 | `locator_engine` | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ⏳ |
 | `rubble_canvas` | Flutter | Metric canvas, polygon drawing, zoom/pan, heatmap and contour painters | ⏳ |
@@ -83,7 +83,6 @@ apps/beneathsos_app/lib/
 │  ├─ logging/                  AppLogger
 │  ├─ models/                   BleSample (plugin-independent sample)
 │  ├─ router/                   typed go_router routes (only place that knows paths)
-│  ├─ widgets/                  AppScaffold (optional title; moves to beneathsos_ui in 1.2c)
 │  ├─ services/                 BleService, PermissionService, WakelockService,
 │  │                            appLifecycle, clock — implement domain ports
 │  ├─ readiness/                CheckReadiness (scan preconditions without scanning), ReadinessController

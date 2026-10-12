@@ -122,7 +122,7 @@ A task is **not done** until format, analyze, test and `tools/dev.sh check` pass
    `features/<f>/presentation/mixins/<name>_mixin.dart`. Stateful: `mixin XMixin on ConsumerState<X>`;
    stateless: plain `mixin XMixin` with `context`/`ref` passed as parameters. `ref.watch` stays in
    `build`, results are passed to mixin functions.
-3. **`AppScaffold` for screens** (`core/widgets/app_scaffold.dart`). Raw `Scaffold` only for
+3. **`BeneathScaffold` for screens** (`beneathsos_ui`). Raw `Scaffold` only for
    full-bleed screens (the map canvas, victim mode, camera/AR later) — say why in a comment.
 4. **Zero hard-coded user-facing strings.** Flutter `gen-l10n` with ARB files
    (`apps/beneathsos/lib/l10n/app_en.arb`, `app_tr.arb`). Every new key is added to **both** in the
