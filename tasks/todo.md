@@ -259,6 +259,25 @@ cleanup parts); samples and the completion event are not one transaction; no mes
 no motion sensor; a screen reader cannot place a point (no semantic action on the map); widget tests for
 the relink banner and for several targets.
 
+## Done: Phases 8–9 — `locator_engine` and the probability map (2026-10-13)
+Spec `docs/superpowers/specs/2026-10-13-probability-map-design.md`.
+- [x] `locator_engine` v0.1.0 → v0.1.1 (public repo): Bayesian grid matching the Python reference, regions
+      by count, next point by mutual information, profile validation, speed budget on flat maps
+- [x] `rubble_canvas` v0.3.0: `HeatLayer` with per-cell regions, suggested point
+- [x] App: `/sites/:sessionId/map` (areas, low information, target tabs, legend, Measure next point),
+      engine in `Isolate.run`, suggestion on the measuring screen; TestFlight 50 and 51
+- [x] Final review (opus): 0 critical, 5 important fixed RED→GREEN (legend in dark mode, same-spot
+      repeats, points on the rubble, reruns for unchanged readings, speed); suite 260/260
+
+**Phases 8–9 (2026-10-13):** deferred minors — the suggestion ring stays on the old spot while the map
+recomputes, and the measuring screen suggests for the first target only; the map screen shows
+"Calculating…" instead of the previous map while recomputing; the legend does not explain filled vs hollow
+dots and the ring shares the region colour; `HeatLayer` has no `==` and paints one rectangle per cell
+(merge runs); `EngineProfile` exposes bare doubles; `next_point.dart`/`link.dart` constants are not in the
+profile; `EngineProfile.fromJson` throws `TypeError` on a missing key and `ProbabilityMap` does not check
+lengths; the map's screen-reader label omits the suggestion and the areas are read twice; the overview's
+"Open the probability map" condition is inline in `site_screen.dart` (move to the mixin, make it a step).
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

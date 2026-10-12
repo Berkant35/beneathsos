@@ -61,10 +61,8 @@ Why it is built this way: [decision records](docs/adr/README.md).
 | [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin: raw Bluetooth LE scanning with RSSI and manufacturer data |
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Design system: brand tokens, light/dark theme, logo and core components |
 | [`rubble_core`](https://github.com/Berkant35/rubble_core) | Pure Dart core: typed units, rubble geometry, ids, hybrid clock, session events and projection |
-
-| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Drawing canvas: metric grid, rubble outline editor with side lengths, zoom and pan |
-
-More packages (`locator_engine`) will follow the roadmap.
+| [`locator_engine`](https://github.com/Berkant35/locator_engine) | Pure Dart probability engine: 50 % / 90 % regions where the phone most likely is, and the next most informative measurement point |
+| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Drawing canvas: metric grid, rubble outline editor with side lengths, zoom and pan, probability regions |
 
 ## Getting started (developers)
 

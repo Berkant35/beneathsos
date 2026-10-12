@@ -84,11 +84,11 @@ and relink move to phase 7, where a target is followed for minutes.
 ## Phase 7 — Measurement ✅
 15-second point measurement with countdown and stillness check; "no signal" is recorded as data.
 
-## Phase 8 — `locator_engine` package ⏳
+## Phase 8 — `locator_engine` package ✅ ([v0.1.0](https://github.com/Berkant35/locator_engine/releases/tag/v0.1.0))
 Probability-map engine matching the Python reference simulation: 50 % / 90 % regions, next best
 measurement point. Golden tests against the reference.
 
-## Phase 9 — Probability map screen ⏳
+## Phase 9 — Probability map screen ✅
 Heatmap, uncertainty regions, target tabs, suggested next point — the end-to-end rescuer journey.
 
 ## Phase 10 — Victim mode ⏳

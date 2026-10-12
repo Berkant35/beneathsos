@@ -1,6 +1,6 @@
 # BeneathSOS — Architecture
 
-Living document — last updated **2026-10-11**. It describes how the system is built **today** and
+Living document — last updated **2026-10-13**. It describes how the system is built **today** and
 where it is going. *Why* each choice was made lives in the decision records: [`docs/adr/`](adr/README.md).
 Product reasoning and physics limits: [`docs/fizibilite-2026-09-27.md`](fizibilite-2026-09-27.md).
 Plan: [`docs/roadmap.md`](roadmap.md).
@@ -18,14 +18,14 @@ Legend: ✅ built · ⏳ planned
 | App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home; roadmap 1.4 preview journey (sample data) | ✅ | `beneathsos_app/lib/core`, `features/{home,preview,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
-| `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.1.0 |
+| `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.2.0 |
 | Persistence (Drift, event-sourced) | ✅ phase 3: schema, session store, practice search, "last search" card | `beneathsos_app/lib/core/{database,sessions}` |
 | Entry flow, onboarding, sites | ✅ phase 4: one-time disclaimer, searches list, new search, overview | `features/{onboarding,sites}` |
 | Rubble drawing (`rubble_canvas`) | ✅ phase 5: outline editor, scale step | `rubble_canvas` v0.1.0, `features/site_drawing` |
 | Target selection UI, ambient blacklist | ✅ phase 6: 30 s surface scan, ranked candidates with reasons, exclude / track | `features/targets` |
-| Measurement | ⏳ phase 7 | — |
-| `locator_engine` (probability map) | ⏳ phase 8 | — |
-| Probability map screen | ⏳ phase 9 | — |
+| Measurement | ✅ phase 7: 15 s still points, median per target, no signal stored as data, relink | `features/measurement` |
+| `locator_engine` (probability map) | ✅ phase 8: Bayesian grid, 50 % / 90 % regions by count, next point by mutual information | `locator_engine` v0.1.0 |
+| Probability map screen | ✅ phase 9: regions, areas, low-information badge, target tabs, suggested point (also on measuring) | `features/probability_map`, `rubble_canvas` v0.3.0 |
 | Victim mode (advertising) | ⏳ phase 10 | — |
 | Export, research mode | ⏳ phase 11 | — |
 
@@ -63,11 +63,11 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 |---|---|---|---|
 | [`beneathsos`](https://github.com/Berkant35/beneathsos) | hub | Rules, docs, ADRs, research, tools | ✅ |
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | Flutter app | Composition: features, Riverpod, go_router, l10n, services | ✅ in progress |
-| [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps; later advertising | ✅ v0.1.0 |
+| [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps and service data; one-service advertiser (victim beacon) | ✅ v0.2.0 |
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.3.1 |
-| [`rubble_core`](https://github.com/Berkant35/rubble_core) | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ✅ v0.1.0 |
-| `locator_engine` | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ⏳ |
-| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Flutter | Metric canvas, outline editor (tap / drag / pan / pinch, 0.5 m snap, side lengths, undo), edge picker; later heatmap and contour painters | ✅ v0.1.0 |
+| [`rubble_core`](https://github.com/Berkant35/rubble_core) | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ✅ v0.2.0 |
+| [`locator_engine`](https://github.com/Berkant35/locator_engine) | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ✅ v0.1.1 |
+| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Flutter | Metric canvas, outline editor (tap / drag / pan / pinch, 0.5 m snap, side lengths, undo), edge picker; site map with measurement points, probability regions and the suggested point | ✅ v0.3.0 |
 
 ## 3. App structure
 
@@ -176,8 +176,8 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/sites/:sessionId/draw`, `/sites/:sessionId/scale` | Rubble outline (Back asks when unsaved); optional real size of one side (`ScaleSet`) | ✅ |
 | `/sites/:sessionId/ambient` | Surface scan (30 s, phones ≥ −80 dBm median set aside) | ✅ |
 | `/sites/:sessionId/targets` | Target picker (relink follows with measurement) | ✅ |
-| `/sites/:siteId/map?target=:targetId` | Probability map (full-bleed) | ⏳ |
-| `/sites/:siteId/points/:pointId/measure` | Measurement | ⏳ |
+| `/sites/:sessionId/measure` | Measurement (place a point, hold still 15 s) | ✅ |
+| `/sites/:sessionId/map` | Probability map; target tabs on the screen (form state) | ✅ |
 | `/sites/:siteId/export`, `/settings`, `/research` | Export, settings, research | ⏳ |
 | `/join?code=` | Reserved for v2 (shared workspace) | ⏳ |
 
@@ -206,9 +206,10 @@ tests keep a listener (`container.listen`).
 | `startScanProvider`, `stopScanProvider` | keepAlive | Use cases | ✅ |
 | `scanControllerProvider` | notifier | Sealed `ScanState`: idle / needs permission / Bluetooth off / running / failed | ✅ |
 | `trackedDevicesProvider` | notifier | `TrackerSnapshot` (devices + presence log) | ✅ |
-| `measurementControllerProvider(pointId)` | notifier | Measurement state machine | ⏳ |
-| `probabilityMapProvider(siteId, targetId)` | future family | `Isolate.run(engine.estimate)` | ⏳ |
-| `nextBestPointProvider(siteId, targetId)` | future family | From the map | ⏳ |
+| `measurementControllerProvider(sessionId)` | notifier | Measurement state machine | ✅ |
+| `mapEngineProvider` | keepAlive | `Isolate.run(computeMap)` (in place in tests) | ✅ |
+| `probabilityMapProvider(sessionId, targetId)` | future family | Map + suggested point of one target (outline and points × scale = real metres); null before a point | ✅ |
+| `suggestedPointProvider(sessionId)` | future family | The first target's suggested point on the drawing (measuring screen) | ✅ |
 
 ## 8. Data (Drift, event-sourced) ✅ phase 3
 
@@ -240,7 +241,7 @@ kept, a discarded or moved point sets its readings aside (`discardedReadings`) a
 `measuredPoints`, and no target identity is ever lost. After a restart the app seeds `HybridClock`
 with the greatest stored timestamp (`last:`), so a clock that went backwards cannot reorder events.
 
-## 9. Engine (`locator_engine`) ⏳ phase 8
+## 9. Engine (`locator_engine`) ✅ phase 8
 
 [ADR 0002](adr/0002-probability-map-not-a-point.md), [ADR 0008](adr/0008-pure-dart-engine-python-reference.md).
 
@@ -248,9 +249,21 @@ with the greatest stored timestamp (`last:`), so a clock that went backwards can
   `P(RSSI < threshold)` (censored).
 - Marginalised unknowns: path-loss exponent, rubble attenuation (profile + structure annotations),
   common offset, device height.
-- Outputs: probability grid, 50 % / 90 % regions (m² and % of site), quadrant probabilities,
-  next best point (expected information gain).
-- Reference: `docs/research/sim/circle_prob_sim.py`; golden fixtures from `tools/sim`.
+- Outputs: probability grid; 50 % / 90 % regions as the smallest cell sets holding that mass (by count,
+  so a drawn region is exactly its reported area); `suggestNextPoint`: a spot 1 m outside every wall,
+  ≥ 2 m from measured points, scored by mutual information over the 99 % mass.
+- Input checks: no observations or an outline smaller than one cell → `ArgumentError` (the app shows
+  the map only once a point is measured).
+- Profiles `voided_pancake@1`, `dense@1` (JSON, validated). log Φ from a Hermite table checked against
+  scipy. Sites above `maxCells` (6000) get a coarser grid (0.5 m at 40 × 30 m); the suggestion is scored
+  against 1 m blocks. Budget tests: 40 × 30 m, 15 points heard nowhere, both profiles < 3 s; 80 × 60 m < 3 s.
+- App input (`features/probability_map/domain/map_request.dart`): outline and points × scale (real
+  metres); readings within 1 m are one place (majority heard, median of medians — re-measuring a spot is
+  not new information); points ≥ 0.5 m inside the outline stand on the rubble and are left out (the map
+  says how many); `MapMemo` runs an unchanged request only once.
+- Reference: `tools/sim/engine_reference.py`; golden fixtures in `locator_engine/test/fixtures` (tests: < 1e-6 per cell, measured ≈ 1e-12;
+  areas exact).
+- Not yet: quadrant probabilities, structure annotations in the attenuation.
 
 ## 10. BLE plugin (`ble_scanner`) ✅
 
