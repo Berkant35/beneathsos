@@ -51,3 +51,11 @@ instead of reporting.
 few `pump`s, not `pumpAndSettle`; close test stream controllers unawaited; stamp fake BLE samples with
 the wall clock (the tracker forgets by it).
 
+## A release step chained after `;` ran although the commit failed (2026-10-13)
+`[ checks ] && git commit … ; git tag … && gh release create …` — the checks failed, the commit did not
+happen, and the tag and GitHub release of rubble_core v0.2.0 went out on the previous commit (removed
+within minutes, re-released on the right commit).
+**Rule:** release sequences run under `set -e` (or every step joined with `&&`), and the tag step
+verifies `git rev-parse <tag>^{} == HEAD` of the commit that passed the checks. Never put a tag or
+release after `;`.
+

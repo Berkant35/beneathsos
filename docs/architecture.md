@@ -288,7 +288,7 @@ class ScanSample {
 | 1 | Identity goes silent / rotates (~15 min on phones) | "Gone" logged once after 15 s silence; identity leaves the device list after 30 s but stays in the log (`TrackerPolicy`). Relink suggestion: an identity appearing within 30 s of the target going silent, RSSI within 8 dB. UI: countdown with warnings at 10 / 13 min, user confirms relink | ✅ rules · ⏳ UI |
 | 2 | No signal at a point | Recorded as a non-detection after the full 15 s; it still updates the map | ⏳ |
 | 3 | Rescuer moves during measurement | Stillness check; moving samples flagged, prompt to hold still, extend timer | ⏳ |
-| 4 | Surface devices (team, bystanders) | 30 s surface scan 10 m from the rubble → phones with median ≥ −80 dBm (3+ readings) set aside; candidates ranked (Find My, still, weak first; very strong ≥ −55 dBm last, "probably right next to you"); Exclude adds one by hand; re-run when identities rotate | ✅ |
+| 4 | Surface devices (team, bystanders) | 30 s surface scan 10 m from the rubble (foreground seconds only) → phones with median ≥ −80 dBm (3+ readings) set aside, the scan time recorded (`lastSurfaceScan`); candidates ranked (Find My, still, "heard only a few times", weak first; very strong ≥ −55 dBm last); Exclude has Undo and every set-aside phone can be put back; a scan older than 10 min asks for a new one (identities rotate) | ✅ |
 | 5 | Several targets | One tab per target; one measurement round records all targets | ⏳ |
 | 6 | App killed mid-session | Session restored from events; an interrupted measurement is discarded with a reason | ⏳ |
 | 7 | Bluetooth or permission turned off | Scanner shows the blocked state; retries when Bluetooth returns or the user comes back from Settings | ✅ logic · ⏳ UI |

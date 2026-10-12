@@ -229,11 +229,21 @@ label per frame, `RubbleCanvasStyle` without `==`); golden tolerance 0.5 % could
 goldens use fixed colours, not the app theme; no tests for the save-failure snackbar, comma input in
 the widget, or an existing-scale path.
 
-## Current: Phase 6 — target selection (2026-10-13)
+## Done: Phase 6 — target selection (2026-10-13)
 Spec `docs/superpowers/specs/2026-10-13-target-selection-design.md`.
 - [x] Surface scan (30 s, −80 dBm median / 3 readings), candidates ranked with reasons, exclude / track;
       overview steps open both; 208 tests; pushed; TestFlight
-- [ ] Final review (opus) and fixes
+- [x] Final review (opus): 2 critical + 6 important fixed RED→GREEN (Undo and a "Set aside" list with Put
+      back; honest "heard only a few times" reason; recorded surface scan via rubble_core 0.2.0
+      `lastSurfaceScan` and a stale-scan warning; very-strong wording; stable card order; one choice at
+      a time; foreground-only countdown; start/stop race); suite 222/222; rubble_core and rubble_canvas
+      0.2.0 released
+
+**Phase 6 (2026-10-13):** deferred minors — median/spread recomputed for every device on every batch on
+the UI isolate; `AmbientSaving` shows an empty body; Track and Exclude look alike (both secondary);
+two targets of the same type ("Unknown device") cannot be told apart on the overview; spec field
+`onSurfaceList` not implemented (named `surface`); tests for leaving the surface scan early and for
+ambient → targets scan continuity.
 
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
