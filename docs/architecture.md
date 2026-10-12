@@ -15,7 +15,7 @@ Legend: ✅ built · ⏳ planned
 | Scanning use cases, ports, controller | ✅ | `beneathsos_app/lib/core/scanning` |
 | Device readiness (Bluetooth + permission, live banner on home) | ✅ | `beneathsos_app/lib/core/readiness` |
 | Device tracking, presence log, relink suggestions | ✅ (domain + provider, no UI yet) | `beneathsos_app/lib/features/targets` |
-| App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home with "being prepared" search and victim screens | ✅ | `beneathsos_app/lib/core`, `features/{home,sites,victim}` |
+| App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home; roadmap 1.4 preview journey (sample data) | ✅ | `beneathsos_app/lib/core`, `features/{home,preview,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
 | `rubble_core` (units, geometry, events) | ⏳ phase 2 | — |
@@ -91,8 +91,9 @@ apps/beneathsos_app/lib/
 │     └─ presentation/providers ScanController, ScanState, port + use-case bindings
 └─ features/
    ├─ home/                     branded home: logo, readiness banner, Start a search, I am trapped, fine print
-   ├─ sites/                    NewSiteScreen — being prepared (phase 4)
-   ├─ victim/                   VictimScreen — being prepared, says call 112 (phase 10)
+   ├─ preview/                  roadmap 1.4 mockups with sample data: notice → outline → ambient scan →
+   │                            target → measurement → map (each marked "Preview"; replaced phase by phase)
+   ├─ victim/                   VictimScreen — victim-mode preview, still says call 112 (phase 10)
    └─ targets/
       ├─ domain/                DeviceTracker, TrackerPolicy, classification, relink, stats
       └─ presentation/providers TrackedDevices
@@ -136,7 +137,7 @@ Screen ──watch──► ScanController ──calls──► StartScan (use c
 ### 5.1 Home
 Logo, one message, **"Start a search"** (primary) → rescuer flow (onboarding on first run),
 **"I am trapped"** (secondary) → victim mode, the independence note and "Powered by Socrepho".
-*Today: both open "being prepared" screens (`/sites/new`, `/victim`); the victim screen says to call 112.*
+*Today: "Start a search" opens the preview journey (`/preview/...`, sample data); "I am trapped" opens the victim-mode preview (`/victim`), which still says to call 112.*
 
 ### 5.2 Victim mode
 1. Start advertising immediately (Android: foreground service `connectedDevice`, manufacturer data
@@ -166,9 +167,10 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | Path | Screen | Status |
 |---|---|---|
 | `/` | Home | ✅ |
-| `/victim` | Victim mode (full-bleed) | ✅ being prepared |
+| `/victim` | Victim mode (full-bleed) | ✅ preview |
 | `/onboarding` | First-run onboarding | ⏳ |
-| `/sites`, `/sites/new` | Site list, create | `/sites/new` ✅ being prepared |
+| `/sites`, `/sites/new` | Site list, create | ⏳ |
+| `/preview`, `/preview/site/scan/target/measure/map` | Roadmap 1.4 preview journey (sample data) | ✅ temporary |
 | `/sites/:siteId/draw` | Rubble drawing | ⏳ |
 | `/sites/:siteId/ambient` | Ambient scan | ⏳ |
 | `/sites/:siteId/targets` | Target picker / relink | ⏳ |
