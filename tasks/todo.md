@@ -174,6 +174,24 @@ space or `+`, an empty device id does not parse back, a counter above 0xffffffff
 width; a negative `samples` error names `"medianDbm"`; the engine must handle measured points with
 `at == null`.
 
+## Done: Phase 3 — persistence (2026-10-12)
+Spec `docs/superpowers/specs/2026-10-12-persistence-design.md`, plan `docs/superpowers/plans/2026-10-12-persistence.md`.
+- [x] Drift schema (append-only trigger, FKs, WAL, repeatable onCreate); `SessionStore` port +
+      `DriftSessionStore` (atomic create, per-device seq in a transaction, device id, clock seeded with
+      `MAX(hlc)`), watch / latest open / samples; `UnreadableEvent`
+- [x] Preview journey records a practice search; home "last search" card (Continue / Finish with
+      confirmation); TestFlight 37 (+ review fixes build)
+- [x] Final review (opus): 4 important + 1 upgraded minor fixed RED→GREEN; suite 152/152
+
+**Phase 3 (2026-10-12):** deferred minors from the final review — a second `DriftSessionStore` on the
+same database keeps its own clock (read the device's `MAX(hlc)` inside the append transaction);
+`INSERT OR REPLACE`/`DELETE` on events are not blocked; double taps can record two steps; "Discard
+this point" adds a new point instead of discarding the last one; card says only "started HH:mm" for
+an earlier day and ignores the 24-hour setting; practice title is stored localised; `finishSearch`
+writes from a widget mixin (move to a notifier with the real-search flow); home layout jumps when the
+card appears and may push "I am trapped" below the fold on a 375×667 phone; no WAL / dark-mode card
+tests.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

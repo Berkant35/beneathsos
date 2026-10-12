@@ -62,9 +62,10 @@ Pure Dart: unit types (`Meters`, `Dbm`), rubble geometry (polygon, points), even
 | 2c ✅ | Event types (v1) and their strict JSON (`EventEnvelope`, schema 1) |
 | 2d ✅ | Session projection from events (idempotent, hybrid-clock order) |
 
-## Phase 3 — Persistence ⏳
+## Phase 3 — Persistence ✅
 Drift database: sessions, append-only event log, raw RSSI samples. A session survives the app being
-killed.
+killed. Visible: the preview journey records a practice search; after a restart the home screen offers
+"Continue the search" / "Finish this search".
 
 ## Phase 4 — Entry flow ⏳
 Home (two large buttons: *I am trapped* / *I am searching*), first-run onboarding (disclaimer,

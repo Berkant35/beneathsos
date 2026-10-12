@@ -19,7 +19,7 @@ Legend: ✅ built · ⏳ planned
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
 | `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.1.0 |
-| Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
+| Persistence (Drift, event-sourced) | ✅ phase 3: schema, session store, practice search, "last search" card | `beneathsos_app/lib/core/{database,sessions}` |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
 | Rubble drawing (`rubble_canvas`) | ⏳ phase 5 | — |
 | Target selection UI, ambient blacklist | ⏳ phase 6 | — |
@@ -191,6 +191,10 @@ tests keep a listener (`container.listen`).
 | `permissionServiceProvider`, `wakelockServiceProvider` | keepAlive | Services | ✅ |
 | `appLifecycleProvider` | stream | App lifecycle changes | ✅ |
 | `clockProvider` | keepAlive | Wall clock (overridable) | ✅ |
+| `appDatabaseProvider` | keepAlive | Drift database file `beneathsos` (closed with the scope; in memory in tests) | ✅ |
+| `sessionStoreProvider` | keepAlive | `SessionStore` port → `DriftSessionStore` | ✅ |
+| `latestOpenSessionProvider` | stream | Newest unfinished session (`SessionSummary`) for the home card | ✅ |
+| `practiceSessionProvider` | notifier | Records the preview journey as a practice search; steps queued in order | ✅ |
 | `scannerPortProvider`, `scanPermissionPortProvider`, `screenAwakePortProvider` | keepAlive | Port → implementation bindings | ✅ |
 | `startScanProvider`, `stopScanProvider` | keepAlive | Use cases | ✅ |
 | `scanControllerProvider` | notifier | Sealed `ScanState`: idle / needs permission / Bluetooth off / running / failed | ✅ |
@@ -200,16 +204,22 @@ tests keep a listener (`container.listen`).
 | `probabilityMapProvider(siteId, targetId)` | future family | `Isolate.run(engine.estimate)` | ⏳ |
 | `nextBestPointProvider(siteId, targetId)` | future family | From the map | ⏳ |
 
-## 8. Data (Drift, event-sourced) ⏳ phase 3
+## 8. Data (Drift, event-sourced) ✅ phase 3
 
-[ADR 0006](adr/0006-drift-event-sourced-sessions.md).
+[ADR 0006](adr/0006-drift-event-sourced-sessions.md). `lib/core/database/app_database.dart` (schema 1,
+`PRAGMA foreign_keys = ON`, WAL); `lib/core/sessions/` — `SessionStore` port (domain),
+`DriftSessionStore` (data).
 
 | Table | Columns (main) | Notes |
 |---|---|---|
-| `sessions` | id (UUIDv7), created_at, title, engine_profile, closed_at | one per site |
-| `events` | id (UUIDv7), session_id, seq, device_id, hlc, type, payload (JSON), created_at | append-only |
-| `rssi_samples` | session_id, point_id?, peripheral_key, rssi, tx_power?, company_id?, t_mono_ns, t_wall | batched inserts |
-| `settings` | key, value | onboarding done, units, … |
+| `sessions` | id (UUIDv7), title, engine_profile, practice, created_at, closed_at | one per site; `practice` = preview/training, never mixed with real searches |
+| `events` | id (UUIDv7), session_id, seq, device_id, hlc, schema, type, payload (JSON), created_at | append-only (an `UPDATE` trigger aborts); UNIQUE(session, device, seq); index (session, hlc); deleting a session cascades |
+| `rssi_samples` | session_id, point_id?, peripheral_key, rssi, tx_power?, company_id?, t_mono_ns, t_wall | batched inserts; cascade with the session |
+| `settings` | key, value | `device_id` (UUIDv7, created once); later onboarding, units, … |
+
+`create` writes the session row and `SiteCreated` in one transaction; `append` numbers events per device
+inside a transaction (`SessionClosed` also sets `closed_at`); a stored row that no longer decodes surfaces
+as `UnreadableEvent`, never skipped.
 
 Event types (v1): `SiteCreated`, `RubblePolygonSet`, `ScaleSet`, `StructureAnnotated`,
 `AmbientScanCompleted`, `BlacklistEdited`, `TargetSelected`, `TargetRelinked`,
