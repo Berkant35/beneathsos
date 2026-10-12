@@ -28,3 +28,6 @@ packages/
 
 # Brand tool virtualenv
 tools/brand/.venv/
+
+# Engine reference virtualenv
+tools/sim/.venv/

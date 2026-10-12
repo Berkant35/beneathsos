@@ -245,6 +245,20 @@ two targets of the same type ("Unknown device") cannot be told apart on the over
 `onSurfaceList` not implemented (named `surface`); tests for leaving the surface scan early and for
 ambient → targets scan continuity.
 
+## Done: Phase 7 — measurement (2026-10-13)
+Spec `docs/superpowers/specs/2026-10-13-measurement-design.md`.
+- [x] Measure screen (SiteMap from rubble_canvas 0.2.0): tap the spot, Measure here, 15 still seconds while
+      scanning (MotionPort / sensors_plus), SignalHeard / NoSignal per target, raw readings stored; discard,
+      interrupted, relink question with Yes / No; overview step opens it
+- [x] Final review (opus): 1 critical (false "not heard" with Bluetooth off) + 4 important fixed RED→GREEN;
+      suite 237/237
+
+**Phase 7 (2026-10-13):** deferred minors — the map margin is fixed at 5 m and has no zoom or distance-to-wall
+aid (a rescuer 8 m out can only tap the 5 m edge); the controller is ~200 lines (split the relink and
+cleanup parts); samples and the completion event are not one transaction; no message when the phone has
+no motion sensor; a screen reader cannot place a point (no semantic action on the map); widget tests for
+the relink banner and for several targets.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

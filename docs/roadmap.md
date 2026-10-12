@@ -81,7 +81,7 @@ Placing measurement points moves to phase 7 (measurement).
 plain-language reasons, "hold a rescuer's phone next to yours" exclusion. The identity-rotation countdown
 and relink move to phase 7, where a target is followed for minutes.
 
-## Phase 7 — Measurement ⏳
+## Phase 7 — Measurement ✅
 15-second point measurement with countdown and stillness check; "no signal" is recorded as data.
 
 ## Phase 8 — `locator_engine` package ⏳

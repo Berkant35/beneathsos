@@ -220,7 +220,7 @@ tests keep a listener (`container.listen`).
 |---|---|---|
 | `sessions` | id (UUIDv7), title, engine_profile, practice, created_at, closed_at | one per site; `practice` = preview/training, never mixed with real searches |
 | `events` | id (UUIDv7), session_id, seq, device_id, hlc, schema, type, payload (JSON), created_at | append-only (an `UPDATE` trigger aborts); UNIQUE(session, device, seq); index (session, hlc); deleting a session cascades |
-| `rssi_samples` | session_id, point_id?, peripheral_key, rssi, tx_power?, company_id?, t_mono_ns, t_wall | batched inserts; cascade with the session |
+| `rssi_samples` | session_id, point_id?, peripheral_key, rssi, tx_power?, company_id?, t_mono_ns, t_wall | batched inserts; cascade with the session. The still-second readings of every device heard at a point (bystanders included: rotating keys, no names or payloads) — kept to re-check a relink; exports must hash or drop non-target keys |
 | `settings` | key, value | `device_id` (UUIDv7, created once); later onboarding, units, … |
 
 `create` writes the session row and `SiteCreated` in one transaction; `append` numbers events per device
@@ -285,15 +285,15 @@ class ScanSample {
 
 | # | Situation | Behaviour | Status |
 |---|---|---|---|
-| 1 | Identity goes silent / rotates (~15 min on phones) | "Gone" logged once after 15 s silence; identity leaves the device list after 30 s but stays in the log (`TrackerPolicy`). Relink suggestion: an identity appearing within 30 s of the target going silent, RSSI within 8 dB. UI: countdown with warnings at 10 / 13 min, user confirms relink | ✅ rules · ⏳ UI |
-| 2 | No signal at a point | Recorded as a non-detection after the full 15 s; it still updates the map | ⏳ |
-| 3 | Rescuer moves during measurement | Stillness check; moving samples flagged, prompt to hold still, extend timer | ⏳ |
+| 1 | Identity goes silent / rotates (~15 min on phones) | "Gone" logged once after 15 s silence; identity leaves the device list after 30 s but stays in the log (`TrackerPolicy`). While measuring and only while the target is silent: "<target> may have changed its Bluetooth identity… Is it the same phone?" — Yes stores `TargetRelinked`, No is remembered (never asked again for that pair) | ✅ (countdown warnings at 10 / 13 min ⏳) |
+| 2 | No signal at a point | Recorded as `NoSignal` after 15 still seconds *with the scan running* (fewer than 3 readings or a median below −100 dBm count as not heard); a point where no device at all was heard is discarded (the radio was not working), never stored as a non-detection | ✅ |
+| 3 | Rescuer moves during measurement | User accelerometer > 0.8 m/s²: that second does not count and its readings are dropped; "Hold the phone still" | ✅ |
 | 4 | Surface devices (team, bystanders) | 30 s surface scan 10 m from the rubble (foreground seconds only) → phones with median ≥ −80 dBm (3+ readings) set aside, the scan time recorded (`lastSurfaceScan`); candidates ranked (Find My, still, "heard only a few times", weak first; very strong ≥ −55 dBm last); Exclude has Undo and every set-aside phone can be put back; a scan older than 10 min asks for a new one (identities rotate) | ✅ |
 | 5 | Several targets | One tab per target; one measurement round records all targets | ⏳ |
-| 6 | App killed mid-session | Session restored from events; an interrupted measurement is discarded with a reason | ⏳ |
+| 6 | App killed mid-session | Session restored from events; leaving mid-measurement or a point never finished is discarded (`interrupted`) | ✅ |
 | 7 | Bluetooth or permission turned off | Scanner shows the blocked state; retries when Bluetooth returns or the user comes back from Settings | ✅ logic · ⏳ UI |
 | 8 | Rescuer battery low | Warning at 20 %; screen kept awake only while scanning | ⏳ warning · ✅ keep-awake |
-| 9 | Wrong point placement | Movable before measuring; after measuring, a move is a new event | ⏳ |
+| 9 | Wrong point placement | A tap marks the spot, tapping again moves it, "Measure here" starts; after measuring a move sets the readings aside | ✅ |
 | 10 | Fewer than 3 detected points | Map still shown (non-detections inform it), "low information" badge | ⏳ |
 
 ## 12. Quality, CI and release
