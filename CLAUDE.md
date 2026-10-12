@@ -35,6 +35,7 @@ IdeaProjects/beneathsos/            Berkant35/beneathsos      hub: CLAUDE.md, do
    ├─ rubble_core/                  Berkant35/rubble_core     pure Dart — value types, events, projections
    ├─ locator_engine/               Berkant35/locator_engine  pure Dart — probability map, next-best-point
    ├─ ble_scanner/                  Berkant35/ble_scanner     Flutter plugin — Pigeon + Kotlin + Swift
+   ├─ beneathsos_ui/                Berkant35/beneathsos_ui   Flutter — design tokens, theme, core components
    └─ rubble_canvas/                Berkant35/rubble_canvas   Flutter — drawing, zoom/pan, heatmap
 ```
 
@@ -58,6 +59,7 @@ IdeaProjects/beneathsos/            Berkant35/beneathsos      hub: CLAUDE.md, do
 | `locator_engine` | `rubble_core` | Flutter, `ble_scanner`, `rubble_canvas` |
 | `ble_scanner` | Flutter, `plugin_platform_interface` | `rubble_core` (stays reusable by others) |
 | `rubble_canvas` | Flutter, `rubble_core` | `ble_scanner`, `locator_engine`, Riverpod |
+| `beneathsos_ui` | Flutter | Riverpod, go_router, any other BeneathSOS package |
 | `beneathsos_app` | everything above | — |
 
 ## 3. Toolchain & commands

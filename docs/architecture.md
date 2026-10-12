@@ -14,9 +14,9 @@ Legend: ✅ built · ⏳ planned
 | Raw BLE scanning (Android + iOS) | ✅ | `ble_scanner` v0.1.0 |
 | Scanning use cases, ports, controller | ✅ | `beneathsos_app/lib/core/scanning` |
 | Device tracking, presence log, relink suggestions | ✅ (domain + provider, no UI yet) | `beneathsos_app/lib/features/targets` |
-| App shell: router, theme, l10n (en, tr), `AppScaffold`, placeholder home | ✅ | `beneathsos_app/lib/core`, `features/home` |
+| App shell: router, l10n (en, tr), `AppScaffold`, branded home with "being prepared" search and victim screens | ✅ | `beneathsos_app/lib/core`, `features/{home,sites,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
-| Design system (`beneathsos_ui`) | ⏳ roadmap phase 1 | — |
+| Design system (`beneathsos_ui`) | ✅ 1.2a: tokens, theme, logo, buttons | `beneathsos_ui` v0.1.0 |
 | `rubble_core` (units, geometry, events) | ⏳ phase 2 | — |
 | Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
@@ -53,7 +53,7 @@ dependencies pinned to tags plus a git-ignored `pubspec_overrides.yaml` for loca
 rubble_core ◄── locator_engine
      ▲                ▲
      │                │
-rubble_canvas         │         ble_scanner (standalone)
+rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
      ▲                │               ▲
      └──────── beneathsos_app ────────┘
 ```
@@ -63,6 +63,7 @@ rubble_canvas         │         ble_scanner (standalone)
 | [`beneathsos`](https://github.com/Berkant35/beneathsos) | hub | Rules, docs, ADRs, research, tools | ✅ |
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | Flutter app | Composition: features, Riverpod, go_router, l10n, services | ✅ in progress |
 | [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps; later advertising | ✅ v0.1.0 |
+| [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.1.0 |
 | `rubble_core` | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ⏳ |
 | `locator_engine` | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ⏳ |
 | `rubble_canvas` | Flutter | Metric canvas, polygon drawing, zoom/pan, heatmap and contour painters | ⏳ |
@@ -130,8 +131,9 @@ Screen ──watch──► ScanController ──calls──► StartScan (use c
 ## 5. Flows (target)
 
 ### 5.1 Home
-Two full-width buttons: **"I am trapped"** → victim mode; **"I am searching"** → rescuer flow
-(onboarding on first run). *Today: placeholder screen.*
+Logo, one message, **"Start a search"** (primary) → rescuer flow (onboarding on first run),
+**"I am trapped"** (secondary) → victim mode, the independence note and "Powered by Socrepho".
+*Today: both open "being prepared" screens (`/sites/new`, `/victim`); the victim screen says to call 112.*
 
 ### 5.2 Victim mode
 1. Start advertising immediately (Android: foreground service `connectedDevice`, manufacturer data
@@ -160,10 +162,10 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 
 | Path | Screen | Status |
 |---|---|---|
-| `/` | Home | ✅ placeholder |
-| `/victim` | Victim mode (full-bleed) | ⏳ |
+| `/` | Home | ✅ |
+| `/victim` | Victim mode (full-bleed) | ✅ being prepared |
 | `/onboarding` | First-run onboarding | ⏳ |
-| `/sites`, `/sites/new` | Site list, create | ⏳ |
+| `/sites`, `/sites/new` | Site list, create | `/sites/new` ✅ being prepared |
 | `/sites/:siteId/draw` | Rubble drawing | ⏳ |
 | `/sites/:siteId/ambient` | Ambient scan | ⏳ |
 | `/sites/:siteId/targets` | Target picker / relink | ⏳ |
@@ -284,4 +286,4 @@ class ScanSample {
 
 ## 13. Decisions
 
-All decisions with context, alternatives and consequences: [`docs/adr/`](adr/README.md) (0001–0017).
+All decisions with context, alternatives and consequences: [`docs/adr/`](adr/README.md) (0001–0018).

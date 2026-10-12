@@ -26,3 +26,4 @@ next number, open a PR.
 | [0015](0015-android-no-never-for-location.md) | Android: no `neverForLocation`; request location to see Find My beacons | Accepted |
 | [0016](0016-testflight-api-key-signing.md) | iOS signing and TestFlight with an App Store Connect API key | Accepted |
 | [0017](0017-visual-identity.md) | Visual identity: palette, typeface, logo, voice, accessibility targets | Accepted |
+| [0018](0018-design-system-material-theme.md) | Design system: Material 3 theme with a brand extension, own package | Accepted |

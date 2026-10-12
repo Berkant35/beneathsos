@@ -6,7 +6,7 @@ HUB="$(cd "$(dirname "$0")/.." && pwd)"
 
 deps_for() {
   case "$1" in
-    apps/beneathsos_app)     echo "ble_scanner rubble_core locator_engine rubble_canvas" ;;
+    apps/beneathsos_app)     echo "ble_scanner beneathsos_ui rubble_core locator_engine rubble_canvas" ;;
     packages/locator_engine) echo "rubble_core" ;;
     packages/rubble_canvas)  echo "rubble_core" ;;
     *) echo "" ;;
