@@ -136,6 +136,13 @@ Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
       reduce-motion knob; test opens every use case in both themes (43 tests); `catalogue.yml` builds the
       web catalogue in CI (green)
 - [ ] Publish to GitHub Pages — **waits for the maintainer's yes** (repository setting + public site)
+- [x] Review fixes: `.pubignore` kept `build/` in the publish archive (71 MB → 256 KB); catalogue uses the
+      package's full lint set; missing button use cases (47 catalogue tests)
+- [ ] Before Pages: build with `--no-web-resources-cdn` (no Google CDN requests), `--base-href /beneathsos_ui/`,
+      real README / title / brand colours in `web/`, custom home instead of Widgetbook's marketing page
+- [ ] Deferred minors: 200 % pass in the catalogue test; coverage list derived from exports; typography labels
+      from tokens; palette swatches (spec) vs theme roles; reduce motion as an addon; nested `.fvmrc`;
+      Dependabot entry for `widgetbook/`
 
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
