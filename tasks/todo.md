@@ -192,6 +192,23 @@ writes from a widget mixin (move to a notifier with the real-search flow); home 
 card appears and may push "I am trapped" below the fold on a 375×667 phone; no WAL / dark-mode card
 tests.
 
+## Done: Phase 4 — entry flow (2026-10-12)
+Spec `docs/superpowers/specs/2026-10-12-entry-flow-design.md`, plan `docs/superpowers/plans/2026-10-12-entry-flow.md`.
+- [x] Settings store; disclaimer once before the rescuer flow (async gate, `from`), victim mode never
+      gated; searches list (open first), new search (1–80 characters, double tap → one), overview
+      with the flow's steps and Finish; practice with sample data; home card opens real searches
+- [x] Final review (opus): 4 important fixed RED→GREEN (false "could not be opened" flash, silent
+      failures, racy gate, blank overview on error) + 2 minors (core/disclaimer, TR "Tamamlandı");
+      suite 177/177; TestFlight 41 and the review-fix build
+
+**Phase 4 (2026-10-12):** deferred minors from the final review — `watchSearches` replays every
+search on every change (switch to aggregated counts before phase 7 adds many events); finished or
+unreadable searches still list steps as "Coming in the next update"; "next update" wording vs "no
+promises"; glossary "enkaz alanı" vs "Alanın adı"; load-failed texts say what happened but not what to
+do; primary actions ("New search", "Create search") at the top, not in the thumb zone; rune count vs
+grapheme `maxLength`; practice path asks "I understand" twice and Back from practice skips the list;
+tests for dark mode on new screens and an 80-character name.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

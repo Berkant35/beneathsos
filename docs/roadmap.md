@@ -67,9 +67,10 @@ Drift database: sessions, append-only event log, raw RSSI samples. A session sur
 killed. Visible: the preview journey records a practice search; after a restart the home screen offers
 "Continue the search" / "Finish this search".
 
-## Phase 4 — Entry flow ⏳
-Home (two large buttons: *I am trapped* / *I am searching*), first-run onboarding (disclaimer,
-permissions), rubble site list and creation.
+## Phase 4 — Entry flow ✅
+Home (two large buttons: *I am trapped* / *Start a search*), disclaimer on the first search (permissions
+stay on the home screen, decided in 1.2b), list of real searches, new search, search overview with the
+steps of the flow. Practice with sample data keeps the preview journey.
 
 ## Phase 5 — Rubble drawing (`rubble_canvas` package) ⏳
 Metric canvas, polygon drawing with edge lengths, pinch-zoom and pan, placing measurement points.

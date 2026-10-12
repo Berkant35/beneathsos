@@ -20,7 +20,7 @@ Legend: ✅ built · ⏳ planned
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
 | `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.1.0 |
 | Persistence (Drift, event-sourced) | ✅ phase 3: schema, session store, practice search, "last search" card | `beneathsos_app/lib/core/{database,sessions}` |
-| Entry flow, onboarding, sites | ⏳ phase 4 | — |
+| Entry flow, onboarding, sites | ✅ phase 4: one-time disclaimer, searches list, new search, overview | `features/{onboarding,sites}` |
 | Rubble drawing (`rubble_canvas`) | ⏳ phase 5 | — |
 | Target selection UI, ambient blacklist | ⏳ phase 6 | — |
 | Measurement | ⏳ phase 7 | — |
@@ -137,7 +137,9 @@ Screen ──watch──► ScanController ──calls──► StartScan (use c
 ### 5.1 Home
 Logo, one message, **"Start a search"** (primary) → rescuer flow (onboarding on first run),
 **"I am trapped"** (secondary) → victim mode, the independence note and "Powered by Socrepho".
-*Today: "Start a search" opens the preview journey (`/preview/...`, sample data); "I am trapped" opens the victim-mode preview (`/victim`), which still says to call 112.*
+*Today: "Start a search" opens the disclaimer on first use, then the list of real searches (`/sites`);
+the preview journey is "Practice with sample data". "I am trapped" opens the victim-mode preview
+(`/victim`), never behind the disclaimer, which still says to call 112.*
 
 ### 5.2 Victim mode
 1. Start advertising immediately (Android: foreground service `connectedDevice`, manufacturer data
@@ -168,8 +170,8 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 |---|---|---|
 | `/` | Home | ✅ |
 | `/victim` | Victim mode (full-bleed) | ✅ preview |
-| `/onboarding` | First-run onboarding | ⏳ |
-| `/sites`, `/sites/new` | Site list, create | ⏳ |
+| `/onboarding` | First use of the rescuer flow: disclaimer (accepted once, `settings`) | ✅ |
+| `/sites`, `/sites/new`, `/sites/:sessionId` | Searches list, new search, overview (async redirect to `/onboarding?from=` until the disclaimer is accepted) | ✅ |
 | `/preview`, `/preview/site/scan/target/measure/map` | Roadmap 1.4 preview journey (sample data) | ✅ temporary |
 | `/sites/:siteId/draw` | Rubble drawing | ⏳ |
 | `/sites/:siteId/ambient` | Ambient scan | ⏳ |
@@ -195,11 +197,15 @@ tests keep a listener (`container.listen`).
 | `sessionStoreProvider` | keepAlive | `SessionStore` port → `DriftSessionStore` | ✅ |
 | `latestOpenSessionProvider` | stream | Newest unfinished session (`SessionSummary`) for the home card | ✅ |
 | `practiceSessionProvider` | notifier | Records the preview journey as a practice search; steps queued in order | ✅ |
+| `settingsStoreProvider` | keepAlive | `SettingsStore` port → Drift `settings` table | ✅ |
+| `finishSearchProvider` | keepAlive | `FinishSearch` use case (appends `SessionClosed`) | ✅ |
+| `disclaimerProvider` | async notifier (keepAlive, `core/disclaimer`) | Disclaimer accepted (version 1); the async redirect of `/sites` awaits it | ✅ |
+| `searchesProvider`, `searchSummaryProvider(id)`, `searchStateProvider(id)` | stream | Real searches (open first); one search's summary; its projected state | ✅ |
+| `newSearchProvider` | notifier | Creates a real search; true while creating (double tap → one) | ✅ |
 | `scannerPortProvider`, `scanPermissionPortProvider`, `screenAwakePortProvider` | keepAlive | Port → implementation bindings | ✅ |
 | `startScanProvider`, `stopScanProvider` | keepAlive | Use cases | ✅ |
 | `scanControllerProvider` | notifier | Sealed `ScanState`: idle / needs permission / Bluetooth off / running / failed | ✅ |
 | `trackedDevicesProvider` | notifier | `TrackerSnapshot` (devices + presence log) | ✅ |
-| `sessionControllerProvider(siteId)` | async notifier family | Appends events, projects site state | ⏳ |
 | `measurementControllerProvider(pointId)` | notifier | Measurement state machine | ⏳ |
 | `probabilityMapProvider(siteId, targetId)` | future family | `Isolate.run(engine.estimate)` | ⏳ |
 | `nextBestPointProvider(siteId, targetId)` | future family | From the map | ⏳ |
