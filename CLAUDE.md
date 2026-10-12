@@ -51,7 +51,7 @@ IdeaProjects/beneathsos/            Berkant35/beneathsos      hub: CLAUDE.md, do
 - Releasing a package = tag it (`vX.Y.Z`, Conventional Commits → CHANGELOG), then bump the `ref`
   in dependants.
 
-### Dependency rules (enforced by `tools/check_deps.dart` in the hub)
+### Dependency rules (enforced by `tools/check` in the hub, run with `tools/dev.sh check`)
 
 | Package | May depend on | Must NOT depend on |
 |---|---|---|
@@ -125,7 +125,7 @@ A task is **not done** until format, analyze, test and `tools/dev.sh check` pass
 3. **`BeneathScaffold` for screens** (`beneathsos_ui`). Raw `Scaffold` only for
    full-bleed screens (the map canvas, victim mode, camera/AR later) — say why in a comment.
 4. **Zero hard-coded user-facing strings.** Flutter `gen-l10n` with ARB files
-   (`apps/beneathsos/lib/l10n/app_en.arb`, `app_tr.arb`). Every new key is added to **both** in the
+   (`apps/beneathsos_app/lib/l10n/app_en.arb`, `app_tr.arb`). Every new key is added to **both** in the
    same change. If you see a hard-coded string in a file you touch, fix it.
 5. **Touched file = leave it better.** If a file you edit breaks a rule above, refactor it in the
    same change (and verify).

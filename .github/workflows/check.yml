@@ -1,0 +1,29 @@
+name: check
+on:
+  pull_request:
+    paths: ["tools/check/**", ".github/workflows/check.yml"]
+  push:
+    branches: [main]
+    paths: ["tools/check/**", ".github/workflows/check.yml"]
+permissions:
+  contents: read
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  # The repositories live in their own GitHub repos, so CI tests the checker; `tools/dev.sh check`
+  # runs it against the local checkouts.
+  checker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: tools/check
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: kuhnroyal/flutter-fvm-config-action/setup@c378498f1d1962d33039c3989411093ef8a17b2c # v3.3
+      - run: dart pub get
+      - run: dart format --set-exit-if-changed .
+      - run: dart analyze --fatal-infos
+      - run: dart test

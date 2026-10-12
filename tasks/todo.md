@@ -162,6 +162,9 @@ Specs `docs/superpowers/specs/2026-10-12-rubble-core-{units-geometry,ids-clock,e
       clock seed after restart (`HybridClock(last:)`), discard/move set readings aside, id tie-break,
       finite numbers only, degenerate outline rejected, unmodifiable state lists, no lost identities
 - [ ] Phase 3 must seed `HybridClock(last:)` with the greatest stored hlc at startup
+- [x] `tools/dev.sh check` existed only on paper: `tools/check` (Dart, 8 tests, own CI workflow) now
+      enforces the dependency table of `CLAUDE.md` §2 (unknown repos fail, so a new repo needs a rule)
+      and EN/TR ARB key parity with no empty strings; `dev.sh` uses dart tools for pure Dart repos
 - [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
 
 **2a–2d (2026-10-12):** deferred minors from the final review — `Duration` below 1 ms is lost and
