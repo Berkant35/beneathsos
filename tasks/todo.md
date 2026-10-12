@@ -151,6 +151,8 @@ Spec `docs/superpowers/specs/2026-10-12-rubble-core-units-geometry-design.md`.
       bounds, centroid, contains); 19 tests; analyze/format clean
 - [x] Shared CI template: actions pinned to commit SHAs; dart tools for pure Dart packages (green in app,
       ble_scanner, beneathsos_ui)
+- [x] 2b: monotonic `Uuid7Generator` (injected clock/random), typed ids (`SessionId`, `EventId`, `DeviceId`,
+      `PointId`, `TargetId` — mixing does not compile), `HybridClock` / `HybridTimestamp` (sortable text); 31 tests
 - [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
 
 ## Backlog

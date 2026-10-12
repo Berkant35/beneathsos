@@ -58,7 +58,7 @@ Pure Dart: unit types (`Meters`, `Dbm`), rubble geometry (polygon, points), even
 | Step | What |
 |---|---|
 | 2a 🔄 | Typed units and rubble geometry in local metres — built and tested locally; public repository waits for the maintainer |
-| 2b | UUIDv7 identifiers, hybrid logical clock |
+| 2b 🔄 | UUIDv7 identifiers, hybrid logical clock — built and tested locally |
 | 2c | Event types (v1) and their JSON |
 | 2d | Session projection from events |
 
