@@ -74,22 +74,24 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 
 ```
 apps/beneathsos_app/lib/
-├─ main.dart, app.dart          ProviderScope; theme, l10n, router — never calls into features
+├─ main.dart, app.dart          ProviderScope; BeneathTheme light/dark (beneathsos_ui), l10n, router —
+│                               never calls into features
 ├─ l10n/                        app_en.arb, app_tr.arb → generated/
 ├─ core/
 │  ├─ l10n_extension.dart       context.l10n
 │  ├─ logging/                  AppLogger
 │  ├─ models/                   BleSample (plugin-independent sample)
 │  ├─ router/                   typed go_router routes (only place that knows paths)
-│  ├─ theme/                    AppTheme, AppSpacing
-│  ├─ widgets/                  AppScaffold
+│  ├─ widgets/                  AppScaffold (optional title; moves to beneathsos_ui in 1.2c)
 │  ├─ services/                 BleService, PermissionService, WakelockService,
 │  │                            appLifecycle, clock — implement domain ports
 │  └─ scanning/
 │     ├─ domain/                ports, StartScan / StopScan, preconditions, availability policy
 │     └─ presentation/providers ScanController, ScanState, port + use-case bindings
 └─ features/
-   ├─ home/                     placeholder screen
+   ├─ home/                     branded home: logo, Start a search, I am trapped, fine print
+   ├─ sites/                    NewSiteScreen — being prepared (phase 4)
+   ├─ victim/                   VictimScreen — being prepared, says call 112 (phase 10)
    └─ targets/
       ├─ domain/                DeviceTracker, TrackerPolicy, classification, relink, stats
       └─ presentation/providers TrackedDevices
@@ -100,7 +102,7 @@ apps/beneathsos_app/lib/
 ```
 core/  + persistence/ (Drift), more services (sensors, haptics, audio)
 features/
-   home/ victim_mode/ onboarding/ sites/ site_drawing/ ambient_scan/ targets/
+   home/ victim/ onboarding/ sites/ site_drawing/ ambient_scan/ targets/
    measurement/ probability_map/ export/ research_mode/ settings/
 ```
 
