@@ -219,8 +219,10 @@ Event types (v1): `SiteCreated`, `RubblePolygonSet`, `ScaleSet`, `StructureAnnot
 stores `NoSignal` readings as data (rule 3).
 
 Screen state is `SessionProjection.replay(events)` → `SessionState`: events are applied in hybrid-clock order
-(then `seq`), an event id already applied is ignored, a measurement for an unknown point is kept, a
-discarded point keeps its readings but leaves `measuredPoints`.
+(then `seq`, then id), an event id already applied is ignored, a measurement for an unknown point is
+kept, a discarded or moved point sets its readings aside (`discardedReadings`) and leaves
+`measuredPoints`, and no target identity is ever lost. After a restart the app seeds `HybridClock`
+with the greatest stored timestamp (`last:`), so a clock that went backwards cannot reorder events.
 
 ## 9. Engine (`locator_engine`) ⏳ phase 8
 

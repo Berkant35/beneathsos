@@ -158,7 +158,17 @@ Specs `docs/superpowers/specs/2026-10-12-rubble-core-{units-geometry,ids-clock,e
 - [x] 2d: `SessionProjection.replay` / `apply` → immutable `SessionState`; idempotent, hybrid-clock order
       (two-device test), unknown-point measurements kept; 62 tests; mutations on ordering and duplicate
       guard are caught
+- [x] Final review (opus, fresh) of 2a–2d: 1 critical + 7 important fixed, each RED→GREEN, suite 75/75 —
+      clock seed after restart (`HybridClock(last:)`), discard/move set readings aside, id tie-break,
+      finite numbers only, degenerate outline rejected, unmodifiable state lists, no lost identities
+- [ ] Phase 3 must seed `HybridClock(last:)` with the greatest stored hlc at startup
 - [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
+
+**2a–2d (2026-10-12):** deferred minors from the final review — `Duration` below 1 ms is lost and
+negative/oversized durations and `seq ≤ 0` are accepted; `HybridTimestamp.parse` accepts a leading
+space or `+`, an empty device id does not parse back, a counter above 0xffffffff breaks the fixed
+width; a negative `samples` error names `"medianDbm"`; the engine must handle measured points with
+`at == null`.
 
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android

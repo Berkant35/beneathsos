@@ -35,7 +35,7 @@ No event carries a location claim, a distance from RSSI or a depth (rules 1–2)
 ## 3. JSON rules
 
 Units as plain numbers in their unit (metres, dBm, milliseconds); `SitePoint` as `{"x": …, "y": …}`;
-enums by name. Decoding is strict: an unknown `type`, a missing or mistyped field, an invalid polygon or
+enums by name. Numbers must be finite (NaN or ±Infinity is rejected). Decoding is strict: an unknown `type`, a missing or mistyped field, an invalid polygon or
 an unknown enum name throws `FormatException` naming the field — never a silent default.
 
 ## 4. Testing

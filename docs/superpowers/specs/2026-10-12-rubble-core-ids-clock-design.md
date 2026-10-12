@@ -22,8 +22,10 @@
 
 - `HybridTimestamp(int physicalMs, int counter, DeviceId device)` — total order: physical time, then
   counter, then device id. Serialises to a fixed-width string that sorts the same way
-  (`000001760000000000-0003-<device>`), and parses back.
-- `HybridClock({required DeviceId device, required int Function() nowMs})`:
+  (15-digit milliseconds, 8-hex-digit counter, then the device id), and parses back.
+- `HybridClock({required DeviceId device, required int Function() nowMs, HybridTimestamp? last})` —
+  after a restart the app passes the greatest stored timestamp as `last`, so new events sort after
+  old ones even when the wall clock went backwards while the app was closed:
   - `now()` for a local event: `physical = max(last.physical, wall)`; counter resets to 0 when physical
     advanced, otherwise increments;
   - `receive(HybridTimestamp remote)` when merging another device's event: `physical = max(last, remote,

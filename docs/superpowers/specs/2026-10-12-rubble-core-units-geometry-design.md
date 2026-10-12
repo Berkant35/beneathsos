@@ -36,9 +36,9 @@ where a bare `double` is expected. `.value` is the explicit way out (for maths a
 - `SitePoint(Meters x, Meters y)` — a point on the site in local metres (x east, y north from an
   arbitrary origin); value equality; `distanceTo(SitePoint) → Meters`; `+`/`-` as vectors.
 - `RubblePolygon` — the outline drawn by the rescuer:
-  - at least 3 corners; no two consecutive corners closer than 0.1 m; not self-intersecting;
-    otherwise `RubblePolygon.validate` returns a `PolygonProblem` (sealed: `TooFewCorners`,
-    `CornersTooClose`, `SelfIntersecting`) and the constructor throws `ArgumentError` with it;
+  - at least 3 finite corners; no two consecutive corners closer than 0.1 m; not self-intersecting;
+    at least 0.01 m² enclosed; otherwise `RubblePolygon.validate` returns a `PolygonProblem` (sealed:
+    `TooFewCorners`, `NonFiniteCorner`, `CornersTooClose`, `SelfIntersecting`, `DegenerateOutline`) and the constructor throws `ArgumentError` with it;
   - `edges` (with `length`), `perimeter → Meters`, `area → SquareMeters` (shoelace, always positive),
     `contains(SitePoint)` (ray casting; points on the edge count as inside), `bounds`
     (`SiteBounds` with min/max corners), `centroid`;
