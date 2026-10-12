@@ -28,3 +28,9 @@ After phase 1.1 the maintainer opened the app and saw no change ("Bir şey yapı
 icon and launch screen had changed; screens get the theme in 1.2.
 **Rule:** every step report ends with "On the phone you will see: …" (and what you will *not* see
 yet). Prefer ordering work so each step produces a visible change in the app.
+
+## `cmd | tail` inside an `&&` chain hides failures (2026-10-12, again)
+`fvm flutter analyze | tail -1 && git commit` committed with an analyzer info: the pipeline's exit
+code is `tail`'s. Same root cause as the APK lesson.
+**Rule:** gate commits on the command's own exit code: `cmd > log 2>&1; echo exit=$?` or
+`set -o pipefail`; never put a piped check in front of `&& git commit`.
