@@ -144,7 +144,7 @@ Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
       from tokens; palette swatches (spec) vs theme roles; reduce motion as an addon; nested `.fvmrc`;
       Dependabot entry for `widgetbook/`
 
-## Current: Phase 2 — `rubble_core` (2a–2d)
+## Done: Phase 2 — `rubble_core` (2a–2d), v0.1.0 (2026-10-12)
 Specs `docs/superpowers/specs/2026-10-12-rubble-core-{units-geometry,ids-clock,events,projection}-design.md`.
 - [x] `packages/rubble_core` (pure Dart): `Meters`, `SquareMeters`, `Dbm`, `Decibels`, `Hpa` extension types
       (mixing units does not compile — verified); `SitePoint`, `RubblePolygon` (validation, perimeter, area,
@@ -165,7 +165,8 @@ Specs `docs/superpowers/specs/2026-10-12-rubble-core-{units-geometry,ids-clock,e
 - [x] `tools/dev.sh check` existed only on paper: `tools/check` (Dart, 8 tests, own CI workflow) now
       enforces the dependency table of `CLAUDE.md` §2 (unknown repos fail, so a new repo needs a rule)
       and EN/TR ARB key parity with no empty strings; `dev.sh` uses dart tools for pure Dart repos
-- [ ] Create public repository `Berkant35/rubble_core` + tag v0.1.0 — **waits for the maintainer's yes**
+- [x] Public repository `Berkant35/rubble_core`, rulesets, private vulnerability reporting, CI green,
+      tag + release v0.1.0 (2026-10-12); resolves as a git dependency from a clean project
 
 **2a–2d (2026-10-12):** deferred minors from the final review — `Duration` below 1 ms is lost and
 negative/oversized durations and `seq ≤ 0` are accepted; `HybridTimestamp.parse` accepts a leading

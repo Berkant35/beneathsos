@@ -59,8 +59,10 @@ Why it is built this way: [decision records](docs/adr/README.md).
 | [`beneathsos`](https://github.com/Berkant35/beneathsos) (this one) | Rules, documentation, research, decision records, tools |
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | The Flutter app (Android, iOS) |
 | [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin: raw Bluetooth LE scanning with RSSI and manufacturer data |
+| [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Design system: brand tokens, light/dark theme, logo and core components |
+| [`rubble_core`](https://github.com/Berkant35/rubble_core) | Pure Dart core: typed units, rubble geometry, ids, hybrid clock, session events and projection |
 
-More packages (`rubble_core`, `locator_engine`, `rubble_canvas`) will follow the roadmap.
+More packages (`locator_engine`, `rubble_canvas`) will follow the roadmap.
 
 ## Getting started (developers)
 

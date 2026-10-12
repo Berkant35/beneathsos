@@ -52,15 +52,15 @@ targets, screen readers).
 | 1.3 🔄 | Component catalogue (Widgetbook) published so anyone can browse the UI kit — built and tested in CI (`beneathsos_ui/widgetbook`); publishing to GitHub Pages waits for the maintainer |
 | 1.4 🔄 | Flow mockups for the rescuer and victim journeys, reviewed before any screen is built — 7 screens ready for the maintainer's review (`beneathsos_ui/widgetbook`, Flows) |
 
-## Phase 2 — `rubble_core` package 🔄
+## Phase 2 — `rubble_core` package ✅ ([v0.1.0](https://github.com/Berkant35/rubble_core/releases/tag/v0.1.0))
 Pure Dart: unit types (`Meters`, `Dbm`), rubble geometry (polygon, points), event types, identifiers.
 
 | Step | What |
 |---|---|
-| 2a 🔄 | Typed units and rubble geometry in local metres — built and tested locally; public repository waits for the maintainer |
-| 2b 🔄 | UUIDv7 identifiers, hybrid logical clock — built and tested locally |
-| 2c 🔄 | Event types (v1) and their strict JSON (`EventEnvelope`, schema 1) — built and tested locally |
-| 2d 🔄 | Session projection from events (idempotent, hybrid-clock order) — built and tested locally |
+| 2a ✅ | Typed units and rubble geometry in local metres |
+| 2b ✅ | UUIDv7 identifiers, hybrid logical clock (restart-safe with `last:`) |
+| 2c ✅ | Event types (v1) and their strict JSON (`EventEnvelope`, schema 1) |
+| 2d ✅ | Session projection from events (idempotent, hybrid-clock order) |
 
 ## Phase 3 — Persistence ⏳
 Drift database: sessions, append-only event log, raw RSSI samples. A session survives the app being

@@ -18,7 +18,7 @@ Legend: ✅ built · ⏳ planned
 | App shell: router, l10n (en, tr), `BeneathScaffold` (package), branded home; roadmap 1.4 preview journey (sample data) | ✅ | `beneathsos_app/lib/core`, `features/{home,preview,victim}` |
 | Release to TestFlight | ✅ | `beneathsos_app/tools/testflight.sh` |
 | Design system (`beneathsos_ui`) | ✅ 1.2: tokens, theme, logo, buttons, status banner, card, countdown ring, scaffold | `beneathsos_ui` v0.3.1 |
-| `rubble_core` (units, geometry, events) | 🔄 2a–2d units, geometry, ids, clock, events, projection (local, repository pending) | `packages/rubble_core` |
+| `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.1.0 |
 | Persistence (Drift, event-sourced) | ⏳ phase 3 | — |
 | Entry flow, onboarding, sites | ⏳ phase 4 | — |
 | Rubble drawing (`rubble_canvas`) | ⏳ phase 5 | — |
@@ -65,7 +65,7 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | Flutter app | Composition: features, Riverpod, go_router, l10n, services | ✅ in progress |
 | [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps; later advertising | ✅ v0.1.0 |
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.3.1 |
-| `rubble_core` | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ⏳ |
+| [`rubble_core`](https://github.com/Berkant35/rubble_core) | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ✅ v0.1.0 |
 | `locator_engine` | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ⏳ |
 | `rubble_canvas` | Flutter | Metric canvas, polygon drawing, zoom/pan, heatmap and contour painters | ⏳ |
 
