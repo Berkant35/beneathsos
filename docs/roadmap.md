@@ -50,7 +50,7 @@ targets, screen readers).
 | 1.2b ✅ | Status banners and cards; live Bluetooth/permission readiness banner on the home screen |
 | 1.2c ✅ | Countdown ring; `AppScaffold` moves into `beneathsos_ui` (`BeneathScaffold`) |
 | 1.3 🔄 | Component catalogue (Widgetbook) published so anyone can browse the UI kit — built and tested in CI (`beneathsos_ui/widgetbook`); publishing to GitHub Pages waits for the maintainer |
-| 1.4 | Flow mockups for the rescuer and victim journeys, reviewed before any screen is built |
+| 1.4 🔄 | Flow mockups for the rescuer and victim journeys, reviewed before any screen is built — 7 screens ready for the maintainer's review (`beneathsos_ui/widgetbook`, Flows) |
 
 ## Phase 2 — `rubble_core` package ⏳
 Pure Dart: unit types (`Meters`, `Dbm`), rubble geometry (polygon, points), event types, identifiers.
