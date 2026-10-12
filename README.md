@@ -62,7 +62,9 @@ Why it is built this way: [decision records](docs/adr/README.md).
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Design system: brand tokens, light/dark theme, logo and core components |
 | [`rubble_core`](https://github.com/Berkant35/rubble_core) | Pure Dart core: typed units, rubble geometry, ids, hybrid clock, session events and projection |
 
-More packages (`locator_engine`, `rubble_canvas`) will follow the roadmap.
+| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Drawing canvas: metric grid, rubble outline editor with side lengths, zoom and pan |
+
+More packages (`locator_engine`) will follow the roadmap.
 
 ## Getting started (developers)
 

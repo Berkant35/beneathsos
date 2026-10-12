@@ -209,7 +209,7 @@ do; primary actions ("New search", "Create search") at the top, not in the thumb
 grapheme `maxLength`; practice path asks "I understand" twice and Back from practice skips the list;
 tests for dark mode on new screens and an 80-character name.
 
-## Current: Phase 5 — rubble drawing (2026-10-13)
+## Done: Phase 5 — rubble drawing (2026-10-13)
 Spec `docs/superpowers/specs/2026-10-13-rubble-drawing-design.md`.
 - [x] `packages/rubble_canvas` (local repo): `CanvasGeometry`, `OutlineDraft` (undo, validation),
       `OutlineEditor`, `EdgePicker`, painters + goldens; 28 tests
@@ -217,8 +217,8 @@ Spec `docs/superpowers/specs/2026-10-13-rubble-drawing-design.md`.
       step (side, real length, tape / steps / estimate, unusual-factor confirmation); overview shows the
       area; 197 tests (app commits local, not pushed — the git dependency needs the public repo)
 - [x] Final review (opus): 1 critical (pinch near a corner moved it) + 5 important fixed RED→GREEN
-- [ ] Create public repository `Berkant35/rubble_canvas` + tag v0.1.0 — **waits for the maintainer's yes**;
-      then push the app and upload to TestFlight
+- [x] Public repository `Berkant35/rubble_canvas` (rulesets, private vulnerability reporting, CI and
+      goldens green), tag + release v0.1.0; app pushed, CI green, TestFlight uploaded
 
 **Phase 5 (2026-10-13):** deferred minors from the final review — a tap during a fling adds a corner
 far away (stop the inertia on pointer-down); highlighted side is 2.4:1 on the light surface (add a

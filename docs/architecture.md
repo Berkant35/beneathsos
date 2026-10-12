@@ -21,7 +21,7 @@ Legend: ✅ built · ⏳ planned
 | `rubble_core` (units, geometry, events) | ✅ 2a–2d units, geometry, ids, clock, events, projection | `rubble_core` v0.1.0 |
 | Persistence (Drift, event-sourced) | ✅ phase 3: schema, session store, practice search, "last search" card | `beneathsos_app/lib/core/{database,sessions}` |
 | Entry flow, onboarding, sites | ✅ phase 4: one-time disclaimer, searches list, new search, overview | `features/{onboarding,sites}` |
-| Rubble drawing (`rubble_canvas`) | 🔄 phase 5: package and app screens built and tested locally; public repository waits for the maintainer | `packages/rubble_canvas`, `features/site_drawing` |
+| Rubble drawing (`rubble_canvas`) | ✅ phase 5: outline editor, scale step | `rubble_canvas` v0.1.0, `features/site_drawing` |
 | Target selection UI, ambient blacklist | ⏳ phase 6 | — |
 | Measurement | ⏳ phase 7 | — |
 | `locator_engine` (probability map) | ⏳ phase 8 | — |
@@ -67,7 +67,7 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.3.1 |
 | [`rubble_core`](https://github.com/Berkant35/rubble_core) | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ✅ v0.1.0 |
 | `locator_engine` | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ⏳ |
-| `rubble_canvas` | Flutter | Metric canvas, outline editor (tap / drag / pan / pinch, 0.5 m snap, side lengths, undo), edge picker; later heatmap and contour painters | 🔄 local |
+| [`rubble_canvas`](https://github.com/Berkant35/rubble_canvas) | Flutter | Metric canvas, outline editor (tap / drag / pan / pinch, 0.5 m snap, side lengths, undo), edge picker; later heatmap and contour painters | ✅ v0.1.0 |
 
 ## 3. App structure
 
@@ -173,7 +173,7 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/onboarding` | First use of the rescuer flow: disclaimer (accepted once, `settings`) | ✅ |
 | `/sites`, `/sites/new`, `/sites/:sessionId` | Searches list, new search, overview (async redirect to `/onboarding?from=` until the disclaimer is accepted) | ✅ |
 | `/preview`, `/preview/site/scan/target/measure/map` | Roadmap 1.4 preview journey (sample data) | ✅ temporary |
-| `/sites/:sessionId/draw`, `/sites/:sessionId/scale` | Rubble outline (Back asks when unsaved); optional real size of one side (`ScaleSet`) | 🔄 local |
+| `/sites/:sessionId/draw`, `/sites/:sessionId/scale` | Rubble outline (Back asks when unsaved); optional real size of one side (`ScaleSet`) | ✅ |
 | `/sites/:siteId/ambient` | Ambient scan | ⏳ |
 | `/sites/:siteId/targets` | Target picker / relink | ⏳ |
 | `/sites/:siteId/map?target=:targetId` | Probability map (full-bleed) | ⏳ |

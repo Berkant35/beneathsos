@@ -72,10 +72,9 @@ Home (two large buttons: *I am trapped* / *Start a search*), disclaimer on the f
 stay on the home screen, decided in 1.2b), list of real searches, new search, search overview with the
 steps of the flow. Practice with sample data keeps the preview journey.
 
-## Phase 5 — Rubble drawing (`rubble_canvas` package) 🔄
+## Phase 5 — Rubble drawing (`rubble_canvas` package) ✅ ([v0.1.0](https://github.com/Berkant35/rubble_canvas/releases/tag/v0.1.0))
 Metric canvas, polygon drawing with edge lengths, pinch-zoom and pan; one real side corrects the scale.
-Built and tested locally; the public `rubble_canvas` repository waits for the maintainer's yes, then
-the app ships it to TestFlight. Placing measurement points moves to phase 7 (measurement).
+Placing measurement points moves to phase 7 (measurement).
 
 ## Phase 6 — Target selection ⏳
 30-second ambient scan (blacklist surface devices), candidate ranking (Find My, stationary, weak),
