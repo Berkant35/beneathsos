@@ -236,7 +236,7 @@ tests keep a listener (`container.listen`).
 inside a transaction (`SessionClosed` also sets `closed_at`); a stored row that no longer decodes surfaces
 as `UnreadableEvent`, never skipped.
 
-Event types (v1): `SiteCreated`, `RubblePolygonSet`, `ScaleSet`, `StructureAnnotated`,
+Event types (v1): `SiteCreated`, `RubblePolygonSet`, `ScaleSet`, `RubbleDepthSet`, `StructureAnnotated`,
 `AmbientScanCompleted`, `BlacklistEdited`, `TargetSelected`, `TargetRelinked`,
 `MeasurementPointPlaced`, `MeasurementCompleted`, `MeasurementDiscarded`, `GroundTruthRecorded`,
 `SessionClosed`. They are defined in `rubble_core` (sealed `SessionEvent`) with strict JSON inside an
@@ -293,6 +293,13 @@ outside the 90 % area.
   dashed line and its length from the nearest measured point. The suggested point is labelled "Measure
   next".
 - The searches list can delete a search (asks first; the session row cascades to events and readings).
+- Depth (2026-10-13; the signal cannot tell it, rule 2): the overview step "Rubble height and level"
+  (`/sites/:sessionId/depth`) stores `RubbleDepthSet` (height, `TrappedLevel` upper / middle / ground floor /
+  basement / unknown). The engine runs with that height and the level's likely heights above the ground
+  (upper 70–90 %, middle 40–60 %, bottom 10–25 %, basement at ground level; unknown keeps the profile's
+  spread); signal circles show their footprint √(slant² − height²). Victim mode sends its barometer
+  (service data bytes 5–6 on Android, `SOS-XXXX-PPPPP` name on iOS); a candidate card compares it with the
+  rescuer's barometer: above / about your level / 1–3 floors below / deeper (± 8 m, ~8.3 m per hPa).
 
 ## 10. BLE plugin (`ble_scanner`) ✅
 
