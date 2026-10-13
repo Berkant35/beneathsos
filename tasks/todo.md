@@ -298,6 +298,29 @@ app is closed) and no dimming / flashlight; adapter state is emitted by both iOS
 directly); 112 is text only (a `tel:112` button would work offline); the accelerometer runs at UI rate;
 native code is compiled, not unit-tested.
 
+## Done: Phase 11 — export and research mode (2026-10-13)
+Spec `docs/superpowers/specs/2026-10-13-export-research-design.md`.
+- [x] Export: disclaimer first, JSON + CSV to the share sheet, non-target keys coded in both files
+- [x] Research: record where the phone was found (confirmed), found cross (`rubble_canvas` v0.4.0), report
+- [x] Final review (opus): 1 critical (bystander MACs in the JSON) + 7 important fixed RED→GREEN; suite
+      307/307; TestFlight 57, 58
+
+Rulings (phase 11): an unreadable event keeps its row but not its text (privacy over completeness) — cost:
+a researcher cannot recover that one payload. The export is built on the UI isolate with memoized hashes
+(no `Isolate.run`) — cost: a short pause on very large searches.
+
+**Phase 11 (2026-10-13):** deferred minors — share_plus temp files are not deleted after sharing; the HLC
+device suffix links exports from one phone; a screen reader cannot place the found spot (double tap = map
+centre); the found report uses the current map, not the one at the time; no `GroundTruthCleared` (record
+again to move it); the share popover is not anchored on iPad.
+
+## Current: Phase 12 — release (2026-10-13)
+- [x] iOS privacy manifest (no tracking, nothing collected) bundled; Android release signing from a
+      git-ignored `key.properties`
+- [x] `docs/privacy.md` (EN/TR), `docs/store/listing.md`, `docs/releasing.md`
+- [ ] Maintainer: TestFlight walk-through, screenshots, App Store submission, Play upload key + upload
+- [ ] Widgetbook catalogue on GitHub Pages (phase 1.3 leftovers first)
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

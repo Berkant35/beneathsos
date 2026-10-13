@@ -94,12 +94,14 @@ Heatmap, uncertainty regions, target tabs, suggested next point — the end-to-e
 ## Phase 10 — Victim mode ✅
 *I am trapped*: beacon advertising (Android background, iOS foreground), SOS sound, guidance.
 
-## Phase 11 — Export and research mode ⏳
+## Phase 11 — Export and research mode ✅
 Session export, ground-truth entry and error reports, raw CSV — ready for field campaigns with
 training rubble sites.
 
-## Phase 12 — Release ⏳
-Store readiness, privacy review, first public release.
+## Phase 12 — Release 🔄
+Store readiness, privacy review, first public release. Prepared: privacy manifest and policy
+([`privacy.md`](privacy.md)), store texts ([`store/listing.md`](store/listing.md)), Android release signing,
+the maintainer's checklist ([`releasing.md`](releasing.md)). Store submission is the maintainer's step.
 
 ---
 

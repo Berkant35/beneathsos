@@ -50,7 +50,7 @@ question: **where should we look first?**
 
 Full plan: [roadmap](docs/roadmap.md) · progress: [milestones](https://github.com/Berkant35/beneathsos/milestones) ·
 [open issues](https://github.com/Berkant35/beneathsos/issues). How it is built: [architecture](docs/architecture.md).
-Why it is built this way: [decision records](docs/adr/README.md).
+Why it is built this way: [decision records](docs/adr/README.md). Privacy: [nothing is collected](docs/privacy.md).
 
 ## Repositories
 

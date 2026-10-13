@@ -27,7 +27,7 @@ Legend: ✅ built · ⏳ planned
 | `locator_engine` (probability map) | ✅ phase 8: Bayesian grid, 50 % / 90 % regions by count, next point by mutual information | `locator_engine` v0.1.0 |
 | Probability map screen | ✅ phase 9: regions, areas, low-information badge, target tabs, suggested point (also on measuring) | `features/probability_map`, `rubble_canvas` v0.3.0 |
 | Victim mode (advertising) | ✅ phase 10: beacon, liveness, SOS sound; rescuers rank it first | `features/victim`, `core/beacon`, `ble_scanner` v0.2.1 |
-| Export, research mode | ⏳ phase 11 | — |
+| Export, research mode | ✅ phase 11: JSON + CSV with the disclaimer to the share sheet, non-target keys coded; record where a phone was found and how the map did | `features/{export,research}` |
 
 ## 1. Scope
 
@@ -186,7 +186,7 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/sites/:sessionId/map` | Probability map; target tabs on the screen (form state) | ✅ |
 | `/sites/:sessionId/export` | Export: disclaimer, then JSON + CSV to the share sheet | ✅ |
 | `/victim` | Victim mode (beacon, SOS sound) | ✅ |
-| `/settings`, `/research` | Settings, research | ⏳ |
+| `/settings` | Settings | ⏳ (not in v1) |
 | `/join?code=` | Reserved for v2 (shared workspace) | ⏳ |
 
 ## 7. Providers (Riverpod 3)
@@ -248,6 +248,16 @@ Screen state is `SessionProjection.replay(events)` → `SessionState`: events ar
 kept, a discarded or moved point sets its readings aside (`discardedReadings`) and leaves
 `measuredPoints`, and no target identity is ever lost. After a restart the app seeds `HybridClock`
 with the greatest stored timestamp (`last:`), so a clock that went backwards cannot reorder events.
+
+### Export and research (phase 11)
+`SessionStore.record` reads a search as stored; `ExportBundle` (pure) writes `beneathsos-<date>-<title>.json`
+(search row, every event — an unreadable one marked `unreadable` without its text — and the disclaimer)
+and `-samples.csv` (disclaimer as `#` lines, raw readings). Keys of phones that are not targets become
+`other-` + 12 hex of SHA-256(16-byte salt drawn per export + key) in both files, so events and readings
+still join within one file and never across files. `SharePort` (share_plus) hands both files to the
+share sheet; the app sends nothing itself. Research: `GroundTruthRecorded` after a confirmation dialog;
+`foundReport` says which region the spot is in (a spot on a cell edge counts in the better one) or how far
+outside the 90 % area.
 
 ## 9. Engine (`locator_engine`) ✅ phase 8
 
