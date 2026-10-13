@@ -282,6 +282,11 @@ outside the 90 % area.
 - Reference: `tools/sim/engine_reference.py`; golden fixtures in `locator_engine/test/fixtures` (tests: < 1e-6 per cell, measured ≈ 1e-12;
   areas exact).
 - Not yet: quadrant probabilities, structure annotations in the attenuation.
+- Map screen (2026-10-13, after the first field test): the most likely spot is the probability-weighted
+  middle of the 50 % area (its most likely cell when the area is split) drawn as a crosshair with the
+  dashed circle that holds half the probability; the panel says its radius and how far it lies in from
+  the nearest edge (drawing geometry, not signal). Measured points are diamonds with their dBm, warmer
+  when stronger. Places within 3 m of each other trigger "measure all around the rubble".
 
 ## 10. BLE plugin (`ble_scanner`) ✅
 

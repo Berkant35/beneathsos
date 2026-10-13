@@ -71,3 +71,12 @@ A failed expectation inside a database-backed flow left the next tests in the fi
 each; alone, each passed.
 **Rule:** when a file "hangs", look at the first failure in it first, and run single tests with a short
 `alarm` before suspecting the code under test.
+
+## A correct map the rescuer could not read (2026-10-13, maintainer's field test)
+The maintainer measured 5 points and "understood nothing": measured points looked exactly like the
+outline's corners, the map showed two flat colour blocks with no spot or distance, and nothing said the
+test area (≈ 2 m², points on its corners) was too small to tell anything apart.
+**Rule:** every map mark must be distinguishable and named in a legend; a result must give the rescuer
+something to act on — here a spot *with* its circle and a distance measured on the drawing (rules 1 and 2
+allow both); warn when the input cannot produce an answer (points bunched, area tiny). Try each screen
+with a deliberately bad input before calling it done.
