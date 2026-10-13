@@ -17,6 +17,10 @@ Plan and progress live in `tasks/todo.md` (hub); mistakes and their prevention r
 2. **No depth, floor-count or material estimate from RSSI.** Research proved RSSI cannot separate
    distance from attenuation. Depth may only come from non-RF sources (barometer, user input) and
    must be shown as a coarse class with uncertainty.
+   *Exception (maintainer's decision 2026-10-13, ADR 0019):* the switchable **signal circles** layer may
+   show, per heard point, the distance at which the profile's typical rubble would give its signal, and
+   where those circles meet inside the rubble — always labelled "rough guide", beside the probability
+   map, never instead of it.
 3. **A point with no signal is data.** Non-detections are stored and fed to the engine (censored
    likelihood). Never drop them.
 4. **Offline first.** No feature may require network in v1. No analytics SDK in v1.
