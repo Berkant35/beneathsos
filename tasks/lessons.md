@@ -80,3 +80,11 @@ test area (≈ 2 m², points on its corners) was too small to tell anything apar
 something to act on — here a spot *with* its circle and a distance measured on the drawing (rules 1 and 2
 allow both); warn when the input cannot produce an answer (points bunched, area tiny). Try each screen
 with a deliberately bad input before calling it done.
+
+## The maintainer asked for circles twice (2026-10-13)
+After the first field test the maintainer asked for RSSI circles; I offered a rule-preserving alternative
+(likely spot + circle) and they picked it, but the second test showed it was not what they meant: a
+coloured circle per point, where they meet, a distance line, and a switch.
+**Rule:** when the maintainer describes a concrete picture, build that picture (as a clearly labelled,
+switchable layer if it bends a product rule) and record the decision in an ADR — do not substitute a
+"better" design for what they drew. Ask with their sketch in mind, not with my preferred option first.

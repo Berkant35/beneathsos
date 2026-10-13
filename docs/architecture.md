@@ -287,6 +287,12 @@ outside the 90 % area.
   dashed circle that holds half the probability; the panel says its radius and how far it lies in from
   the nearest edge (drawing geometry, not signal). Measured points are diamonds with their dBm, warmer
   when stronger. Places within 3 m of each other trigger "measure all around the rubble".
+- Signal circles ([ADR 0019](adr/0019-signal-circles-rough-guide.md), on by default, a checkbox on the map and
+  measuring screens): per heard point a circle in its own colour, radius = distance at which the profile's
+  middle exponent and attenuation give the median; where they meet best inside the outline, with a
+  dashed line and its length from the nearest measured point. The suggested point is labelled "Measure
+  next".
+- The searches list can delete a search (asks first; the session row cascades to events and readings).
 
 ## 10. BLE plugin (`ble_scanner`) ✅
 
