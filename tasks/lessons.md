@@ -59,3 +59,15 @@ within minutes, re-released on the right commit).
 verifies `git rev-parse <tag>^{} == HEAD` of the commit that passed the checks. Never put a tag or
 release after `;`.
 
+
+## Generated code edited around, not regenerated (2026-10-13)
+Provider sources were changed after `build_runner` ran; the committed `.g.dart` kept a stale source
+hash, and a later build in a clean worktree regenerated it as a diff.
+**Rule:** run `fvm dart run build_runner build` after the last edit to any `@riverpod` file, just before
+the commit, and check `git status` is clean afterwards.
+
+## One failing widget test made the rest of the file hang (2026-10-13)
+A failed expectation inside a database-backed flow left the next tests in the file waiting for 10 min
+each; alone, each passed.
+**Rule:** when a file "hangs", look at the first failure in it first, and run single tests with a short
+`alarm` before suspecting the code under test.

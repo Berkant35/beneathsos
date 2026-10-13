@@ -26,7 +26,7 @@ Legend: ✅ built · ⏳ planned
 | Measurement | ✅ phase 7: 15 s still points, median per target, no signal stored as data, relink | `features/measurement` |
 | `locator_engine` (probability map) | ✅ phase 8: Bayesian grid, 50 % / 90 % regions by count, next point by mutual information | `locator_engine` v0.1.0 |
 | Probability map screen | ✅ phase 9: regions, areas, low-information badge, target tabs, suggested point (also on measuring) | `features/probability_map`, `rubble_canvas` v0.3.0 |
-| Victim mode (advertising) | ⏳ phase 10 | — |
+| Victim mode (advertising) | ✅ phase 10: beacon, liveness, SOS sound; rescuers rank it first | `features/victim`, `core/beacon`, `ble_scanner` v0.2.1 |
 | Export, research mode | ⏳ phase 11 | — |
 
 ## 1. Scope
@@ -63,7 +63,7 @@ rubble_canvas         │         ble_scanner, beneathsos_ui (standalone)
 |---|---|---|---|
 | [`beneathsos`](https://github.com/Berkant35/beneathsos) | hub | Rules, docs, ADRs, research, tools | ✅ |
 | [`beneathsos_app`](https://github.com/Berkant35/beneathsos_app) | Flutter app | Composition: features, Riverpod, go_router, l10n, services | ✅ in progress |
-| [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps and service data; one-service advertiser (victim beacon) | ✅ v0.2.0 |
+| [`ble_scanner`](https://github.com/Berkant35/ble_scanner) | Flutter plugin (Pigeon) | Raw BLE samples with monotonic timestamps and service data; one-service advertiser (victim beacon) | ✅ v0.2.1 |
 | [`beneathsos_ui`](https://github.com/Berkant35/beneathsos_ui) | Flutter | Design tokens, light/dark theme, Atkinson font, logo, core components | ✅ v0.3.1 |
 | [`rubble_core`](https://github.com/Berkant35/rubble_core) | pure Dart | Units (`Meters`, `Dbm`, `Hpa`), site geometry, event types, projections, UUIDv7, hybrid logical clock | ✅ v0.2.0 |
 | [`locator_engine`](https://github.com/Berkant35/locator_engine) | pure Dart | Grid likelihood, marginalisation, 50/90 % regions, next-best-point, JSON profiles | ✅ v0.1.1 |
@@ -141,12 +141,19 @@ Logo, one message, **"Start a search"** (primary) → rescuer flow (onboarding o
 the preview journey is "Practice with sample data". "I am trapped" opens the victim-mode preview
 (`/victim`), never behind the disclaimer, which still says to call 112.*
 
-### 5.2 Victim mode
-1. Start advertising immediately (Android: foreground service `connectedDevice`, manufacturer data
-   with app id + battery + liveness counter; iOS: foreground service-UUID advertising).
-2. Large instructions (stay calm, save battery, tap 3 times when you hear rescuers), SOS sound,
-   flashlight, battery indicator. Screen dims itself.
-3. Liveness: last touch / motion time is included in the advertisement (Android).
+### 5.2 Victim mode ✅ phase 10
+Spec `docs/superpowers/specs/2026-10-13-victim-mode-design.md`.
+1. `/victim` starts the beacon at once (asks for Bluetooth access): service UUID
+   `06ad86ef-1e8c-47b4-9c65-c526d5e31581`; Android adds 5 bytes of service data (version, 16-bit beacon
+   id drawn per start, battery %, minutes since the phone was last touched or moved), iOS the local name
+   `SOS-XXXX`. "Calling out" only after the platform confirms; Bluetooth off / access taken away are
+   shown at once; a failed start is retried every minute; the payload is refreshed every minute.
+2. Always dark, large text, one action per state, SOS sound (Morse at 3 kHz, alarm stream on Android),
+   112 guidance, Back asks before stopping. Screen kept awake.
+3. Rescuer side: a beacon is `DeviceKind.trappedBeacon`, keyed `sos-xxxx` by its id (stable across
+   address rotation), always first among candidates, never a surface phone; its card shows battery and
+   "moved or touched N min ago".
+4. Not yet: an Android foreground service (advertising after the app is closed), dimming, flashlight.
 
 ### 5.3 Rescuer flow
 
@@ -169,7 +176,6 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | Path | Screen | Status |
 |---|---|---|
 | `/` | Home | ✅ |
-| `/victim` | Victim mode (full-bleed) | ✅ preview |
 | `/onboarding` | First use of the rescuer flow: disclaimer (accepted once, `settings`) | ✅ |
 | `/sites`, `/sites/new`, `/sites/:sessionId` | Searches list, new search, overview (async redirect to `/onboarding?from=` until the disclaimer is accepted) | ✅ |
 | `/preview`, `/preview/site/scan/target/measure/map` | Roadmap 1.4 preview journey (sample data) | ✅ temporary |
@@ -178,7 +184,9 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/sites/:sessionId/targets` | Target picker (relink follows with measurement) | ✅ |
 | `/sites/:sessionId/measure` | Measurement (place a point, hold still 15 s) | ✅ |
 | `/sites/:sessionId/map` | Probability map; target tabs on the screen (form state) | ✅ |
-| `/sites/:siteId/export`, `/settings`, `/research` | Export, settings, research | ⏳ |
+| `/sites/:sessionId/export` | Export: disclaimer, then JSON + CSV to the share sheet | ✅ |
+| `/victim` | Victim mode (beacon, SOS sound) | ✅ |
+| `/settings`, `/research` | Settings, research | ⏳ |
 | `/join?code=` | Reserved for v2 (shared workspace) | ⏳ |
 
 ## 7. Providers (Riverpod 3)

@@ -91,7 +91,7 @@ measurement point. Golden tests against the reference.
 ## Phase 9 — Probability map screen ✅
 Heatmap, uncertainty regions, target tabs, suggested next point — the end-to-end rescuer journey.
 
-## Phase 10 — Victim mode ⏳
+## Phase 10 — Victim mode ✅
 *I am trapped*: beacon advertising (Android background, iOS foreground), SOS sound, guidance.
 
 ## Phase 11 — Export and research mode ⏳

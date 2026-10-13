@@ -18,7 +18,7 @@ side and contrast ratios measured.
 | Topic | Decision |
 |---|---|
 | Feeling | Calm body + high-visibility accent for actions and attention |
-| Theme | Follow the phone's light/dark setting everywhere, including victim mode |
+| Theme | Follow the phone's light/dark setting everywhere — except victim mode, which is always dark (amended 2026-10-13: its screen stays on for hours on a trapped phone's battery) |
 | Typeface | Atkinson Hyperlegible Next (variable 200–800, SIL OFL 1.1); tabular figures for changing numbers |
 | Icons | Material Symbols Rounded + 5–6 custom domain icons on the logo's grid and stroke |
 | Palette | Ink navy `#1B2A4E` / `#9DB2E0`, safety orange `#FF7900` / `#FF8C2E` with dark text `#1A0D00`, error red `#B3261E` / `#FFB4AB` |

@@ -278,6 +278,26 @@ profile; `EngineProfile.fromJson` throws `TypeError` on a missing key and `Proba
 lengths; the map's screen-reader label omits the suggestion and the areas are read twice; the overview's
 "Open the probability map" condition is inline in `site_screen.dart` (move to the mixin, make it a step).
 
+## Done: Phase 10 — victim mode (2026-10-13)
+Spec `docs/superpowers/specs/2026-10-13-victim-mode-design.md`.
+- [x] `ble_scanner` v0.2.0 → v0.2.1: one-service advertiser (Android legacy advert + scan response, iOS
+      CBPeripheralManager), service data on scan samples
+- [x] `/victim`: beacon with id, battery, liveness; SOS sound; always dark; Back confirmation
+- [x] Rescuers: `trappedBeacon` first, never set aside, battery and last touch on the card
+- [x] Final review (opus): 1 critical + 6 important — fixed RED→GREEN (confirmed start, Bluetooth / access
+      changes while calling out, retries, late start after leaving, beacons without id, dark screen, alarm
+      stream) ; suite 297/297; TestFlight 52, 53, 54
+
+Rulings (phase 10): payload refresh stays stop + start (Android `AdvertisingSet.setAdvertisingData` would
+update in place) — a failure is retried within a minute; cost if wrong: a gap of up to a minute.
+"Moved or touched" instead of separate bits — cost: shaking rubble reads as a sign of life, now worded so.
+
+**Phase 10 (2026-10-13):** deferred minors — no Android foreground service (advertising stops when the
+app is closed) and no dimming / flashlight; adapter state is emitted by both iOS managers (duplicates);
+`advertisingSupported` is hard-coded on iOS; no `StopBeacon` use case (the notifier stops the port
+directly); 112 is text only (a `tel:112` button would work offline); the accelerometer runs at UI rate;
+native code is compiled, not unit-tested.
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)
