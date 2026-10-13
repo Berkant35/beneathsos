@@ -322,6 +322,16 @@ again to move it); the share popover is not anchored on iPad.
 - [x] Widgetbook catalogue on GitHub Pages
 - [x] App version 1.0.0 (TestFlight 1.0.0 (60))
 
+## Done: Settings (2026-10-13, maintainer's choice) — TestFlight 1.0.0 (66)
+- [x] `AppSettings` (key–value settings store): language, default rubble type, signal circles, measuring
+      time 10/15/30 s, default rubble height
+- [x] Consumers: app locale, new search profile, signal-circle switch persisted, measuring window, engine
+      / circles / depth line use the default height when no depth was given
+- [x] `/settings` from home and the searches list: language · search (type, height, time, circles) · data
+      (delete practice searches, delete all, each asks) · about (version, disclaimer, privacy, licences,
+      independence)
+- [x] Tests, TestFlight, docs
+
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
       monochrome resources (only the source assets are tested today)

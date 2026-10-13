@@ -186,7 +186,7 @@ suggested next point, target tabs sorted by "most promising", identity-rotation 
 | `/sites/:sessionId/map` | Probability map; target tabs on the screen (form state) | ✅ |
 | `/sites/:sessionId/export` | Export: disclaimer, then JSON + CSV to the share sheet | ✅ |
 | `/victim` | Victim mode (beacon, SOS sound) | ✅ |
-| `/settings` | Settings | ⏳ (not in v1) |
+| `/settings` (`/disclaimer`, `/privacy`, `/licences`) | Settings: language, default rubble type and height, measuring time, signal circles, delete practice / all searches, about | ✅ |
 | `/join?code=` | Reserved for v2 (shared workspace) | ⏳ |
 
 ## 7. Providers (Riverpod 3)
@@ -293,6 +293,10 @@ outside the 90 % area.
   dashed line and its length from the nearest measured point. The suggested point is labelled "Measure
   next".
 - The searches list can delete a search (asks first; the session row cascades to events and readings).
+- Settings (`AppSettings` over the `settings` table: `language`, `default_profile`, `signal_circles`,
+  `measure_seconds`, `default_rubble_height`; an unreadable value falls back to its default): the app
+  locale, the profile of new searches, the measuring window, the circles switch and the height assumed
+  when a search has no depth all read it.
 - Depth (2026-10-13; the signal cannot tell it, rule 2): the overview step "Rubble height and level"
   (`/sites/:sessionId/depth`) stores `RubbleDepthSet` (height, `TrappedLevel` upper / middle / ground floor /
   basement / unknown). The engine runs with that height and the level's likely heights above the ground
