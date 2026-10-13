@@ -135,11 +135,11 @@ Spec `docs/superpowers/specs/2026-10-12-widgetbook-catalogue-design.md`, plan
 - [x] `beneathsos_ui/widgetbook/`: 9 components, 21 use cases, light/dark, text scale 1–2, viewports,
       reduce-motion knob; test opens every use case in both themes (43 tests); `catalogue.yml` builds the
       web catalogue in CI (green)
-- [ ] Publish to GitHub Pages — **waits for the maintainer's yes** (repository setting + public site)
+- [x] Published to GitHub Pages under the blanket approval (2026-10-13): https://berkant35.github.io/beneathsos_ui/
 - [x] Review fixes: `.pubignore` kept `build/` in the publish archive (71 MB → 256 KB); catalogue uses the
       package's full lint set; missing button use cases (47 catalogue tests)
-- [ ] Before Pages: build with `--no-web-resources-cdn` (no Google CDN requests), `--base-href /beneathsos_ui/`,
-      real README / title / brand colours in `web/`, custom home instead of Widgetbook's marketing page
+- [x] Before Pages: `--no-web-resources-cdn` (verified: no Google requests), `--base-href /beneathsos_ui/`, README,
+      title / icons / brand colours in `web/`, a BeneathSOS home page (Widgetbook still renames the tab title)
 - [ ] Deferred minors: 200 % pass in the catalogue test; coverage list derived from exports; typography labels
       from tokens; palette swatches (spec) vs theme roles; reduce motion as an addon; nested `.fvmrc`;
       Dependabot entry for `widgetbook/`
@@ -319,7 +319,8 @@ again to move it); the share popover is not anchored on iPad.
       git-ignored `key.properties`
 - [x] `docs/privacy.md` (EN/TR), `docs/store/listing.md`, `docs/releasing.md`
 - [ ] Maintainer: TestFlight walk-through, screenshots, App Store submission, Play upload key + upload
-- [ ] Widgetbook catalogue on GitHub Pages (phase 1.3 leftovers first)
+- [x] Widgetbook catalogue on GitHub Pages
+- [x] App version 1.0.0 (TestFlight 1.0.0 (60))
 
 ## Backlog
 - [ ] Brand toolkit: test the tinted grayscale conversion step itself and the generated Android
